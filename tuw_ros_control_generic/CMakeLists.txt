@@ -28,12 +28,15 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
+roslint_cpp()
+
 add_library(
   tuw_ros_control_generic
   src/${PROJECT_NAME}/description/generic_config_description.cpp
   src/${PROJECT_NAME}/description/generic_connection_description.cpp
   src/${PROJECT_NAME}/description/generic_hardware_description.cpp
   src/${PROJECT_NAME}/description/generic_hardware_parameter_description.cpp
+  src/${PROJECT_NAME}/description/generic_joint_description.cpp
 )
 
 target_link_libraries(
@@ -49,6 +52,7 @@ catkin_add_gtest(
   test/${PROJECT_NAME}/description/generic_connection_description_test.cpp
   test/${PROJECT_NAME}/description/generic_hardware_description_test.cpp
   test/${PROJECT_NAME}/description/generic_hardware_parameter_description_test.cpp
+  test/${PROJECT_NAME}/description/generic_joint_description_test.cpp
 )
 
 # link libraries to gtests

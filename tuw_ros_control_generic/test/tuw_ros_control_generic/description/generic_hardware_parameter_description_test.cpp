@@ -2,7 +2,7 @@
 
 #include <gtest/gtest.h>
 
-#include "tuw_ros_control_generic/description/generic_hardware_parameter_description.h"
+#include <tuw_ros_control_generic/description/generic_hardware_parameter_description.h>
 
 using tuw_ros_control_generic::GenericHardwareParameterDescription;
 

@@ -4,6 +4,8 @@
 #define DIP_WS_GENERIC_CONFIG_H
 
 #include <memory>
+#include "tuw_ros_control_generic/description/generic_config_description.h"
+#include "generic_connection.h"
 
 namespace tuw_ros_control_generic
 {
