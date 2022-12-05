@@ -2,6 +2,11 @@
 
 #include <tuw_ros_control_generic/description/generic_hardware_parameter_description.h>
 
+#include <map>
+#include <memory>
+#include <string>
+#include <utility>
+
 using tuw_ros_control_generic::GenericHardwareParameterDescription;
 
 GenericHardwareParameterDescription::GenericHardwareParameterDescription(YAML::Node yaml)

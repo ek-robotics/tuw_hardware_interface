@@ -1,15 +1,16 @@
-//
-// Created by eugen on 05.12.22.
-//
+// Copyright 2022 Eugen Kaltenegger
 
-#ifndef DIP_WS_GENERIC_SETUP_DESCRIPTION_H
-#define DIP_WS_GENERIC_SETUP_DESCRIPTION_H
+#ifndef TUW_ROS_CONTROL_GENERIC_DESCRIPTION_GENERIC_SETUP_DESCRIPTION_H
+#define TUW_ROS_CONTROL_GENERIC_DESCRIPTION_GENERIC_SETUP_DESCRIPTION_H
 
-
-class generic_setup_description
+namespace tuw_ros_control_generic
 {
-
+class GenericSetupDescription
+{
+public:
+private:
 };
+}  // namespace tuw_ros_control_generic
 
 
-#endif //DIP_WS_GENERIC_SETUP_DESCRIPTION_H
+#endif  // TUW_ROS_CONTROL_GENERIC_DESCRIPTION_GENERIC_SETUP_DESCRIPTION_H

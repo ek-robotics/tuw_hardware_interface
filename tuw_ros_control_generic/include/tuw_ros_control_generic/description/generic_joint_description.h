@@ -1,7 +1,7 @@
 // Copyright 2022 Eugen Kaltenegger
 
-#ifndef DIP_WS_GENERIC_JOINT_DESCRIPTION_H
-#define DIP_WS_GENERIC_JOINT_DESCRIPTION_H
+#ifndef TUW_ROS_CONTROL_GENERIC_DESCRIPTION_GENERIC_JOINT_DESCRIPTION_H
+#define TUW_ROS_CONTROL_GENERIC_DESCRIPTION_GENERIC_JOINT_DESCRIPTION_H
 
 #include <string>
 
@@ -9,7 +9,8 @@
 
 namespace tuw_ros_control_generic
 {
-class GenericJointDescription {
+class GenericJointDescription
+{
 public:
   explicit GenericJointDescription(YAML::Node yaml);
   int getId();
@@ -18,6 +19,6 @@ private:
   int id_;
   std::string name_;
 };
-}
+}  // namespace tuw_ros_control_generic
 
-#endif //DIP_WS_GENERIC_JOINT_DESCRIPTION_H
+#endif  // TUW_ROS_CONTROL_GENERIC_DESCRIPTION_GENERIC_JOINT_DESCRIPTION_H

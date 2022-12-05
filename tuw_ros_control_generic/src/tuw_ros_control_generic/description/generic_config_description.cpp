@@ -2,6 +2,9 @@
 
 #include <tuw_ros_control_generic/description/generic_config_description.h>
 
+#include <map>
+#include <string>
+
 using tuw_ros_control_generic::GenericConfigDescription;
 
 GenericConfigDescription::GenericConfigDescription(YAML::Node yaml)

@@ -1,15 +1,16 @@
 // Copyright 2022 Eugen Kaltenegger
 
-#ifndef DIP_WS_GENERIC_HARDWARE_PARAMETER_H
-#define DIP_WS_GENERIC_HARDWARE_PARAMETER_H
+#ifndef TUW_ROS_CONTROL_GENERIC_GENERIC_HARDWARE_PARAMETER_H
+#define TUW_ROS_CONTROL_GENERIC_GENERIC_HARDWARE_PARAMETER_H
 
 namespace tuw_ros_control_generic
 {
-class GenericHardwareParameter {
+class GenericHardwareParameter
+{
 public:
-  GenericHardwareParameter(GenericHardwareParameterDescription hardware_parameter_description);
+  explicit GenericHardwareParameter(GenericHardwareParameterDescription hardware_parameter_description);
 private:
 };
-}
+}  // namespace tuw_ros_control_generic
 
-#endif //DIP_WS_GENERIC_HARDWARE_PARAMETER_H
+#endif  // TUW_ROS_CONTROL_GENERIC_GENERIC_HARDWARE_PARAMETER_H

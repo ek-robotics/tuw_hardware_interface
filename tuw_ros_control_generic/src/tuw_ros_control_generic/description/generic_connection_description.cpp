@@ -2,6 +2,8 @@
 
 #include <tuw_ros_control_generic/description/generic_connection_description.h>
 
+#include <string>
+
 using tuw_ros_control_generic::GenericConnectionDescription;
 
 GenericConnectionDescription::GenericConnectionDescription(YAML::Node yaml)

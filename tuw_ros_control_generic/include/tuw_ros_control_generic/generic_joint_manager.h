@@ -1,11 +1,14 @@
 // Copyright 2022 Eugen Kaltenegger
 
-#ifndef DIP_WS_GENERIC_JOINT_MANAGER_H
-#define DIP_WS_GENERIC_JOINT_MANAGER_H
+#ifndef TUW_ROS_CONTROL_GENERIC_GENERIC_JOINT_MANAGER_H
+#define TUW_ROS_CONTROL_GENERIC_GENERIC_JOINT_MANAGER_H
+
+#include <memory>
 
 namespace tuw_ros_control_generic
 {
-class GenericJointManager {
+class GenericJointManager
+{
 public:
   GenericJointManager(GenericConnectionDescription connection_description,
                       GenericHardwareDescription hardware_description,
@@ -15,6 +18,6 @@ private:
   std::shared_ptr<GenericHardware> hardware_ {nullptr};
   std::shared_ptr<GenericConfig> config_ {nullptr};
 };
-}
+}  // namespace tuw_ros_control_generic
 
-#endif //DIP_WS_GENERIC_JOINT_MANAGER_H
+#endif  // TUW_ROS_CONTROL_GENERIC_GENERIC_JOINT_MANAGER_H

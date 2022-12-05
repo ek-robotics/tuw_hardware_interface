@@ -1,14 +1,15 @@
 // Copyright 2022 Eugen Kaltenegger
 
-#ifndef DIP_WS_GENERIC_LOGGING_TOOL_H
-#define DIP_WS_GENERIC_LOGGING_TOOL_H
+#ifndef TUW_ROS_CONTROL_GENERIC_GENERIC_LOGGING_TOOL_H
+#define TUW_ROS_CONTROL_GENERIC_GENERIC_LOGGING_TOOL_H
 
 namespace tuw_ros_control_generic
 {
-class {
+class GenericLoggingTool
+{
 public:
 private:
 };
-}
+}  // namespace tuw_ros_control_generic
 
-#endif //DIP_WS_GENERIC_LOGGING_TOOL_H
+#endif  // TUW_ROS_CONTROL_GENERIC_GENERIC_LOGGING_TOOL_H

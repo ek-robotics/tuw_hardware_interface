@@ -1,16 +1,20 @@
 // Copyright 2022 Eugen Kaltenegger
 
-#include <gtest/gtest.h>
+#include <tuw_ros_control_generic/description/generic_hardware_description.h>
+
+#include <string>
+
 #include <ros/package.h>
 
-
-#include <tuw_ros_control_generic/description/generic_hardware_description.h>
+#include <gtest/gtest.h>
 
 using tuw_ros_control_generic::GenericHardwareDescription;
 
+#define RELATIVE_PATH "/test/resources/generic_hardware_description_test.yaml"
+
 TEST(GenericCHardwareDescriptionTest, verifyConstructorFromYaml)
 {
-  std::string path = ros::package::getPath("tuw_ros_control_generic") + "/test/resources/generic_hardware_description_test.yaml";
+  std::string path = ros::package::getPath("tuw_ros_control_generic") + std::string(RELATIVE_PATH);
   YAML::Node yaml = YAML::LoadFile(path);
   GenericHardwareDescription ghd(yaml);
 

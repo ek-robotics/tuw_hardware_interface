@@ -1,7 +1,7 @@
 // Copyright 2022 Eugen Kaltenegger
 
-#ifndef DIP_WS_GENERIC_HARDWARE_PARAMETER_DESCRIPTION_H
-#define DIP_WS_GENERIC_HARDWARE_PARAMETER_DESCRIPTION_H
+#ifndef TUW_ROS_CONTROL_GENERIC_DESCRIPTION_GENERIC_HARDWARE_PARAMETER_DESCRIPTION_H
+#define TUW_ROS_CONTROL_GENERIC_DESCRIPTION_GENERIC_HARDWARE_PARAMETER_DESCRIPTION_H
 
 #include <map>
 #include <memory>
@@ -11,7 +11,8 @@
 
 namespace tuw_ros_control_generic
 {
-class GenericHardwareParameterDescription {
+class GenericHardwareParameterDescription
+{
 public:
   explicit GenericHardwareParameterDescription(YAML::Node yaml);
   std::string* getIdentifier();
@@ -30,5 +31,6 @@ private:
   std::unique_ptr<int> range_min_ {nullptr};
   std::unique_ptr<std::map<std::string, int>> range_enum_map_ {nullptr};
 };
-}
-#endif //DIP_WS_GENERIC_HARDWARE_PARAMETER_DESCRIPTION_H
+}  // namespace tuw_ros_control_generic
+
+#endif  // TUW_ROS_CONTROL_GENERIC_DESCRIPTION_GENERIC_HARDWARE_PARAMETER_DESCRIPTION_H

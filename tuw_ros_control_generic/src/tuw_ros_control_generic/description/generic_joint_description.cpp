@@ -2,6 +2,8 @@
 
 #include <tuw_ros_control_generic/description/generic_joint_description.h>
 
+#include <string>
+
 using tuw_ros_control_generic::GenericJointDescription;
 
 GenericJointDescription::GenericJointDescription(YAML::Node yaml)

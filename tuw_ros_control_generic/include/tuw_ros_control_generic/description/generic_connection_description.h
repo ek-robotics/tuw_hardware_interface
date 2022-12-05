@@ -1,13 +1,16 @@
 // Copyright 2022 Eugen Kaltenegger
 
-#ifndef DIP_WS_GENERIC_CONNECTION_DESCRIPTION_H
-#define DIP_WS_GENERIC_CONNECTION_DESCRIPTION_H
+#ifndef TUW_ROS_CONTROL_GENERIC_DESCRIPTION_GENERIC_CONNECTION_DESCRIPTION_H
+#define TUW_ROS_CONTROL_GENERIC_DESCRIPTION_GENERIC_CONNECTION_DESCRIPTION_H
+
+#include <string>
 
 #include <yaml-cpp/yaml.h>
 
 namespace tuw_ros_control_generic
 {
-class GenericConnectionDescription {
+class GenericConnectionDescription
+{
 public:
   explicit GenericConnectionDescription(YAML::Node yaml);
   std::string getHash();
@@ -18,6 +21,6 @@ private:
   std::string port_;
   int baudrate_;
 };
-}
+}  // namespace tuw_ros_control_generic
 
-#endif //DIP_WS_GENERIC_CONNECTION_DESCRIPTION_H
+#endif  // TUW_ROS_CONTROL_GENERIC_DESCRIPTION_GENERIC_CONNECTION_DESCRIPTION_H

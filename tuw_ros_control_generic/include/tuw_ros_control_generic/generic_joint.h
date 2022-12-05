@@ -1,7 +1,7 @@
 // Copyright 2022 Eugen Kaltenegger
 
-#ifndef DIP_WS_GENERIC_JOINT_H
-#define DIP_WS_GENERIC_JOINT_H
+#ifndef TUW_ROS_CONTROL_GENERIC_GENERIC_JOINT_H
+#define TUW_ROS_CONTROL_GENERIC_GENERIC_JOINT_H
 
 
 #include <memory>
@@ -27,7 +27,8 @@ using joint_limits_interface::EffortJointSoftLimitsHandle;
 
 namespace tuw_ros_control_generic
 {
-class Joint {
+class Joint
+{
 public:
   Joint(GenericJointDescription genericJointDescription,
         GenericConnectionDescription connection_description,
@@ -50,8 +51,8 @@ private:
   void readActualVelocity(double* target);
   void readActualEffort(double* target);
 
-  GenericJointDescription joint_description_; // set in constructor
-  GenericJointManager joint_manager_;         // set in constructor
+  GenericJointDescription joint_description_;  // set in constructor
+  GenericJointManager joint_manager_;          // set in constructor
 
   // target values
   double target_position {0.0};
@@ -78,6 +79,6 @@ private:
   std::unique_ptr<VelocityJointSoftLimitsHandle> joint_velocity_soft_limit_handle {nullptr};
   std::unique_ptr<EffortJointSoftLimitsHandle> joint_effort_soft_limit_handle {nullptr};
 };
-}
+}  // namespace tuw_ros_control_generic
 
-#endif //DIP_WS_GENERIC_JOINT_H
+#endif  // TUW_ROS_CONTROL_GENERIC_GENERIC_JOINT_H

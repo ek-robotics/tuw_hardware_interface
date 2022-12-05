@@ -2,6 +2,10 @@
 
 #include <tuw_ros_control_generic/description/generic_hardware_description.h>
 
+#include <map>
+#include <memory>
+#include <string>
+
 using tuw_ros_control_generic::GenericHardwareDescription;
 using tuw_ros_control_generic::GenericHardwareParameterDescription;
 

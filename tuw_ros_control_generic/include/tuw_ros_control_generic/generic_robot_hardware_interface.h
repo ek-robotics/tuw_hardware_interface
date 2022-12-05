@@ -1,14 +1,15 @@
 // Copyright 2022 Eugen Kaltenegger
 
-#ifndef DIP_WS_GENERIC_ROBOT_HARDWARE_INTERFACE_H
-#define DIP_WS_GENERIC_ROBOT_HARDWARE_INTERFACE_H
+#ifndef TUW_ROS_CONTROL_GENERIC_GENERIC_ROBOT_HARDWARE_INTERFACE_H
+#define TUW_ROS_CONTROL_GENERIC_GENERIC_ROBOT_HARDWARE_INTERFACE_H
 
 namespace tuw_ros_control_generic
 {
-class {
+class GenericRobotHardwareInterface
+{
 public:
 private:
 };
-}
+}  // namespace tuw_ros_control_generic
 
-#endif //DIP_WS_GENERIC_ROBOT_HARDWARE_INTERFACE_H
+#endif  // TUW_ROS_CONTROL_GENERIC_GENERIC_ROBOT_HARDWARE_INTERFACE_H
