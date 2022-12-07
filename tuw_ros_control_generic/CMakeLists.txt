@@ -37,6 +37,8 @@ add_library(
   src/${PROJECT_NAME}/description/generic_hardware_description.cpp
   src/${PROJECT_NAME}/description/generic_hardware_parameter_description.cpp
   src/${PROJECT_NAME}/description/generic_joint_description.cpp
+  src/${PROJECT_NAME}/generic_hardware.cpp
+  src/${PROJECT_NAME}/generic_hardware_parameter.cpp
 )
 
 target_link_libraries(
@@ -47,12 +49,14 @@ target_link_libraries(
 # add gtests
 catkin_add_gtest(
   tuw_ros_control_generic_units_tests
-  test/${PROJECT_NAME}/all_tests.cpp
-  test/${PROJECT_NAME}/description/generic_config_description_test.cpp
-  test/${PROJECT_NAME}/description/generic_connection_description_test.cpp
-  test/${PROJECT_NAME}/description/generic_hardware_description_test.cpp
-  test/${PROJECT_NAME}/description/generic_hardware_parameter_description_test.cpp
-  test/${PROJECT_NAME}/description/generic_joint_description_test.cpp
+  test/${PROJECT_NAME}/description/test_generic_config_description.cpp
+  test/${PROJECT_NAME}/description/test_generic_connection_description.cpp
+  test/${PROJECT_NAME}/description/test_generic_hardware_description.cpp
+  test/${PROJECT_NAME}/description/test_generic_hardware_parameter_description.cpp
+  test/${PROJECT_NAME}/description/test_generic_joint_description.cpp
+  test/${PROJECT_NAME}/test_all.cpp
+  test/${PROJECT_NAME}/test_generic_hardware.cpp
+  test/${PROJECT_NAME}/test_generic_hardware_parameter.cpp
 )
 
 # link libraries to gtests
