@@ -6,7 +6,7 @@
 
 using tuw_ros_control_generic::GenericConfigDescription;
 
-TEST(GenericConfigDescriptionTest, verifyConstructorFromYaml)
+TEST(TestGenericConfigDescription, verifyConstructorFromYaml)
 {
   YAML::Node yaml = YAML::Load("{config_value_1: 1, config_value_2: 2}");
   GenericConfigDescription gcd(yaml);

@@ -23,7 +23,7 @@ GenericHardwareParameterDescription::GenericHardwareParameterDescription(YAML::N
   }
   catch (...)
   {
-    this->description_ = std::make_shared<std::string>("no description provided");
+    this->description_ = nullptr;
   }
   // optional: range (enum)
   try

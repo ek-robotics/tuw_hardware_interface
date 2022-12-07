@@ -6,7 +6,7 @@
 
 using tuw_ros_control_generic::GenericHardwareParameterDescription;
 
-TEST(GenericHardwareParameterDescriptionTest, verifyConstructorFromYaml_Target)
+TEST(TestGenericHardwareParameterDescription, verifyConstructorFromYaml_Target)
 {
   YAML::Node yaml = YAML::Load("{identifier: ghp, address: 1, length: 1, range: { min: -1, max: 1 } }");
   GenericHardwareParameterDescription ghpd(yaml);
@@ -19,14 +19,13 @@ TEST(GenericHardwareParameterDescriptionTest, verifyConstructorFromYaml_Target)
   ASSERT_FALSE(ghpd.getEnum());
 
   ASSERT_EQ(*ghpd.getIdentifier(), "ghp");
-  ASSERT_EQ(*ghpd.getDescription(), "no description provided");
   ASSERT_EQ(*ghpd.getAddress(), 1);
   ASSERT_EQ(*ghpd.getLength(), 1);
   ASSERT_EQ(ghpd.getRange()->at("min"), -1);
   ASSERT_EQ(ghpd.getRange()->at("max"),  1);
 }
 
-TEST(GenericHardwareParameterDescriptionTest, verifyConstructorFromYaml_Actual)
+TEST(TestGenericHardwareParameterDescription, verifyConstructorFromYaml_Actual)
 {
   YAML::Node yaml = YAML::Load("{identifier: ghp, address: 1, length: 1}");
   GenericHardwareParameterDescription ghpd(yaml);
@@ -39,12 +38,11 @@ TEST(GenericHardwareParameterDescriptionTest, verifyConstructorFromYaml_Actual)
   ASSERT_FALSE(ghpd.getEnum());
 
   ASSERT_EQ(*ghpd.getIdentifier(), "ghp");
-  ASSERT_EQ(*ghpd.getDescription(), "no description provided");
-  ASSERT_EQ(ghpd.getRange()->at("min"), -1);
-  ASSERT_EQ(ghpd.getRange()->at("max"),  1);
+  ASSERT_EQ(*ghpd.getAddress(), 1);
+  ASSERT_EQ(*ghpd.getLength(), 1);
 }
 
-TEST(GenericHardwareParameterDescriptionTest, verifyConstructorFromYaml_Enum)
+TEST(TestGenericHardwareParameterDescription, verifyConstructorFromYaml_Enum)
 {
   YAML::Node yaml = YAML::Load(
           "{identifier: ghp, description: \"a description\", address: 1, length: 1, enum: { a: 0, b: 1, c: 2 } }");
@@ -66,7 +64,7 @@ TEST(GenericHardwareParameterDescriptionTest, verifyConstructorFromYaml_Enum)
   ASSERT_EQ(ghpd.getEnum()->at("c"), 2);
 }
 
-TEST(GenericHardwareParameterDescriptionTest, verifyConstructorFromYaml_Range)
+TEST(TestGenericHardwareParameterDescription, verifyConstructorFromYaml_Range)
 {
   YAML::Node yaml = YAML::Load(
           "{identifier: ghp, description: \"a description\", address: 1, length: 1, range: { min: -1, max: 1 } }");

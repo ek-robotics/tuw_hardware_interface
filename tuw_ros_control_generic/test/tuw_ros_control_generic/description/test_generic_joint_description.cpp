@@ -6,7 +6,7 @@
 
 using tuw_ros_control_generic::GenericJointDescription;
 
-TEST(GenericJointDescriptionTest, verifyConstructorFromYaml)
+TEST(TestGenericJointDescription, verifyConstructorFromYaml)
 {
   YAML::Node yaml = YAML::Load("{name: \"joint\", id: 1}");
   GenericJointDescription gjd(yaml);

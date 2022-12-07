@@ -6,7 +6,7 @@
 
 using tuw_ros_control_generic::GenericConnectionDescription;
 
-TEST(GenericConnectionDescriptionTest, verifyConstructorFromYaml)
+TEST(TestGenericConnectionDescription, verifyConstructorFromYaml)
 {
   YAML::Node yaml = YAML::Load("{port: \"/dev/ttyUSB0\", baudrate: 57600}");
   GenericConnectionDescription gcd(yaml);
