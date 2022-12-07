@@ -6,7 +6,7 @@
 
 using tuw_ros_control_generic::GenericHardwareParameterDescription;
 
-TEST(GenericCHardwareParameterDescriptionTest, verifyConstructorFromYaml_Target_Value)
+TEST(GenericHardwareParameterDescriptionTest, verifyConstructorFromYaml_Target)
 {
   YAML::Node yaml = YAML::Load("{identifier: ghp, address: 1, length: 1, range: { min: -1, max: 1 } }");
   GenericHardwareParameterDescription ghpd(yaml);
@@ -26,10 +26,9 @@ TEST(GenericCHardwareParameterDescriptionTest, verifyConstructorFromYaml_Target_
   ASSERT_EQ(ghpd.getRange()->at("max"),  1);
 }
 
-TEST(GenericCHardwareParameterDescriptionTest, verifyConstructorFromYaml_Actual_Value)
+TEST(GenericHardwareParameterDescriptionTest, verifyConstructorFromYaml_Actual)
 {
-  YAML::Node yaml = YAML::Load(
-          "{identifier: ghp, address: 1, length: 1}");
+  YAML::Node yaml = YAML::Load("{identifier: ghp, address: 1, length: 1}");
   GenericHardwareParameterDescription ghpd(yaml);
 
   ASSERT_TRUE(ghpd.getIdentifier());
@@ -45,28 +44,7 @@ TEST(GenericCHardwareParameterDescriptionTest, verifyConstructorFromYaml_Actual_
   ASSERT_EQ(ghpd.getRange()->at("max"),  1);
 }
 
-TEST(GenericCHardwareParameterDescriptionTest, verifyConstructorFromYaml_Range_Value)
-{
-  YAML::Node yaml = YAML::Load(
-          "{identifier: ghp, description: \"a description\", address: 1, length: 1, range: { min: -1, max: 1 } }");
-  GenericHardwareParameterDescription ghpd(yaml);
-
-  ASSERT_TRUE(ghpd.getIdentifier());
-  ASSERT_TRUE(ghpd.getAddress());
-  ASSERT_TRUE(ghpd.getLength());
-  ASSERT_TRUE(ghpd.getRange());
-
-  ASSERT_FALSE(ghpd.getEnum());
-
-  ASSERT_EQ(*ghpd.getIdentifier(), "ghp");
-  ASSERT_EQ(*ghpd.getDescription(), "a description");
-  ASSERT_EQ(*ghpd.getAddress(), 1);
-  ASSERT_EQ(*ghpd.getLength(), 1);
-  ASSERT_EQ(ghpd.getRange()->at("min"), -1);
-  ASSERT_EQ(ghpd.getRange()->at("max"),  1);
-}
-
-TEST(GenericCHardwareParameterDescriptionTest, verifyConstructorFromYaml_Enum_Range_Value)
+TEST(GenericHardwareParameterDescriptionTest, verifyConstructorFromYaml_Enum)
 {
   YAML::Node yaml = YAML::Load(
           "{identifier: ghp, description: \"a description\", address: 1, length: 1, enum: { a: 0, b: 1, c: 2 } }");
@@ -86,4 +64,25 @@ TEST(GenericCHardwareParameterDescriptionTest, verifyConstructorFromYaml_Enum_Ra
   ASSERT_EQ(ghpd.getEnum()->at("a"), 0);
   ASSERT_EQ(ghpd.getEnum()->at("b"), 1);
   ASSERT_EQ(ghpd.getEnum()->at("c"), 2);
+}
+
+TEST(GenericHardwareParameterDescriptionTest, verifyConstructorFromYaml_Range)
+{
+  YAML::Node yaml = YAML::Load(
+          "{identifier: ghp, description: \"a description\", address: 1, length: 1, range: { min: -1, max: 1 } }");
+  GenericHardwareParameterDescription ghpd(yaml);
+
+  ASSERT_TRUE(ghpd.getIdentifier());
+  ASSERT_TRUE(ghpd.getAddress());
+  ASSERT_TRUE(ghpd.getLength());
+  ASSERT_TRUE(ghpd.getRange());
+
+  ASSERT_FALSE(ghpd.getEnum());
+
+  ASSERT_EQ(*ghpd.getIdentifier(), "ghp");
+  ASSERT_EQ(*ghpd.getDescription(), "a description");
+  ASSERT_EQ(*ghpd.getAddress(), 1);
+  ASSERT_EQ(*ghpd.getLength(), 1);
+  ASSERT_EQ(ghpd.getRange()->at("min"), -1);
+  ASSERT_EQ(ghpd.getRange()->at("max"),  1);
 }

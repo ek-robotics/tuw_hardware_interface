@@ -25,19 +25,6 @@ GenericHardwareParameterDescription::GenericHardwareParameterDescription(YAML::N
   {
     this->description_ = std::make_shared<std::string>("no description provided");
   }
-  // optional: range (max, min)
-  try
-  {
-    int min = yaml["range"]["min"].as<int>();
-    int max = yaml["range"]["max"].as<int>();
-    this->range_ = std::make_shared<std::map<std::string, int>>();
-    this->range_->insert(std::pair<std::string, int>("min", min));
-    this->range_->insert(std::pair<std::string, int>("max", max));
-  }
-  catch (...)
-  {
-    this->range_ = nullptr;
-  }
   // optional: range (enum)
   try
   {
@@ -61,6 +48,19 @@ GenericHardwareParameterDescription::GenericHardwareParameterDescription(YAML::N
   {
     this->enum_ = nullptr;
   }
+  // optional: range (max, min)
+  try
+  {
+    int min = yaml["range"]["min"].as<int>();
+    int max = yaml["range"]["max"].as<int>();
+    this->range_ = std::make_shared<std::map<std::string, int>>();
+    this->range_->insert(std::pair<std::string, int>("min", min));
+    this->range_->insert(std::pair<std::string, int>("max", max));
+  }
+  catch (...)
+  {
+    this->range_ = nullptr;
+  }
 }
 
 std::shared_ptr<std::string> GenericHardwareParameterDescription::getIdentifier()
@@ -83,12 +83,12 @@ std::shared_ptr<int> GenericHardwareParameterDescription::getLength()
   return this->length_;
 }
 
-std::shared_ptr<std::map<std::string, int>> GenericHardwareParameterDescription::getRange()
-{
-  return this->range_;
-}
-
 std::shared_ptr<std::map<std::string, int>> GenericHardwareParameterDescription::getEnum()
 {
   return this->enum_;
+}
+
+std::shared_ptr<std::map<std::string, int>> GenericHardwareParameterDescription::getRange()
+{
+  return this->range_;
 }
