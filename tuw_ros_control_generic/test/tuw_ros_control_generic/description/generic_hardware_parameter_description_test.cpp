@@ -14,17 +14,16 @@ TEST(GenericCHardwareParameterDescriptionTest, verifyConstructorFromYaml_Target_
   ASSERT_TRUE(ghpd.getIdentifier());
   ASSERT_TRUE(ghpd.getAddress());
   ASSERT_TRUE(ghpd.getLength());
-  ASSERT_TRUE(ghpd.getRangeMax());
-  ASSERT_TRUE(ghpd.getRangeMin());
+  ASSERT_TRUE(ghpd.getRange());
 
-  ASSERT_FALSE(ghpd.getRangeEnumMap());
+  ASSERT_FALSE(ghpd.getEnum());
 
   ASSERT_EQ(*ghpd.getIdentifier(), "ghp");
   ASSERT_EQ(*ghpd.getDescription(), "no description provided");
   ASSERT_EQ(*ghpd.getAddress(), 1);
   ASSERT_EQ(*ghpd.getLength(), 1);
-  ASSERT_EQ(*ghpd.getRangeMax(),  1);
-  ASSERT_EQ(*ghpd.getRangeMin(), -1);
+  ASSERT_EQ(ghpd.getRange()->at("min"), -1);
+  ASSERT_EQ(ghpd.getRange()->at("max"),  1);
 }
 
 TEST(GenericCHardwareParameterDescriptionTest, verifyConstructorFromYaml_Actual_Value)
@@ -37,14 +36,13 @@ TEST(GenericCHardwareParameterDescriptionTest, verifyConstructorFromYaml_Actual_
   ASSERT_TRUE(ghpd.getAddress());
   ASSERT_TRUE(ghpd.getLength());
 
-  ASSERT_FALSE(ghpd.getRangeMax());
-  ASSERT_FALSE(ghpd.getRangeMin());
-  ASSERT_FALSE(ghpd.getRangeEnumMap());
+  ASSERT_FALSE(ghpd.getRange());
+  ASSERT_FALSE(ghpd.getEnum());
 
   ASSERT_EQ(*ghpd.getIdentifier(), "ghp");
   ASSERT_EQ(*ghpd.getDescription(), "no description provided");
-  ASSERT_EQ(*ghpd.getAddress(), 1);
-  ASSERT_EQ(*ghpd.getLength(), 1);
+  ASSERT_EQ(ghpd.getRange()->at("min"), -1);
+  ASSERT_EQ(ghpd.getRange()->at("max"),  1);
 }
 
 TEST(GenericCHardwareParameterDescriptionTest, verifyConstructorFromYaml_Range_Value)
@@ -56,17 +54,16 @@ TEST(GenericCHardwareParameterDescriptionTest, verifyConstructorFromYaml_Range_V
   ASSERT_TRUE(ghpd.getIdentifier());
   ASSERT_TRUE(ghpd.getAddress());
   ASSERT_TRUE(ghpd.getLength());
-  ASSERT_TRUE(ghpd.getRangeMax());
-  ASSERT_TRUE(ghpd.getRangeMin());
+  ASSERT_TRUE(ghpd.getRange());
 
-  ASSERT_FALSE(ghpd.getRangeEnumMap());
+  ASSERT_FALSE(ghpd.getEnum());
 
   ASSERT_EQ(*ghpd.getIdentifier(), "ghp");
   ASSERT_EQ(*ghpd.getDescription(), "a description");
   ASSERT_EQ(*ghpd.getAddress(), 1);
   ASSERT_EQ(*ghpd.getLength(), 1);
-  ASSERT_EQ(*ghpd.getRangeMax(),  1);
-  ASSERT_EQ(*ghpd.getRangeMin(), -1);
+  ASSERT_EQ(ghpd.getRange()->at("min"), -1);
+  ASSERT_EQ(ghpd.getRange()->at("max"),  1);
 }
 
 TEST(GenericCHardwareParameterDescriptionTest, verifyConstructorFromYaml_Enum_Range_Value)
@@ -78,16 +75,15 @@ TEST(GenericCHardwareParameterDescriptionTest, verifyConstructorFromYaml_Enum_Ra
   ASSERT_TRUE(ghpd.getIdentifier());
   ASSERT_TRUE(ghpd.getAddress());
   ASSERT_TRUE(ghpd.getLength());
-  ASSERT_TRUE(ghpd.getRangeEnumMap());
+  ASSERT_TRUE(ghpd.getEnum());
 
-  ASSERT_FALSE(ghpd.getRangeMax());
-  ASSERT_FALSE(ghpd.getRangeMin());
+  ASSERT_FALSE(ghpd.getRange());
 
   ASSERT_EQ(*ghpd.getIdentifier(), "ghp");
   ASSERT_EQ(*ghpd.getDescription(), "a description");
   ASSERT_EQ(*ghpd.getAddress(), 1);
   ASSERT_EQ(*ghpd.getLength(), 1);
-  ASSERT_EQ(ghpd.getRangeEnumMap()->at("a"), 0);
-  ASSERT_EQ(ghpd.getRangeEnumMap()->at("b"), 1);
-  ASSERT_EQ(ghpd.getRangeEnumMap()->at("c"), 2);
+  ASSERT_EQ(ghpd.getEnum()->at("a"), 0);
+  ASSERT_EQ(ghpd.getEnum()->at("b"), 1);
+  ASSERT_EQ(ghpd.getEnum()->at("c"), 2);
 }

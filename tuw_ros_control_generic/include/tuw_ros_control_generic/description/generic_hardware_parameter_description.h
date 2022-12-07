@@ -15,21 +15,19 @@ class GenericHardwareParameterDescription
 {
 public:
   explicit GenericHardwareParameterDescription(YAML::Node yaml);
-  std::string* getIdentifier();
-  std::string* getDescription();
-  int* getAddress();
-  int* getLength();
-  int* getRangeMax();
-  int* getRangeMin();
-  std::map<std::string, int>* getRangeEnumMap();
-private:
-  std::unique_ptr<std::string> identifier_ {nullptr};
-  std::unique_ptr<std::string> description_ {nullptr};
-  std::unique_ptr<int> address_ {nullptr};
-  std::unique_ptr<int> length_ {nullptr};
-  std::unique_ptr<int> range_max_ {nullptr};
-  std::unique_ptr<int> range_min_ {nullptr};
-  std::unique_ptr<std::map<std::string, int>> range_enum_map_ {nullptr};
+  std::shared_ptr<std::string> getIdentifier();
+  std::shared_ptr<std::string> getDescription();
+  std::shared_ptr<int> getAddress();
+  std::shared_ptr<int> getLength();
+  std::shared_ptr<std::map<std::string, int>> getRange();
+  std::shared_ptr<std::map<std::string, int>> getEnum();
+protected:
+  std::shared_ptr<std::string> identifier_ {nullptr};
+  std::shared_ptr<std::string> description_ {nullptr};
+  std::shared_ptr<int> address_ {nullptr};
+  std::shared_ptr<int> length_ {nullptr};
+  std::shared_ptr<std::map<std::string, int>> range_ {nullptr};
+  std::shared_ptr<std::map<std::string, int>> enum_ {nullptr};
 };
 }  // namespace tuw_ros_control_generic
 

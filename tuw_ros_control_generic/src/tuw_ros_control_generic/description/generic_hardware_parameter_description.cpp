@@ -12,29 +12,31 @@ using tuw_ros_control_generic::GenericHardwareParameterDescription;
 GenericHardwareParameterDescription::GenericHardwareParameterDescription(YAML::Node yaml)
 {
   // REQUIRED VALUES
-  this->identifier_ = std::make_unique<std::string>(yaml["identifier"].as<std::string>());
-  this->address_ = std::make_unique<int>(yaml["address"].as<int>());
-  this->length_ = std::make_unique<int>(yaml["length"].as<int>());
+  this->identifier_ = std::make_shared<std::string>(yaml["identifier"].as<std::string>());
+  this->address_ = std::make_shared<int>(yaml["address"].as<int>());
+  this->length_ = std::make_shared<int>(yaml["length"].as<int>());
   // OPTIONAL VALUES
   // optional: description
   try
   {
-    this->description_ = std::make_unique<std::string>(yaml["description"].as<std::string>());
+    this->description_ = std::make_shared<std::string>(yaml["description"].as<std::string>());
   }
   catch (...)
   {
-    this->description_ = std::make_unique<std::string>("no description provided");
+    this->description_ = std::make_shared<std::string>("no description provided");
   }
   // optional: range (max, min)
   try
   {
-    this->range_max_ = std::make_unique<int>(yaml["range"]["max"].as<int>());
-    this->range_min_ = std::make_unique<int>(yaml["range"]["min"].as<int>());
+    int min = yaml["range"]["min"].as<int>();
+    int max = yaml["range"]["max"].as<int>();
+    this->range_ = std::make_shared<std::map<std::string, int>>();
+    this->range_->insert(std::pair<std::string, int>("min", min));
+    this->range_->insert(std::pair<std::string, int>("max", max));
   }
   catch (...)
   {
-    this->range_max_ = nullptr;
-    this->range_min_ = nullptr;
+    this->range_ = nullptr;
   }
   // optional: range (enum)
   try
@@ -46,52 +48,47 @@ GenericHardwareParameterDescription::GenericHardwareParameterDescription(YAML::N
       throw std::runtime_error("no enum");
     }
 
-    this->range_enum_map_ = std::make_unique<std::map<std::string, int>>();
+    this->enum_ = std::make_shared<std::map<std::string, int>>();
 
     for (YAML::const_iterator iterator = range_enum_node.begin() ; iterator != range_enum_node.end(); ++iterator)
     {
       std::string key = iterator->first.as<std::string>();
       int value = iterator->second.as<int>();
-      this->range_enum_map_->insert(std::pair<std::string, int>(key, value));
+      this->enum_->insert(std::pair<std::string, int>(key, value));
     }
   }
   catch (...)
   {
-    this->range_enum_map_ = nullptr;
+    this->enum_ = nullptr;
   }
 }
 
-std::string* GenericHardwareParameterDescription::getIdentifier()
+std::shared_ptr<std::string> GenericHardwareParameterDescription::getIdentifier()
 {
-  return this->identifier_.get();
+  return this->identifier_;
 }
 
-std::string* GenericHardwareParameterDescription::getDescription()
+std::shared_ptr<std::string> GenericHardwareParameterDescription::getDescription()
 {
-  return this->description_.get();
+  return this->description_;
 }
 
-int* GenericHardwareParameterDescription::getAddress()
+std::shared_ptr<int> GenericHardwareParameterDescription::getAddress()
 {
-  return this->address_.get();
+  return this->address_;
 }
 
-int* GenericHardwareParameterDescription::getLength()
+std::shared_ptr<int> GenericHardwareParameterDescription::getLength()
 {
-  return this->length_.get();
+  return this->length_;
 }
 
-int* GenericHardwareParameterDescription::getRangeMax()
+std::shared_ptr<std::map<std::string, int>> GenericHardwareParameterDescription::getRange()
 {
-  return this->range_max_.get();
+  return this->range_;
 }
 
-int* GenericHardwareParameterDescription::getRangeMin()
+std::shared_ptr<std::map<std::string, int>> GenericHardwareParameterDescription::getEnum()
 {
-  return this->range_min_.get();
-}
-
-std::map<std::string, int>* GenericHardwareParameterDescription::getRangeEnumMap()
-{
-  return this->range_enum_map_.get();
+  return this->enum_;
 }

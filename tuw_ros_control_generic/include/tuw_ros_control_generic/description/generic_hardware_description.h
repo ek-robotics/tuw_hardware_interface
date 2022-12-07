@@ -20,7 +20,6 @@ public:
   std::map<std::string, GenericHardwareParameterDescription>* getTargetValues();
   std::map<std::string, GenericHardwareParameterDescription>* getActualValues();
   std::map<std::string, GenericHardwareParameterDescription>* getConfigValues();
-
 private:
   std::unique_ptr<std::map<std::string, GenericHardwareParameterDescription>> target_values_ {nullptr};
   std::unique_ptr<std::map<std::string, GenericHardwareParameterDescription>> actual_values_ {nullptr};
