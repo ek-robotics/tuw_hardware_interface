@@ -17,13 +17,13 @@ class GenericHardwareDescription
 {
 public:
   explicit GenericHardwareDescription(YAML::Node yaml);
-  std::map<std::string, GenericHardwareParameterDescription>* getTargetValues();
-  std::map<std::string, GenericHardwareParameterDescription>* getActualValues();
-  std::map<std::string, GenericHardwareParameterDescription>* getConfigValues();
+  std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>> getTargetValues();
+  std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>> getActualValues();
+  std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>> getConfigValues();
 private:
-  std::unique_ptr<std::map<std::string, GenericHardwareParameterDescription>> target_values_ {nullptr};
-  std::unique_ptr<std::map<std::string, GenericHardwareParameterDescription>> actual_values_ {nullptr};
-  std::unique_ptr<std::map<std::string, GenericHardwareParameterDescription>> config_values_ {nullptr};
+  std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>> target_values_ {nullptr};
+  std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>> actual_values_ {nullptr};
+  std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>> config_values_ {nullptr};
 };
 }  // namespace tuw_ros_control_generic
 

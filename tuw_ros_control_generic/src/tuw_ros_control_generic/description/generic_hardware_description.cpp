@@ -11,9 +11,9 @@ using tuw_ros_control_generic::GenericHardwareParameterDescription;
 
 GenericHardwareDescription::GenericHardwareDescription(YAML::Node yaml)
 {
-  this->target_values_ = std::make_unique<std::map<std::string, GenericHardwareParameterDescription>>();
-  this->actual_values_ = std::make_unique<std::map<std::string, GenericHardwareParameterDescription>>();
-  this->config_values_ = std::make_unique<std::map<std::string, GenericHardwareParameterDescription>>();
+  this->target_values_ = std::make_shared<std::map<std::string, GenericHardwareParameterDescription>>();
+  this->actual_values_ = std::make_shared<std::map<std::string, GenericHardwareParameterDescription>>();
+  this->config_values_ = std::make_shared<std::map<std::string, GenericHardwareParameterDescription>>();
 
   YAML::Node target_values_yaml = yaml["target_state_parameters"];
   YAML::Node actual_values_yaml = yaml["actual_state_parameters"];
@@ -38,18 +38,21 @@ GenericHardwareDescription::GenericHardwareDescription(YAML::Node yaml)
   }
 }
 
-std::map<std::string, GenericHardwareParameterDescription>* GenericHardwareDescription::getTargetValues()
+std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>>
+GenericHardwareDescription::getTargetValues()
 {
-  return this->target_values_.get();
+  return this->target_values_;
 }
 
-std::map<std::string, GenericHardwareParameterDescription>* GenericHardwareDescription::getActualValues()
+std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>>
+GenericHardwareDescription::getActualValues()
 {
-  return this->actual_values_.get();
+  return this->actual_values_;
 }
 
-std::map<std::string, GenericHardwareParameterDescription>* GenericHardwareDescription::getConfigValues()
+std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>>
+GenericHardwareDescription::getConfigValues()
 {
-  return this->config_values_.get();
+  return this->config_values_;
 }
 
