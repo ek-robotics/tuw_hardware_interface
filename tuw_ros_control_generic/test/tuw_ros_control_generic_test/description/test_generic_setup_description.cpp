@@ -11,9 +11,14 @@
 using tuw_ros_control_generic_test::FileLoader;
 using tuw_ros_control_generic::GenericSetupDescription;
 
-TEST(TestGenericSetupDescription, verifyConstructorFromYaml)
+class GenericSetupDescriptionTest : public ::testing::Test
 {
-  GenericSetupDescription gsd(FileLoader::loadYAMLFromFile(TEST_FILE_PATH));
+protected:
+  GenericSetupDescription generic_setup_description_ =
+          GenericSetupDescription(FileLoader::loadYAMLFromFile(TEST_FILE_PATH));
+};
 
-  ASSERT_EQ(gsd.getJoints().size(), 3);
+TEST_F(GenericSetupDescriptionTest, verifyConstructorFromYaml)
+{
+  ASSERT_EQ(generic_setup_description_.getJoints().size(), 3);
 }

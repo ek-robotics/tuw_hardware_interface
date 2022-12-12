@@ -11,18 +11,21 @@
 using tuw_ros_control_generic_test::FileLoader;
 using tuw_ros_control_generic::GenericConfigDescription;
 
-TEST(TestGenericConfigDescription, verifyElements)
+class GenericConfigDescriptionTest : public ::testing::Test
 {
-  GenericConfigDescription gcd(FileLoader::loadYAMLFromFile(TEST_FILE_PATH));
+protected:
+  GenericConfigDescription generic_connection_description_ =
+          GenericConfigDescription(FileLoader::loadYAMLFromFile(TEST_FILE_PATH));
+};
 
-  ASSERT_EQ(gcd.getConfigMap().at("config_value_0"), 0);
-  ASSERT_EQ(gcd.getConfigMap().at("config_value_1"), 1);
-  ASSERT_EQ(gcd.getConfigMap().at("config_value_2"), 2);
+TEST_F(GenericConfigDescriptionTest, verifyElements)
+{
+  ASSERT_EQ(generic_connection_description_.getConfigMap().at("config_value_0"), 0);
+  ASSERT_EQ(generic_connection_description_.getConfigMap().at("config_value_1"), 1);
+  ASSERT_EQ(generic_connection_description_.getConfigMap().at("config_value_2"), 2);
 }
 
-TEST(TestGenericConfigDescription, verifyLength)
+TEST_F(GenericConfigDescriptionTest, verifyLength)
 {
-  GenericConfigDescription gcd(FileLoader::loadYAMLFromFile(TEST_FILE_PATH));
-
-  ASSERT_EQ(gcd.getConfigMap().size(), 3);
+  ASSERT_EQ(generic_connection_description_.getConfigMap().size(), 3);
 }

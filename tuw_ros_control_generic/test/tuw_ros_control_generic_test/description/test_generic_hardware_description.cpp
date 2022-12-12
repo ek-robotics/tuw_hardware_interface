@@ -2,53 +2,48 @@
 
 #include <gtest/gtest.h>
 
-#include "../../tuw_ros_control_generic_test_util/include/file_loader.h"
-
 #include <tuw_ros_control_generic/description/generic_hardware_description.h>
+
+#include "../../tuw_ros_control_generic_test_util/include/file_loader.h"
 
 #define TEST_FILE_PATH "/test/resources/description/test_generic_hardware_description.yaml"
 
 using tuw_ros_control_generic_test::FileLoader;
 using tuw_ros_control_generic::GenericHardwareDescription;
 
-TEST(TestGenericHardwareDescription, verifyTargetPointer)
+class GenericHardwareDescriptionTest : public ::testing::Test
 {
-  GenericHardwareDescription ghd(FileLoader::loadYAMLFromFile(TEST_FILE_PATH));
+protected:
+  GenericHardwareDescription generic_hardware_description_ =
+          GenericHardwareDescription(FileLoader::loadYAMLFromFile(TEST_FILE_PATH));
+};
 
-  ASSERT_TRUE(ghd.getTargetIdentifierToDescription());
+TEST_F(GenericHardwareDescriptionTest, verifyTargetPointer)
+{
+  ASSERT_TRUE(generic_hardware_description_.getTargetIdentifierToDescription());
 }
 
-TEST(TestGenericHardwareDescription, verifyActualPointer)
+TEST_F(GenericHardwareDescriptionTest, verifyActualPointer)
 {
-  GenericHardwareDescription ghd(FileLoader::loadYAMLFromFile(TEST_FILE_PATH));
-
-  ASSERT_TRUE(ghd.getActualIdentifierToDescription());
+  ASSERT_TRUE(generic_hardware_description_.getActualIdentifierToDescription());
 }
 
-TEST(TestGenericHardwareDescription, verifyConfigPointer)
+TEST_F(GenericHardwareDescriptionTest, verifyConfigPointer)
 {
-  GenericHardwareDescription ghd(FileLoader::loadYAMLFromFile(TEST_FILE_PATH));
-
-  ASSERT_TRUE(ghd.getConfigIdentifierToDescription());
+  ASSERT_TRUE(generic_hardware_description_.getConfigIdentifierToDescription());
 }
 
-TEST(TestGenericHardwareDescription, verifyTargetIdentifier)
+TEST_F(GenericHardwareDescriptionTest, verifyTargetIdentifier)
 {
-  GenericHardwareDescription ghd(FileLoader::loadYAMLFromFile(TEST_FILE_PATH));
-
-  ASSERT_EQ(ghd.getTargetIdentifierToDescription()->size(), 1);
+  ASSERT_EQ(generic_hardware_description_.getTargetIdentifierToDescription()->size(), 1);
 }
 
-TEST(TestGenericHardwareDescription, verifyActualIdentifier)
+TEST_F(GenericHardwareDescriptionTest, verifyActualIdentifier)
 {
-  GenericHardwareDescription ghd(FileLoader::loadYAMLFromFile(TEST_FILE_PATH));
-
-  ASSERT_EQ(ghd.getActualIdentifierToDescription()->size(), 1);
+  ASSERT_EQ(generic_hardware_description_.getActualIdentifierToDescription()->size(), 1);
 }
 
-TEST(TestGenericHardwareDescription, verifyConfigIdentifier)
+TEST_F(GenericHardwareDescriptionTest, verifyConfigIdentifier)
 {
-  GenericHardwareDescription ghd(FileLoader::loadYAMLFromFile(TEST_FILE_PATH));
-
-  ASSERT_EQ(ghd.getConfigIdentifierToDescription()->size(), 2);
+  ASSERT_EQ(generic_hardware_description_.getConfigIdentifierToDescription()->size(), 2);
 }
