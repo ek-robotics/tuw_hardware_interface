@@ -35,7 +35,7 @@ TEST_F(GenericHardwareParameterDescriptionTest, verifyTargetPointers)
 
 TEST_F(GenericHardwareParameterDescriptionTest, verifyTargetValues)
 {
-  ASSERT_EQ(*target_.getIdentifier(), "ghp");
+  ASSERT_EQ(*target_.getIdentifier(), "tsp");
   ASSERT_EQ(*target_.getAddress(), 1);
   ASSERT_EQ(*target_.getLength(), 1);
   ASSERT_EQ(target_.getRange()->at("min"), -1);
@@ -53,7 +53,7 @@ TEST_F(GenericHardwareParameterDescriptionTest, verifyActualPointers)
 
 TEST_F(GenericHardwareParameterDescriptionTest, verifyActualValues)
 {
-  ASSERT_EQ(*actual_.getIdentifier(), "ghp");
+  ASSERT_EQ(*actual_.getIdentifier(), "asp");
   ASSERT_EQ(*actual_.getAddress(), 1);
   ASSERT_EQ(*actual_.getLength(), 1);
 }
@@ -69,8 +69,8 @@ TEST_F(GenericHardwareParameterDescriptionTest, verifyEnumPointers)
 
 TEST_F(GenericHardwareParameterDescriptionTest, verifyEnumValues)
 {
-  ASSERT_EQ(*enum_.getIdentifier(), "ghp");
-  ASSERT_EQ(*enum_.getDescription(), "a description");
+  ASSERT_EQ(*enum_.getIdentifier(), "ecp");
+  ASSERT_EQ(*enum_.getDescription(), "ecp");
   ASSERT_EQ(*enum_.getAddress(), 1);
   ASSERT_EQ(*enum_.getLength(), 1);
   ASSERT_EQ(enum_.getEnum()->at("a"), 0);
@@ -89,8 +89,8 @@ TEST_F(GenericHardwareParameterDescriptionTest, verifyRangePointers)
 
 TEST_F(GenericHardwareParameterDescriptionTest, verifyRangeValues)
 {
-  ASSERT_EQ(*range_.getIdentifier(), "ghp");
-  ASSERT_EQ(*range_.getDescription(), "a description");
+  ASSERT_EQ(*range_.getIdentifier(), "rcp");
+  ASSERT_EQ(*range_.getDescription(), "rcp");
   ASSERT_EQ(*range_.getAddress(), 1);
   ASSERT_EQ(*range_.getLength(), 1);
   ASSERT_EQ(range_.getRange()->at("min"), -1);
