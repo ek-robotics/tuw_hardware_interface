@@ -66,8 +66,8 @@ TEST(TestGenericHardwareParameterDescription, verifyConstructorFromYaml_Enum)
 
 TEST(TestGenericHardwareParameterDescription, verifyConstructorFromYaml_Range)
 {
-  YAML::Node yaml = YAML::Load(
-          "{identifier: ghp, description: \"a description\", address: 1, length: 1, range: { min: -1, max: 1 } }");
+  std::string yaml_string = "{identifier: ghp, description: \"a description\", address: 1, length: 1, range: { min: -1, max: 1 } }";
+  YAML::Node yaml = YAML::Load(yaml_string);
   GenericHardwareParameterDescription ghpd(yaml);
 
   ASSERT_TRUE(ghpd.getIdentifier());
