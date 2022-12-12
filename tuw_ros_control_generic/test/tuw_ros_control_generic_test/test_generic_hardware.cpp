@@ -12,11 +12,11 @@
 using tuw_ros_control_generic::GenericHardware;
 using tuw_ros_control_generic::GenericHardwareDescription;
 
-#define RELATIVE_PATH "/test/resources/test_generic_hardware.yaml"
+#define TEST_FILE_PATH "/test/resources/test_generic_hardware.yaml"
 
 TEST(TestGenericHardware, verifyTargetMode)
 {
-  std::string path = ros::package::getPath("tuw_ros_control_generic") + std::string(RELATIVE_PATH);
+  std::string path = ros::package::getPath("tuw_ros_control_generic") + std::string(TEST_FILE_PATH);
   YAML::Node yaml = YAML::LoadFile(path);
   GenericHardware gh = GenericHardware(GenericHardwareDescription(yaml));
 
@@ -31,7 +31,7 @@ TEST(TestGenericHardware, verifyTargetMode)
 
 TEST(TestGenericHardware, verifyActualMode)
 {
-  std::string path = ros::package::getPath("tuw_ros_control_generic") + std::string(RELATIVE_PATH);
+  std::string path = ros::package::getPath("tuw_ros_control_generic") + std::string(TEST_FILE_PATH);
   YAML::Node yaml = YAML::LoadFile(path);
   GenericHardware gh = GenericHardware(GenericHardwareDescription(yaml));
 
@@ -46,7 +46,7 @@ TEST(TestGenericHardware, verifyActualMode)
 
 TEST(TestGenericHardware, verifyConfigParameters)
 {
-  std::string path = ros::package::getPath("tuw_ros_control_generic") + std::string(RELATIVE_PATH);
+  std::string path = ros::package::getPath("tuw_ros_control_generic") + std::string(TEST_FILE_PATH);
   YAML::Node yaml = YAML::LoadFile(path);
   GenericHardware gh = GenericHardware(GenericHardwareDescription(yaml));
 

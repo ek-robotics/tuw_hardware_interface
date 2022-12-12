@@ -2,36 +2,26 @@
 
 #include <gtest/gtest.h>
 
+#include "../../tuw_ros_control_generic_test_util/include/file_loader.h"
+
 #include <tuw_ros_control_generic/description/generic_hardware_parameter_description.h>
 
+#define TEST_FILE_PATH "/test/resources/description/test_generic_hardware_parameter_description.yaml"
+
+using tuw_ros_control_generic_test::FileLoader;
 using tuw_ros_control_generic::GenericHardwareParameterDescription;
 
 class GenericHardwareParameterDescriptionTest : public ::testing::Test
 {
 protected:
-  GenericHardwareParameterDescription target_ = GenericHardwareParameterDescription(YAML::Load(
-          "{identifier: ghp,"
-          " address: 1,"
-          " length: 1,"
-          " range: { min: -1, max: 1 } }"));
-  GenericHardwareParameterDescription actual_ = GenericHardwareParameterDescription(YAML::Load(
-          "{identifier: ghp,"
-          " address: 1,"
-          " length: 1}"));
-
-  GenericHardwareParameterDescription enum_ = GenericHardwareParameterDescription(YAML::Load(
-          "{identifier: ghp,"
-          " description: \"a description\", "
-          " address: 1,"
-          " length: 1,"
-          " enum: { a: 0, b: 1, c: 2 } }"));
-
-  GenericHardwareParameterDescription range_ = GenericHardwareParameterDescription(YAML::Load(
-          "{identifier: ghp,"
-          " description: \"a description\","
-          " address: 1,"
-          " length: 1,"
-          " range: { min: -1, max: 1 } }"));
+  GenericHardwareParameterDescription target_ =
+          GenericHardwareParameterDescription(FileLoader::loadYAMLFromFile(TEST_FILE_PATH)["target_state_parameters"]);
+  GenericHardwareParameterDescription actual_ =
+          GenericHardwareParameterDescription(FileLoader::loadYAMLFromFile(TEST_FILE_PATH)["actual_state_parameters"]);
+  GenericHardwareParameterDescription enum_ =
+          GenericHardwareParameterDescription(FileLoader::loadYAMLFromFile(TEST_FILE_PATH)["config_parameters"]["enum"]);
+  GenericHardwareParameterDescription range_ =
+          GenericHardwareParameterDescription(FileLoader::loadYAMLFromFile(TEST_FILE_PATH)["config_parameters"]["range"]);
 };
 
 TEST_F(GenericHardwareParameterDescriptionTest, verifyTargetPointers)
