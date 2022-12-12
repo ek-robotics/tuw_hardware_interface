@@ -29,14 +29,19 @@ namespace tuw_ros_control_generic
 {
 class Joint
 {
+class GenericConfig;
+class GenericConnection;
+class GenericHardware;
+class GenericHardwareParameter;
+
 public:
-  Joint(GenericJointDescription genericJointDescription,
-        GenericConnectionDescription connection_description,
-        GenericHardwareDescription hardware_description,
-        GenericConfigDescription config_description);
+  Joint();
 
   void write(const ros::Duration &period);
   void read(const ros::Duration &period);
+
+  void write(GenericHardwareParameter hardware_parameter, int* data);
+  void read(GenericHardwareParameter hardware_parameter, int* data);
 
   JointStateHandle* getJointStateHandle();
   JointHandle* getJointPositionHandle();
@@ -51,8 +56,11 @@ private:
   void readActualVelocity(double* target);
   void readActualEffort(double* target);
 
-  GenericJointDescription joint_description_;  // set in constructor
-  GenericJointManager joint_manager_;          // set in constructor
+  std::string getName();
+
+  std::shared_ptr<GenericConnection> connection_;
+  std::shared_ptr<GenericHardware> hardware_;
+  std::shared_ptr<GenericConfig> config_;
 
   // target values
   double target_position {0.0};

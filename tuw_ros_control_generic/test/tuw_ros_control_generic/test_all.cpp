@@ -1,4 +1,4 @@
-// Copyright 2021 Eugen Kaltenegger
+// Copyright 2022 Eugen Kaltenegger
 
 #include <gtest/gtest.h>
 #include <ros/ros.h>

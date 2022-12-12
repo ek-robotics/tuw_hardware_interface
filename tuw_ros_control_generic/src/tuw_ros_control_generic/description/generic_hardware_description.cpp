@@ -1,6 +1,7 @@
 // Copyright 2022 Eugen Kaltenegger
 
 #include <tuw_ros_control_generic/description/generic_hardware_description.h>
+#include <tuw_ros_control_generic/description/generic_hardware_parameter_description.h>
 
 #include <map>
 #include <memory>

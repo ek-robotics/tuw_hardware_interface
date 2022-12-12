@@ -1,29 +1,53 @@
 // Copyright 2022 Eugen Kaltenegger
 
+#include <gtest/gtest.h>
+
+#include "../tool/file_loader.cpp"
+
 #include <tuw_ros_control_generic/description/generic_hardware_description.h>
 
-#include <string>
-
-#include <ros/package.h>
-
-#include <gtest/gtest.h>
+#define TEST_FILE_PATH "/test/resources/description/test_generic_hardware_description.yaml"
 
 using tuw_ros_control_generic::GenericHardwareDescription;
 
-#define RELATIVE_PATH "/test/resources/description/test_generic_hardware_description.yaml"
-
-TEST(TestGenericHardwareDescription, verifyConstructorFromYaml)
+TEST(TestGenericHardwareDescription, verifyTargetPointer)
 {
-  std::string path = ros::package::getPath("tuw_ros_control_generic") + std::string(RELATIVE_PATH);
-  YAML::Node yaml = YAML::LoadFile(path);
-  GenericHardwareDescription ghd(yaml);
+  GenericHardwareDescription ghd(loadYAMLFromFile(TEST_FILE_PATH));
 
   ASSERT_TRUE(ghd.getTargetIdentifierToDescription());
-  ASSERT_TRUE(ghd.getActualIdentifierToDescription());
-  ASSERT_TRUE(ghd.getConfigIdentifierToDescription());
+}
 
-  ASSERT_EQ(*ghd.getTargetIdentifierToDescription()->at("tsp").getIdentifier(), "tsp");
-  ASSERT_EQ(*ghd.getActualIdentifierToDescription()->at("asp").getIdentifier(), "asp");
-  ASSERT_EQ(*ghd.getConfigIdentifierToDescription()->at("ecp").getIdentifier(), "ecp");
-  ASSERT_EQ(*ghd.getConfigIdentifierToDescription()->at("rcp").getIdentifier(), "rcp");
+TEST(TestGenericHardwareDescription, verifyActualPointer)
+{
+  GenericHardwareDescription ghd(loadYAMLFromFile(TEST_FILE_PATH));
+
+  ASSERT_TRUE(ghd.getActualIdentifierToDescription());
+}
+
+TEST(TestGenericHardwareDescription, verifyConfigPointer)
+{
+  GenericHardwareDescription ghd(loadYAMLFromFile(TEST_FILE_PATH));
+
+  ASSERT_TRUE(ghd.getConfigIdentifierToDescription());
+}
+
+TEST(TestGenericHardwareDescription, verifyTargetIdentifier)
+{
+  GenericHardwareDescription ghd(loadYAMLFromFile(TEST_FILE_PATH));
+
+  ASSERT_EQ(ghd.getTargetIdentifierToDescription()->size(), 1);
+}
+
+TEST(TestGenericHardwareDescription, verifyActualIdentifier)
+{
+  GenericHardwareDescription ghd(loadYAMLFromFile(TEST_FILE_PATH));
+
+  ASSERT_EQ(ghd.getActualIdentifierToDescription()->size(), 1);
+}
+
+TEST(TestGenericHardwareDescription, verifyConfigIdentifier)
+{
+  GenericHardwareDescription ghd(loadYAMLFromFile(TEST_FILE_PATH));
+
+  ASSERT_EQ(ghd.getConfigIdentifierToDescription()->size(), 2);
 }

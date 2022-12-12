@@ -9,10 +9,9 @@
 
 #include <yaml-cpp/yaml.h>
 
-#include <tuw_ros_control_generic/description/generic_hardware_parameter_description.h>
-
 namespace tuw_ros_control_generic
 {
+class GenericHardwareParameterDescription;
 class GenericHardwareDescription
 {
 public:

@@ -37,7 +37,7 @@ protected:
   std::shared_ptr<GenericJoint> joint_ {nullptr};
   std::shared_ptr<GenericHardware> hardware_ {nullptr};
 
-  ddynamic_reconfigure::DDynamicReconfigure reconfigure_;
+  std::unique_ptr<ddynamic_reconfigure::DDynamicReconfigure> reconfigure_ {nullptr};
 
   std::map<std::string, int> target_config_values_ {std::map<std::string, int>()};
   std::map<std::string, int> actual_config_values_ {std::map<std::string, int>()};
