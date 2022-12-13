@@ -2,13 +2,35 @@
 
 #include <gtest/gtest.h>
 
-#include <tuw_ros_control_generic/generic_setup_name.h>
+#include <tuw_ros_control_generic/generic_setup_prefix.h>
 
-using tuw_ros_control_generic::GenericSetupName;
+using tuw_ros_control_generic::GenericSetupPrefix;
 
 TEST(GenericSetupNameTest, verifySetupName)
 {
   std::string name = "test_name";
-  GenericSetupName::setSetupName(name);
-  ASSERT_EQ(GenericSetupName::getSetupName(), name);
+  GenericSetupPrefix::setSetupName(name);
+  ASSERT_EQ(GenericSetupPrefix::getSetupName(), name);
+}
+
+TEST(GenericSetupNameTest, verifyNodeName)
+{
+  ASSERT_EQ(GenericSetupPrefix::getNodeName(), "tuw_ros_control_generic_unit_test");
+}
+
+TEST(GenericSetupNameTest, verifyNodeNameLower)
+{
+  ASSERT_EQ(GenericSetupPrefix::getNodeNameLower(), "tuw_ros_control_generic_unit_test");
+}
+
+TEST(GenericSetupNameTest, verifyNodeNameUpper)
+{
+  ASSERT_EQ(GenericSetupPrefix::getNodeNameUpper(), "TUW_ROS_CONTROL_GENERIC_UNIT_TEST");
+}
+
+TEST(GenericSetupPrefix, verifyLogPrefix)
+{
+  std::string name = "test_name";
+  GenericSetupPrefix::setSetupName(name);
+  ASSERT_EQ(GenericSetupPrefix::getLogPrefix(), "TUW_ROS_CONTROL_GENERIC_UNIT_TEST-test_name");
 }

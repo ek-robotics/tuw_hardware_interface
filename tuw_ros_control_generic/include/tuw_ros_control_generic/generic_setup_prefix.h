@@ -6,19 +6,26 @@
 #include <string>
 #include <memory>
 
-#define LOG c_str()
+#include <ros/ros.h>
+
+#define PREFIX tuw_ros_control_generic::GenericSetupPrefix::getLogPrefix().c_str()
 
 namespace tuw_ros_control_generic
 {
-class GenericSetupName
+class GenericSetupPrefix
 {
 public:
-  GenericSetupName() = default;
-  ~GenericSetupName() = default;
+  GenericSetupPrefix() = default;
+  ~GenericSetupPrefix() = default;
   static void setSetupName(const std::string& setup_name);
   static std::string getSetupName();
+  static std::string getNodeName();
+  static std::string getNodeNameLower();
+  static std::string getNodeNameUpper();
+  static std::string getLogPrefix();
 protected:
-  static inline std::string setup_name_;
+  static std::string node_name_;
+  static std::string setup_name_;
 };
 }  // namespace tuw_ros_control_generic
 

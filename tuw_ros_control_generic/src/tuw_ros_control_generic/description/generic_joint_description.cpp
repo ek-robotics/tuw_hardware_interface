@@ -9,6 +9,7 @@
 #include <tuw_ros_control_generic/description/generic_connection_description.h>
 #include <tuw_ros_control_generic/description/generic_hardware_description.h>
 #include <tuw_ros_control_generic/description/generic_joint_description.h>
+#include <tuw_ros_control_generic/generic_setup_prefix.h>
 
 using tuw_ros_control_generic::GenericConfigDescription;
 using tuw_ros_control_generic::GenericConnectionDescription;
@@ -23,20 +24,17 @@ GenericJointDescription::GenericJointDescription(YAML::Node yaml)
   if (yaml["connection"].IsDefined())
     this->connection_description_ = std::make_shared<GenericConnectionDescription>(yaml["connection"]);
   else
-    // TODO: add node name to print
-    ROS_ERROR("missing connection description");
+    ROS_ERROR("[%s] missing connection description", PREFIX);
 
   if (yaml["hardware"].IsDefined())
     this->hardware_description_ = std::make_shared<GenericHardwareDescription>(loadFile(yaml["hardware"]));
   else
-    // TODO: add node name to print
-    ROS_ERROR("missing hardware description");
+    ROS_ERROR("[%s] missing hardware description", PREFIX);
 
   if (yaml["config"].IsDefined())
     this->config_description_ = std::make_shared<GenericConfigDescription>(loadFile(yaml["config"]));
   else
-    // TODO: add node name to print
-    ROS_INFO("no config provided - fallback to present hardware config");
+    ROS_INFO("[%s] no config provided - fallback to present hardware config", PREFIX);
 }
 
 int GenericJointDescription::getId()

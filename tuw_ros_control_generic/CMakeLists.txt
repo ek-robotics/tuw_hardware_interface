@@ -39,7 +39,7 @@ add_library(
   src/${PROJECT_NAME}/description/generic_joint_description.cpp
   src/${PROJECT_NAME}/generic_hardware.cpp
   src/${PROJECT_NAME}/generic_hardware_parameter.cpp
-  src/${PROJECT_NAME}/generic_setup_name.cpp
+  src/${PROJECT_NAME}/generic_setup_prefix.cpp
 )
 
 target_link_libraries(
