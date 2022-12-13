@@ -18,7 +18,12 @@ protected:
           GenericSetupDescription(FileLoader::loadYAMLFromFile(TEST_FILE_PATH));
 };
 
-TEST_F(GenericSetupDescriptionTest, verifyConstructorFromYaml)
+TEST_F(GenericSetupDescriptionTest, verifySetupName)
+{
+  ASSERT_EQ(generic_setup_description_.getSetupName(), "setup_name");
+}
+
+TEST_F(GenericSetupDescriptionTest, verifyJointsNumber)
 {
   ASSERT_EQ(generic_setup_description_.getJoints().size(), 3);
 }

@@ -57,6 +57,10 @@ private:
   void readActualEffort(double* target);
 
   std::string getName();
+  int getId();
+
+  std::string name_;
+  int id_;
 
   std::shared_ptr<GenericConnection> connection_;
   std::shared_ptr<GenericHardware> hardware_;

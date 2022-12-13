@@ -1,3 +1,4 @@
+setup: test_setup
 joints:
   - name: joint_0
     id: 0
