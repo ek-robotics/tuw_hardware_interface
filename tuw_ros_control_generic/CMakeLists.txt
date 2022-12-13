@@ -39,6 +39,7 @@ add_library(
   src/${PROJECT_NAME}/description/generic_joint_description.cpp
   src/${PROJECT_NAME}/generic_hardware.cpp
   src/${PROJECT_NAME}/generic_hardware_parameter.cpp
+  src/${PROJECT_NAME}/generic_setup_name.cpp
 )
 
 target_link_libraries(
@@ -60,6 +61,7 @@ catkin_add_gtest(
   test/${PROJECT_NAME}_test/test_all.cpp
   test/${PROJECT_NAME}_test/test_generic_hardware.cpp
   test/${PROJECT_NAME}_test/test_generic_hardware_parameter.cpp
+  test/${PROJECT_NAME}_test/test_generic_setup_name.cpp
 )
 
 # link libraries to gtests
