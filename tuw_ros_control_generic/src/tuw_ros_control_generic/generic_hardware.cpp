@@ -9,6 +9,7 @@ GenericHardware::GenericHardware(GenericHardwareDescription hardware_description
 {
   this->target_modes_to_parameter_ = std::map<Mode, GenericHardwareParameter>();
   this->actual_modes_to_parameter_ = std::map<Mode, GenericHardwareParameter>();
+  this->config_identifiers_ = std::make_shared<std::list<std::string>>();
   this->config_identifier_to_parameter_ = std::make_shared<std::map<std::string, GenericHardwareParameter>>();
 
   for (const auto& key_value_pair : *hardware_description.getTargetIdentifierToDescription())
@@ -39,6 +40,7 @@ GenericHardware::GenericHardware(GenericHardwareDescription hardware_description
   {
     auto key = key_value_pair.first;
     auto value = key_value_pair.second;
+    this->config_identifiers_->emplace_back(key);
     this->config_identifier_to_parameter_->insert({key, GenericHardwareParameter(value)});
   }
 }
@@ -69,9 +71,13 @@ GenericHardwareParameter GenericHardware::getActualParameterForMode(GenericHardw
   return this->actual_modes_to_parameter_.at(mode);
 }
 
+
+std::shared_ptr<std::list<std::string>> GenericHardware::getConfigIdentifiers()
+{
+  return this->config_identifiers_;
+}
+
 std::shared_ptr<std::map<std::string, GenericHardwareParameter>> GenericHardware::getConfigIdentifierToParameter()
 {
   return this->config_identifier_to_parameter_;
 }
-
-

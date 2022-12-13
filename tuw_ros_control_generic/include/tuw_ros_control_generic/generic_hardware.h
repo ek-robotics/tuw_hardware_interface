@@ -22,10 +22,12 @@ public:
   bool supportsActualMode(Mode mode);
   GenericHardwareParameter getTargetParameterForMode(Mode mode);
   GenericHardwareParameter getActualParameterForMode(Mode mode);
+  std::shared_ptr<std::list<std::string>> getConfigIdentifiers();
   std::shared_ptr<std::map<std::string, GenericHardwareParameter>> getConfigIdentifierToParameter();
 private:
   std::map<Mode, GenericHardwareParameter> target_modes_to_parameter_;
   std::map<Mode, GenericHardwareParameter> actual_modes_to_parameter_;
+  std::shared_ptr<std::list<std::string>> config_identifiers_;
   std::shared_ptr<std::map<std::string, GenericHardwareParameter>> config_identifier_to_parameter_;
 };
 }  // namespace tuw_ros_control_generic

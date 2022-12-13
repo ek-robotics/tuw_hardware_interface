@@ -47,12 +47,22 @@ TEST_F(GenericHardwareTest, verifyActualIdentifiers)
   ASSERT_EQ(*generic_hardware_.getActualParameterForMode(GenericHardware::Mode::EFFORT).getIdentifier(), "actual_effort");
 }
 
-TEST_F(GenericHardwareTest, verifyConfigParametersPointers)
+TEST_F(GenericHardwareTest, verifyConfigParametersPointer)
+{
+  ASSERT_TRUE(generic_hardware_.getConfigIdentifiers());
+}
+
+TEST_F(GenericHardwareTest, verifyConfigParametersSize)
+{
+  ASSERT_EQ(generic_hardware_.getConfigIdentifiers()->size(), 2);
+}
+
+TEST_F(GenericHardwareTest, verifyConfigIdentifierToParameterPointer)
 {
   ASSERT_TRUE(generic_hardware_.getConfigIdentifierToParameter());
 }
 
-TEST_F(GenericHardwareTest, verifyConfigParametersIdentifiers)
+TEST_F(GenericHardwareTest, verifyConfigIdentifierToParameterValues)
 {
   ASSERT_EQ(*generic_hardware_.getConfigIdentifierToParameter()->at("ecp").getIdentifier(), "ecp");
   ASSERT_EQ(*generic_hardware_.getConfigIdentifierToParameter()->at("rcp").getIdentifier(), "rcp");
