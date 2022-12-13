@@ -1,3 +1,5 @@
+name: generic_hardware
+
 target_state_parameters:
   - identifier: tsp
     address: 1

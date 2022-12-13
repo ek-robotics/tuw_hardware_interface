@@ -12,6 +12,7 @@ using tuw_ros_control_generic::GenericHardwareParameterDescription;
 
 GenericHardwareDescription::GenericHardwareDescription(YAML::Node yaml)
 {
+  this->name_ = yaml["name"].as<std::string>();
   this->target_identifier_to_description_ = std::make_shared<std::map<std::string, GenericHardwareParameterDescription>>();
   this->actual_identifier_to_description_ = std::make_shared<std::map<std::string, GenericHardwareParameterDescription>>();
   this->config_identifier_to_description_ = std::make_shared<std::map<std::string, GenericHardwareParameterDescription>>();
@@ -37,6 +38,11 @@ GenericHardwareDescription::GenericHardwareDescription(YAML::Node yaml)
     std::string key = config_value_yaml["identifier"].as<std::string>();
     this->config_identifier_to_description_->insert({key, GenericHardwareParameterDescription(config_value_yaml)});
   }
+}
+
+std::string GenericHardwareDescription::getName()
+{
+  return this->name_;
 }
 
 std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>>

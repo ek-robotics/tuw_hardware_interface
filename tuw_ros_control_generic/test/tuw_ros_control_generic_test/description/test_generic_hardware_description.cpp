@@ -18,19 +18,14 @@ protected:
           GenericHardwareDescription(FileLoader::loadYAMLFromFile(TEST_FILE_PATH));
 };
 
+TEST_F(GenericHardwareDescriptionTest, verifyName)
+{
+  ASSERT_EQ(generic_hardware_description_.getName(), "generic_hardware");
+}
+
 TEST_F(GenericHardwareDescriptionTest, verifyTargetPointer)
 {
   ASSERT_TRUE(generic_hardware_description_.getTargetIdentifierToDescription());
-}
-
-TEST_F(GenericHardwareDescriptionTest, verifyActualPointer)
-{
-  ASSERT_TRUE(generic_hardware_description_.getActualIdentifierToDescription());
-}
-
-TEST_F(GenericHardwareDescriptionTest, verifyConfigPointer)
-{
-  ASSERT_TRUE(generic_hardware_description_.getConfigIdentifierToDescription());
 }
 
 TEST_F(GenericHardwareDescriptionTest, verifyTargetIdentifier)
@@ -38,9 +33,19 @@ TEST_F(GenericHardwareDescriptionTest, verifyTargetIdentifier)
   ASSERT_EQ(generic_hardware_description_.getTargetIdentifierToDescription()->size(), 1);
 }
 
+TEST_F(GenericHardwareDescriptionTest, verifyActualPointer)
+{
+  ASSERT_TRUE(generic_hardware_description_.getActualIdentifierToDescription());
+}
+
 TEST_F(GenericHardwareDescriptionTest, verifyActualIdentifier)
 {
   ASSERT_EQ(generic_hardware_description_.getActualIdentifierToDescription()->size(), 1);
+}
+
+TEST_F(GenericHardwareDescriptionTest, verifyConfigPointer)
+{
+  ASSERT_TRUE(generic_hardware_description_.getConfigIdentifierToDescription());
 }
 
 TEST_F(GenericHardwareDescriptionTest, verifyConfigIdentifier)

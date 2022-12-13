@@ -12,6 +12,8 @@ GenericHardware::GenericHardware(GenericHardwareDescription hardware_description
   this->config_identifiers_ = std::make_shared<std::list<std::string>>();
   this->config_identifier_to_parameter_ = std::make_shared<std::map<std::string, GenericHardwareParameter>>();
 
+  this->name_ = hardware_description.getName();
+
   for (const auto& key_value_pair : *hardware_description.getTargetIdentifierToDescription())
   {
     auto key = key_value_pair.first;
@@ -43,6 +45,11 @@ GenericHardware::GenericHardware(GenericHardwareDescription hardware_description
     this->config_identifiers_->emplace_back(key);
     this->config_identifier_to_parameter_->insert({key, GenericHardwareParameter(value)});
   }
+}
+
+std::string tuw_ros_control_generic::GenericHardware::getName()
+{
+  return this->name_;
 }
 
 bool GenericHardware::supportsTargetMode(GenericHardware::Mode mode)

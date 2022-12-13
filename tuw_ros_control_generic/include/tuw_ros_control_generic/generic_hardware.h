@@ -18,6 +18,7 @@ public:
     VELOCITY,
     EFFORT
   };
+  std::string getName();
   bool supportsTargetMode(Mode mode);
   bool supportsActualMode(Mode mode);
   GenericHardwareParameter getTargetParameterForMode(Mode mode);
@@ -25,6 +26,7 @@ public:
   std::shared_ptr<std::list<std::string>> getConfigIdentifiers();
   std::shared_ptr<std::map<std::string, GenericHardwareParameter>> getConfigIdentifierToParameter();
 private:
+  std::string name_;
   std::map<Mode, GenericHardwareParameter> target_modes_to_parameter_;
   std::map<Mode, GenericHardwareParameter> actual_modes_to_parameter_;
   std::shared_ptr<std::list<std::string>> config_identifiers_;

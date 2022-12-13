@@ -19,6 +19,11 @@ protected:
           GenericHardware(GenericHardwareDescription(FileLoader::loadYAMLFromFile(TEST_FILE_PATH)));
 };
 
+TEST_F(GenericHardwareTest, verifyName)
+{
+  ASSERT_EQ(generic_hardware_.getName(), "generic_hardware");
+}
+
 TEST_F(GenericHardwareTest, verifyTargetModes)
 {
   ASSERT_TRUE(generic_hardware_.supportsTargetMode(GenericHardware::Mode::POSITION));
