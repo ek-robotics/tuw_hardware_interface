@@ -5,6 +5,7 @@
 #include <tuw_ros_control_generic/generic_hardware.h>
 #include <tuw_ros_control_generic/generic_hardware_parameter.h>
 #include <tuw_ros_control_generic/generic_joint.h>
+#include "tuw_ros_control_generic/generic_setup_prefix.h"
 
 using tuw_ros_control_generic::GenericConfig;
 using tuw_ros_control_generic::GenericConnection;
@@ -27,7 +28,7 @@ GenericConfig::GenericConfig(std::shared_ptr<GenericJoint> joint,
 void GenericConfig::setupReconfigureServer()
 {
   // TODO: get node name
-  ros::NodeHandle node_handle(std::string("NODE_NAME") + std::string("/") + this->joint_->getName());
+  ros::NodeHandle node_handle(GenericSetupPrefix::getNodeName() + std::string("/") + this->joint_->getName());
   this->reconfigure_ = std::make_unique<ddynamic_reconfigure::DDynamicReconfigure>(node_handle);
 
   for (const auto& identifier_parameter_pair : *this->hardware_->getConfigIdentifierToParameter())
