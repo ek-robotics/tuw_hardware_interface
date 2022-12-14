@@ -66,7 +66,7 @@ catkin_add_gtest(
   test/${PROJECT_NAME}_test/test_generic_connection.cpp
   test/${PROJECT_NAME}_test/test_generic_hardware.cpp
   test/${PROJECT_NAME}_test/test_generic_hardware_parameter.cpp
-  test/${PROJECT_NAME}_test/test_generic_setup_name.cpp
+  test/${PROJECT_NAME}_test/test_generic_setup_prefix.cpp
 )
 
 # link libraries to gtests
