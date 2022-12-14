@@ -15,17 +15,21 @@ class GenericConnectionDescription;
 class GenericConnection
 {
 public:
+  // singleton function
+  static std::shared_ptr<GenericConnection> getConnection(GenericConnectionDescription connection_description);
+  // instance functions
   explicit GenericConnection(GenericConnectionDescription connection_description);
   virtual ~GenericConnection();
-  static std::shared_ptr<GenericConnection> getConnection(GenericConnectionDescription connection_description);
   virtual bool connect() = 0;
   virtual bool disconnect() = 0;
   virtual bool write(int id, GenericHardwareParameter hardware_parameter, int* data) = 0;
   virtual bool read(int id, GenericHardwareParameter hardware_parameter, int* data) = 0;
 protected:
-  std::mutex connection_mutex_;
+  // singleton variables
   static std::mutex mutex_;
   static std::unique_ptr<std::map<std::string, std::shared_ptr<GenericConnection>>> connection_table_;
+  // instance variables
+  std::mutex connection_mutex_;
 };
 }  // namespace tuw_ros_control_generic
 

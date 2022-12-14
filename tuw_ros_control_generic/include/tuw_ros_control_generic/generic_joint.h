@@ -27,15 +27,18 @@ using joint_limits_interface::EffortJointSoftLimitsHandle;
 
 namespace tuw_ros_control_generic
 {
-class Joint
-{
 class GenericConfig;
 class GenericConnection;
 class GenericHardware;
 class GenericHardwareParameter;
-
+class GenericJointDescription;
+class GenericJoint
+{
 public:
-  Joint();
+  explicit GenericJoint(GenericJointDescription joint_description);
+
+  std::string getName();
+  int getId();
 
   void write(const ros::Duration &period);
   void read(const ros::Duration &period);
@@ -55,9 +58,6 @@ private:
   void readActualPosition(double* target);
   void readActualVelocity(double* target);
   void readActualEffort(double* target);
-
-  std::string getName();
-  int getId();
 
   std::string name_;
   int id_;

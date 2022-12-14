@@ -9,16 +9,6 @@ using tuw_ros_control_generic::GenericConnectionDescription;
 std::mutex GenericConnection::mutex_;
 std::unique_ptr<std::map<std::string, std::shared_ptr<GenericConnection>>> GenericConnection::connection_table_;
 
-GenericConnection::GenericConnection(GenericConnectionDescription connection_description)
-{
-  // call connect in implementation
-}
-
-GenericConnection::~GenericConnection()
-{
-  // call disconnect in implementation
-}
-
 std::shared_ptr<GenericConnection>GenericConnection::getConnection(GenericConnectionDescription connection_description)
 {
   std::string connection_hash = connection_description.getHash();
@@ -41,4 +31,14 @@ std::shared_ptr<GenericConnection>GenericConnection::getConnection(GenericConnec
   }
 
   return GenericConnection::connection_table_->at(connection_description.getHash());
+}
+
+GenericConnection::GenericConnection(GenericConnectionDescription connection_description)
+{
+  // call connect in implementation
+}
+
+GenericConnection::~GenericConnection()
+{
+  // call disconnect in implementation
 }

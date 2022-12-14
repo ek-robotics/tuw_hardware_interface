@@ -30,7 +30,7 @@ protected:
   void registerReconfigureRangeVariable(GenericHardwareParameter hardware_parameter);
 
   void reconfigureConfig();
-  void reconfigureValue(GenericHardwareParameter hardware_parameter, int target_value);
+  void reconfigureValue(GenericHardwareParameter parameter, int target_value);
 
   void setInitialConfig(GenericConfigDescription config_description);
 

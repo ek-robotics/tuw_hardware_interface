@@ -12,6 +12,7 @@ find_package(
   rospy
   roslib
   roslint
+  ddynamic_reconfigure
 )
 
 catkin_package(
@@ -37,9 +38,11 @@ add_library(
   src/${PROJECT_NAME}/description/generic_hardware_description.cpp
   src/${PROJECT_NAME}/description/generic_hardware_parameter_description.cpp
   src/${PROJECT_NAME}/description/generic_joint_description.cpp
+  src/${PROJECT_NAME}/generic_config.cpp
   src/${PROJECT_NAME}/generic_connection.cpp
   src/${PROJECT_NAME}/generic_hardware.cpp
   src/${PROJECT_NAME}/generic_hardware_parameter.cpp
+  src/${PROJECT_NAME}/generic_joint.cpp
   src/${PROJECT_NAME}/generic_setup_prefix.cpp
 )
 

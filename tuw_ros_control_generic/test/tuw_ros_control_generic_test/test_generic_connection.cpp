@@ -22,14 +22,14 @@ protected:
           GenericConnectionDescription(FileLoader::loadYAMLFromFile(TEST_FILE_PATH)["second"]);
 };
 
-TEST_F(GenericConnectionTest, verifyEqual)
+TEST_F(GenericConnectionTest, verifyEqualPointers)
 {
   ASSERT_EQ(GenericConnection::getConnection(first_generic_connection_description_),
             GenericConnection::getConnection(first_generic_connection_description_));
 }
 
-TEST_F(GenericConnectionTest, verifyNotEqualPort)
+TEST_F(GenericConnectionTest, verifyNotEqualPointers)
 {
-  ASSERT_EQ(GenericConnection::getConnection(first_generic_connection_description_),
+  ASSERT_NE(GenericConnection::getConnection(first_generic_connection_description_),
             GenericConnection::getConnection(second_generic_connection_description_));
 }

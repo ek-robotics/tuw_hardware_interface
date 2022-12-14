@@ -8,7 +8,8 @@
 
 #include <ros/ros.h>
 
-#define PREFIX tuw_ros_control_generic::GenericSetupPrefix::getLogPrefix().c_str()
+#define LOG c_str()
+#define PREFIX tuw_ros_control_generic::GenericSetupPrefix::getLogPrefix().LOG
 
 namespace tuw_ros_control_generic
 {

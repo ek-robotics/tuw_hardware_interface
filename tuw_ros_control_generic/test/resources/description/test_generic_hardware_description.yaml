@@ -1,24 +1,80 @@
-name: generic_hardware
+default:
 
-target_state_parameters:
-  - identifier: tsp
-    address: 1
-    length: 1
-    range: { min: -1, max: 1 }
+  name: default_generic_hardware
 
-actual_state_parameters:
-  - identifier: asp
-    address: 1
-    length: 1
+  target_state_parameters:
+    - identifier: tsp
+      address: 1
+      length: 1
+      range: { min: -1, max: 1 }
 
-config_parameters:
-  - identifier: ecp
-    description: ecp
-    address: 1
-    length: 1
-    enum: { a: 0, b: 1, c: 2 }
-  - identifier: rcp
-    description: rcp
-    address: 1
-    length: 1
-    range: { min: -1, max: 1 }
+  actual_state_parameters:
+    - identifier: asp
+      address: 1
+      length: 1
+
+  config_parameters:
+    - identifier: ecp
+      description: ecp
+      address: 1
+      length: 1
+      enum: { a: 0, b: 1, c: 2 }
+    - identifier: rcp
+      description: rcp
+      address: 1
+      length: 1
+      range: { min: -1, max: 1 }
+
+first:
+
+  name: first_generic_hardware
+
+  target_state_parameters:
+    - identifier: tsp
+      address: 1
+      length: 1
+      range: { min: -1, max: 1 }
+
+  actual_state_parameters:
+    - identifier: asp
+      address: 1
+      length: 1
+
+  config_parameters:
+    - identifier: ecp
+      description: ecp
+      address: 1
+      length: 1
+      enum: { a: 0, b: 1, c: 2 }
+    - identifier: rcp
+      description: rcp
+      address: 1
+      length: 1
+      range: { min: -1, max: 1 }
+
+second:
+
+  name: second_generic_hardware
+
+  target_state_parameters:
+    - identifier: tsp
+      address: 1
+      length: 1
+      range: { min: -1, max: 1 }
+
+  actual_state_parameters:
+    - identifier: asp
+      address: 1
+      length: 1
+
+  config_parameters:
+    - identifier: ecp
+      description: ecp
+      address: 1
+      length: 1
+      enum: { a: 0, b: 1, c: 2 }
+    - identifier: rcp
+      description: rcp
+      address: 1
+      length: 1
+      range: { min: -1, max: 1 }

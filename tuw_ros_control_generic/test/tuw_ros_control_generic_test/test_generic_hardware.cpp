@@ -15,9 +15,27 @@ using tuw_ros_control_generic::GenericHardwareDescription;
 class GenericHardwareTest : public ::testing::Test
 {
 protected:
-  GenericHardware generic_hardware_ =
-          GenericHardware(GenericHardwareDescription(FileLoader::loadYAMLFromFile(TEST_FILE_PATH)));
+  GenericHardwareDescription first_generic_hardware_description_ =
+          GenericHardwareDescription(FileLoader::loadYAMLFromFile(TEST_FILE_PATH)["first"]);
+  GenericHardwareDescription second_generic_hardware_description_ =
+          GenericHardwareDescription(FileLoader::loadYAMLFromFile(TEST_FILE_PATH)["second"]);
+  GenericHardwareDescription default_generic_hardware_description =
+          GenericHardwareDescription(FileLoader::loadYAMLFromFile(TEST_FILE_PATH)["default"]);
+  GenericHardware generic_hardware_ = *GenericHardware::getHardware(
+          GenericHardwareDescription(FileLoader::loadYAMLFromFile(TEST_FILE_PATH)["default"]));
 };
+
+TEST_F(GenericHardwareTest, verifyEqualPointers)
+{
+  ASSERT_EQ(GenericHardware::getHardware(default_generic_hardware_description),
+            GenericHardware::getHardware(default_generic_hardware_description));
+}
+
+TEST_F(GenericHardwareTest, verifyNotEqualPointers)
+{
+  ASSERT_NE(GenericHardware::getHardware(first_generic_hardware_description_),
+            GenericHardware::getHardware(second_generic_hardware_description_));
+}
 
 TEST_F(GenericHardwareTest, verifyName)
 {

@@ -5,6 +5,33 @@
 using tuw_ros_control_generic::GenericHardware;
 using tuw_ros_control_generic::GenericHardwareParameter;
 
+std::mutex GenericHardware::mutex_;
+std::unique_ptr<std::map<std::string, std::shared_ptr<GenericHardware>>> GenericHardware::hardware_table_;
+
+std::shared_ptr<GenericHardware> GenericHardware::getHardware(GenericHardwareDescription hardware_description)
+{
+  std::string connection_hash = hardware_description.getName();
+
+  if (GenericHardware::hardware_table_ == nullptr)
+  {
+    GenericHardware::mutex_.lock();
+
+    if (GenericHardware::hardware_table_ == nullptr)
+
+      GenericHardware::hardware_table_ = std::make_unique<std::map<std::string, std::shared_ptr<GenericHardware>>>();
+
+    GenericHardware::mutex_.unlock();
+  }
+
+  if (GenericHardware::hardware_table_->find(connection_hash) == GenericHardware::hardware_table_->end())
+  {
+    std::shared_ptr<GenericHardware> connection = nullptr;
+    GenericHardware::hardware_table_->insert({connection_hash, connection}) ;
+  }
+
+  return GenericHardware::hardware_table_->at(hardware_description.getName());
+}
+
 GenericHardware::GenericHardware(GenericHardwareDescription hardware_description)
 {
   this->target_modes_to_parameter_ = std::map<Mode, GenericHardwareParameter>();
@@ -77,7 +104,6 @@ GenericHardwareParameter GenericHardware::getActualParameterForMode(GenericHardw
 {
   return this->actual_modes_to_parameter_.at(mode);
 }
-
 
 std::shared_ptr<std::list<std::string>> GenericHardware::getConfigIdentifiers()
 {
