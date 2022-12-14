@@ -38,8 +38,7 @@ void GenericConfig::setupReconfigureServer()
     auto identifier = identifier_parameter_pair.first;
     auto parameter = identifier_parameter_pair.second;
     this->registerReconfigureVariable(parameter);
-    int* present_data = &this->actual_config_values_[identifier];
-    this->joint_->read(parameter, present_data);
+    this->actual_config_values_[identifier] = this->joint_->read(parameter);
   }
 
   auto callback = boost::bind(&GenericConfig::reconfigureConfig, this);
@@ -93,9 +92,8 @@ void GenericConfig::reconfigureConfig()
 void GenericConfig::reconfigureValue(GenericHardwareParameter parameter, int target_value)
 {
   const auto identifier = *parameter.getIdentifier();
-  int actual_value;
-  this->joint_->write(parameter, &target_value);
-  this->joint_->read(parameter, &actual_value);
+  this->joint_->write(parameter, target_value);
+  int actual_value = this->joint_->read(parameter);
 
   this->target_config_values_[identifier] = actual_value;
   this->actual_config_values_[identifier] = actual_value;

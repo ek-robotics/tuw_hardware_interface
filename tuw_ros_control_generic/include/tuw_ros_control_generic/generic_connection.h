@@ -22,8 +22,8 @@ public:
   ~GenericConnection();
   virtual bool connect() = 0;
   virtual bool disconnect() = 0;
-  virtual bool write(int id, GenericHardwareParameter hardware_parameter, int* data) = 0;
-  virtual bool read(int id, GenericHardwareParameter hardware_parameter, int* data) = 0;
+  virtual void write(int id, GenericHardwareParameter hardware_parameter, int data) = 0;
+  virtual int read(int id, GenericHardwareParameter hardware_parameter) = 0;
 protected:
   // singleton variables
   static std::mutex mutex_;

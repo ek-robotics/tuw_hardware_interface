@@ -45,14 +45,15 @@ public:
   virtual void write(const ros::Duration &period);
   virtual void read(const ros::Duration &period);
 
-  virtual void write(GenericHardwareParameter hardware_parameter, int* data);
-  virtual void read(GenericHardwareParameter hardware_parameter, int* data);
+  virtual void write(GenericHardwareParameter hardware_parameter, int data);
+  virtual int read(GenericHardwareParameter hardware_parameter);
 
   JointStateHandle* getJointStateHandle();
   JointHandle* getJointPositionHandle();
   JointHandle* getJointVelocityHandle();
   JointHandle* getJointEffortHandle();
 private:
+  void writeTarget(int* target, GenericHardware::Mode mode, std::string mode_name);
   void writeTargetPosition(double* target);
   void writeTargetVelocity(double* target);
   void writeTargetEffort(double* target);
@@ -77,21 +78,21 @@ private:
   double actual_velocity {0.0};
   double actual_effort {0.0};
   // state handle
-  std::unique_ptr<JointStateHandle> joint_state_handle {nullptr};
+  std::unique_ptr<JointStateHandle> joint_state_handle_ {nullptr};
   // command handles
-  std::unique_ptr<JointHandle> joint_position_handle {nullptr};
-  std::unique_ptr<JointHandle> joint_velocity_handle {nullptr};
-  std::unique_ptr<JointHandle> joint_effort_handle {nullptr};
+  std::unique_ptr<JointHandle> joint_position_handle_ {nullptr};
+  std::unique_ptr<JointHandle> joint_velocity_handle_ {nullptr};
+  std::unique_ptr<JointHandle> joint_effort_handle_ {nullptr};
   // limit container
   std::unique_ptr<JointLimits> limits_ {std::make_unique<JointLimits>()};
   std::unique_ptr<SoftJointLimits> soft_limits_ {std::make_unique<SoftJointLimits>()};
   // limit handles
-  std::unique_ptr<PositionJointSaturationHandle> joint_position_limit_handle {nullptr};
-  std::unique_ptr<VelocityJointSaturationHandle> joint_velocity_limit_handle {nullptr};
-  std::unique_ptr<EffortJointSaturationHandle> joint_effort_limit_handle {nullptr};
-  std::unique_ptr<PositionJointSoftLimitsHandle> joint_position_soft_limit_handle {nullptr};
-  std::unique_ptr<VelocityJointSoftLimitsHandle> joint_velocity_soft_limit_handle {nullptr};
-  std::unique_ptr<EffortJointSoftLimitsHandle> joint_effort_soft_limit_handle {nullptr};
+  std::unique_ptr<PositionJointSaturationHandle> joint_position_limit_handle_ {nullptr};
+  std::unique_ptr<VelocityJointSaturationHandle> joint_velocity_limit_handle_ {nullptr};
+  std::unique_ptr<EffortJointSaturationHandle> joint_effort_limit_handle_ {nullptr};
+  std::unique_ptr<PositionJointSoftLimitsHandle> joint_position_soft_limit_handle_ {nullptr};
+  std::unique_ptr<VelocityJointSoftLimitsHandle> joint_velocity_soft_limit_handle_ {nullptr};
+  std::unique_ptr<EffortJointSoftLimitsHandle> joint_effort_soft_limit_handle_ {nullptr};
 };
 }  // namespace tuw_ros_control_generic
 
