@@ -8,6 +8,8 @@
 #include <tuw_ros_control_generic/description/generic_hardware_description.h>
 #include <tuw_ros_control_generic/generic_hardware_parameter.h>
 
+// TODO: add function to transform from si unit to hardware resolution
+
 namespace tuw_ros_control_generic
 {
 class GenericHardware
