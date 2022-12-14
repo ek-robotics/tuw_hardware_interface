@@ -30,7 +30,7 @@ TEST_F(GenericHardwareDescriptionTest, verifyTargetPointer)
 
 TEST_F(GenericHardwareDescriptionTest, verifyTargetIdentifier)
 {
-  ASSERT_EQ(generic_hardware_description_.getTargetIdentifierToDescription()->size(), 1);
+  ASSERT_EQ(generic_hardware_description_.getTargetIdentifierToDescription()->size(), 3);
 }
 
 TEST_F(GenericHardwareDescriptionTest, verifyActualPointer)
@@ -40,7 +40,7 @@ TEST_F(GenericHardwareDescriptionTest, verifyActualPointer)
 
 TEST_F(GenericHardwareDescriptionTest, verifyActualIdentifier)
 {
-  ASSERT_EQ(generic_hardware_description_.getActualIdentifierToDescription()->size(), 1);
+  ASSERT_EQ(generic_hardware_description_.getActualIdentifierToDescription()->size(), 3);
 }
 
 TEST_F(GenericHardwareDescriptionTest, verifyConfigPointer)

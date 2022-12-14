@@ -16,20 +16,11 @@ using tuw_ros_control_generic::GenericConnectionDescription;
 class GenericConnectionTest : public ::testing::Test
 {
 protected:
-  GenericConnectionDescription first_generic_connection_description_ =
-          GenericConnectionDescription(FileLoader::loadYAMLFromFile(TEST_FILE_PATH)["first"]);
-  GenericConnectionDescription second_generic_connection_description_ =
-          GenericConnectionDescription(FileLoader::loadYAMLFromFile(TEST_FILE_PATH)["second"]);
+  GenericConnectionDescription generic_connection_description_ =
+          GenericConnectionDescription(FileLoader::loadYAMLFromFile(TEST_FILE_PATH));
 };
 
-TEST_F(GenericConnectionTest, verifyEqualPointers)
+TEST_F(GenericConnectionTest, verifyPointer)
 {
-  ASSERT_EQ(GenericConnection::getConnection(first_generic_connection_description_),
-            GenericConnection::getConnection(first_generic_connection_description_));
-}
-
-TEST_F(GenericConnectionTest, verifyNotEqualPointers)
-{
-  ASSERT_NE(GenericConnection::getConnection(first_generic_connection_description_),
-            GenericConnection::getConnection(second_generic_connection_description_));
+  ASSERT_EQ(GenericConnection::getConnection(generic_connection_description_).get(), nullptr);
 }

@@ -10,7 +10,7 @@ std::unique_ptr<std::map<std::string, std::shared_ptr<GenericHardware>>> Generic
 
 std::shared_ptr<GenericHardware> GenericHardware::getHardware(GenericHardwareDescription hardware_description)
 {
-  std::string connection_hash = hardware_description.getName();
+  std::string hardware_name = hardware_description.getName();
 
   if (GenericHardware::hardware_table_ == nullptr)
   {
@@ -23,10 +23,10 @@ std::shared_ptr<GenericHardware> GenericHardware::getHardware(GenericHardwareDes
     GenericHardware::mutex_.unlock();
   }
 
-  if (GenericHardware::hardware_table_->find(connection_hash) == GenericHardware::hardware_table_->end())
+  if (GenericHardware::hardware_table_->find(hardware_name) == GenericHardware::hardware_table_->end())
   {
-    std::shared_ptr<GenericHardware> connection = nullptr;
-    GenericHardware::hardware_table_->insert({connection_hash, connection}) ;
+    std::shared_ptr<GenericHardware> hardware = std::make_shared<GenericHardware>(hardware_description);
+    GenericHardware::hardware_table_->insert({hardware_name, hardware}) ;
   }
 
   return GenericHardware::hardware_table_->at(hardware_description.getName());

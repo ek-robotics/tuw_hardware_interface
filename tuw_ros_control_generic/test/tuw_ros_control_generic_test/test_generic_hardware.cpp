@@ -25,6 +25,12 @@ protected:
           GenericHardwareDescription(FileLoader::loadYAMLFromFile(TEST_FILE_PATH)["default"]));
 };
 
+TEST_F(GenericHardwareTest, verifPointer)
+{
+  ASSERT_TRUE(GenericHardware::getHardware(default_generic_hardware_description));
+}
+
+
 TEST_F(GenericHardwareTest, verifyEqualPointers)
 {
   ASSERT_EQ(GenericHardware::getHardware(default_generic_hardware_description),
@@ -39,7 +45,7 @@ TEST_F(GenericHardwareTest, verifyNotEqualPointers)
 
 TEST_F(GenericHardwareTest, verifyName)
 {
-  ASSERT_EQ(generic_hardware_.getName(), "generic_hardware");
+  ASSERT_EQ(generic_hardware_.getName(), "default_generic_hardware");
 }
 
 TEST_F(GenericHardwareTest, verifyTargetModes)

@@ -1,6 +1,2 @@
-first:
-  port: "/dev/ttyUSB0"
-  baudrate: 57600
-second:
-  port: "/dev/ttyUSB1"
-  baudrate: 57600
+port: "/dev/ttyUSB0"
+baudrate: 57600
