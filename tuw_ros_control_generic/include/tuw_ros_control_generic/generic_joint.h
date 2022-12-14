@@ -36,15 +36,17 @@ class GenericJoint
 {
 public:
   explicit GenericJoint(GenericJointDescription joint_description);
+  GenericJoint() = default;
+  ~GenericJoint() = default;
 
-  std::string getName();
-  int getId();
+  virtual std::string getName();
+  virtual int getId();
 
-  void write(const ros::Duration &period);
-  void read(const ros::Duration &period);
+  virtual void write(const ros::Duration &period);
+  virtual void read(const ros::Duration &period);
 
-  void write(GenericHardwareParameter hardware_parameter, int* data);
-  void read(GenericHardwareParameter hardware_parameter, int* data);
+  virtual void write(GenericHardwareParameter hardware_parameter, int* data);
+  virtual void read(GenericHardwareParameter hardware_parameter, int* data);
 
   JointStateHandle* getJointStateHandle();
   JointHandle* getJointPositionHandle();

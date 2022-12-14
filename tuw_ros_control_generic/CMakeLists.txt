@@ -63,6 +63,7 @@ catkin_add_gtest(
   test/${PROJECT_NAME}_test/description/test_generic_hardware_parameter_description.cpp
   test/${PROJECT_NAME}_test/description/test_generic_joint_description.cpp
   test/${PROJECT_NAME}_test/test_all.cpp
+  test/${PROJECT_NAME}_test/test_generic_config.cpp
   test/${PROJECT_NAME}_test/test_generic_connection.cpp
   test/${PROJECT_NAME}_test/test_generic_hardware.cpp
   test/${PROJECT_NAME}_test/test_generic_hardware_parameter.cpp
@@ -74,5 +75,5 @@ target_link_libraries(
   tuw_ros_control_generic_units_tests
   tuw_ros_control_generic
   # gmock is only reqired if the mocks are created
-  # gmock
+   gmock
 )

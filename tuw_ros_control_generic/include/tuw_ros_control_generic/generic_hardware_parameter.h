@@ -25,6 +25,7 @@ public:
   std::shared_ptr<int> getLength();
   std::shared_ptr<std::map<std::string, int>> getEnum();
   std::shared_ptr<std::map<std::string, int>> getRange();
+  bool operator==(const GenericHardwareParameter& other) const;
 protected:
   bool isValid();
   bool isTarget();

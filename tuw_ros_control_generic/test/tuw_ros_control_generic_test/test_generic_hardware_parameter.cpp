@@ -127,3 +127,12 @@ TEST_F(GenericHardwareParameterTest, verifyRangeType)
 {
   ASSERT_EQ(range_.getType(), GenericHardwareParameter::Type::RANGE);
 }
+
+TEST_F(GenericHardwareParameterTest, verifyEqualsOperator)
+{
+  ASSERT_TRUE(target_ == target_);
+  ASSERT_TRUE(actual_ == actual_);
+  ASSERT_TRUE(enum_   == enum_  );
+  ASSERT_TRUE(range_  == range_ );
+  ASSERT_FALSE(target_ == actual_);
+}

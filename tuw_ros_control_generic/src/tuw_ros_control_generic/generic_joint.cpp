@@ -46,4 +46,3 @@ void tuw_ros_control_generic::GenericJoint::read(GenericHardwareParameter hardwa
 {
 
 }
-

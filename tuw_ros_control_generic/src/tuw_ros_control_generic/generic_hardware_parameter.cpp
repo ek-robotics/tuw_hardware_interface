@@ -109,3 +109,8 @@ std::shared_ptr<std::map<std::string, int>> GenericHardwareParameter::getRange()
 {
   return this->range_;
 }
+
+bool GenericHardwareParameter::operator==(const GenericHardwareParameter &other) const
+{
+  return this->identifier_ == other.identifier_ && this->address_ == other.address_ && this->length_ == other.length_;
+}
