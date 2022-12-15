@@ -5,6 +5,8 @@
 
 #include <mutex>
 
+#include <ros/ros.h>
+
 #include <tuw_ros_control_generic/description/generic_hardware_description.h>
 #include <tuw_ros_control_generic/generic_hardware_parameter.h>
 
@@ -25,24 +27,22 @@ public:
     VELOCITY,
     EFFORT
   };
-  std::string getName();
-//  int convertToHardwareResolution(double input, Mode mode);
-//  double convertFromHardwareResolution(int input, Mode mode);
-  bool supportsTargetMode(Mode mode);
-  bool supportsActualMode(Mode mode);
-  GenericHardwareParameter getTargetParameterForMode(Mode mode);
-  GenericHardwareParameter getActualParameterForMode(Mode mode);
-  std::shared_ptr<std::list<std::string>> getConfigIdentifiers();
-  std::shared_ptr<std::map<std::string, GenericHardwareParameter>> getConfigIdentifierToParameter();
+  virtual std::string getName();
+  virtual int convertToHardwareResolution(double input, Mode mode);
+  virtual double convertFromHardwareResolution(int input, Mode mode);
+  virtual bool supportsTargetMode(Mode mode);
+  virtual bool supportsActualMode(Mode mode);
+  virtual GenericHardwareParameter getTargetParameterForMode(Mode mode);
+  virtual GenericHardwareParameter getActualParameterForMode(Mode mode);
+  virtual std::shared_ptr<std::list<std::string>> getConfigIdentifiers();
+  virtual std::shared_ptr<std::map<std::string, GenericHardwareParameter>> getConfigIdentifierToParameter();
 private:
   // singleton variables
   static std::mutex mutex_;
   static std::unique_ptr<std::map<std::string, std::shared_ptr<GenericHardware>>> hardware_table_;
   // instance variables
   std::string name_;
-//  std::unique_ptr<double> position_resolution {nullptr};
-//  std::unique_ptr<double> velocity_resolution {nullptr};
-//  std::unique_ptr<double> effort_resolution {nullptr};
+  std::map<Mode, double> modes_to_resolution_;
   std::map<Mode, GenericHardwareParameter> target_modes_to_parameter_;
   std::map<Mode, GenericHardwareParameter> actual_modes_to_parameter_;
   std::shared_ptr<std::list<std::string>> config_identifiers_;

@@ -35,7 +35,8 @@ public:
 class GenericConfigTest : public ::testing::Test
 {
 protected:
-  void SetUp() override {
+  void SetUp() override
+  {
     GenericSetupPrefix::setSetupName("test_setup");
     EXPECT_CALL(*mock_joint_, getName()).WillRepeatedly(testing::Return("test_joint"));
   }
@@ -74,7 +75,7 @@ TEST_F(GenericConfigTest, verifyConstructorWithConfig)
   EXPECT_CALL(*mock_joint_, read(generic_hardware_->getConfigIdentifierToParameter()->at("ecp"))).Times(2).WillRepeatedly(testing::Return(1));
   EXPECT_CALL(*mock_joint_, read(generic_hardware_->getConfigIdentifierToParameter()->at("rcp"))).Times(2).WillRepeatedly(testing::Return(0));
 
-  ROS_INFO("WARNINGS BELOW CAN BE IGNORED IN TESTS!");
+  ROS_INFO("LOG INFO/WARNING/ERROR BELOW CAN BE IGNORED IN TESTS!");
 
   GenericConfig generic_config = GenericConfig(mock_joint_, generic_hardware_, generic_config_description_);
 }
@@ -86,7 +87,7 @@ TEST_F(GenericConfigTest, verifyServiceWithConfig)
   EXPECT_CALL(*mock_joint_, read(generic_hardware_->getConfigIdentifierToParameter()->at("ecp"))).Times(2).WillRepeatedly(testing::Return(1));
   EXPECT_CALL(*mock_joint_, read(generic_hardware_->getConfigIdentifierToParameter()->at("rcp"))).Times(2).WillRepeatedly(testing::Return(0));
 
-  ROS_INFO("WARNINGS BELOW CAN BE IGNORED IN TESTS!");
+  ROS_INFO("LOG INFO/WARNING/ERROR BELOW CAN BE IGNORED IN TESTS!");
 
   GenericConfig generic_config = GenericConfig(mock_joint_, generic_hardware_, generic_config_description_);
 

@@ -2,6 +2,11 @@ hardware:
 
     name: generic_hardware
 
+    resolution:
+      position: 0.5
+      velocity: 0.5
+      effort: 0.5
+
     target_state_parameters:
       - identifier: target_position
         address: 1
