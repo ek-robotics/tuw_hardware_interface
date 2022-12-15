@@ -10,8 +10,6 @@
 #include <tuw_ros_control_generic/description/generic_hardware_description.h>
 #include <tuw_ros_control_generic/generic_hardware_parameter.h>
 
-// TODO: add function to transform from si unit to hardware resolution
-
 namespace tuw_ros_control_generic
 {
 class GenericHardware
@@ -28,14 +26,14 @@ public:
     EFFORT
   };
   virtual std::string getName();
-  virtual int convertToHardwareResolution(double input, Mode mode);
-  virtual double convertFromHardwareResolution(int input, Mode mode);
   virtual bool supportsTargetMode(Mode mode);
   virtual bool supportsActualMode(Mode mode);
   virtual GenericHardwareParameter getTargetParameterForMode(Mode mode);
   virtual GenericHardwareParameter getActualParameterForMode(Mode mode);
   virtual std::shared_ptr<std::list<std::string>> getConfigIdentifiers();
   virtual std::shared_ptr<std::map<std::string, GenericHardwareParameter>> getConfigIdentifierToParameter();
+  virtual int convertToHardwareResolution(double input, Mode mode);
+  virtual double convertFromHardwareResolution(int input, Mode mode);
 private:
   // singleton variables
   static std::mutex mutex_;

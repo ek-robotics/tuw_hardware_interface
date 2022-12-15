@@ -1,7 +1,7 @@
 // Copyright 2022 Eugen Kaltenegger
 
 #include <tuw_ros_control_generic/generic_hardware.h>
-#include "tuw_ros_control_generic/generic_setup_prefix.h"
+#include <tuw_ros_control_generic/generic_setup_prefix.h>
 
 using tuw_ros_control_generic::GenericHardware;
 using tuw_ros_control_generic::GenericHardwareParameter;
@@ -117,16 +117,6 @@ std::string tuw_ros_control_generic::GenericHardware::getName()
   return this->name_;
 }
 
-int GenericHardware::convertToHardwareResolution(double input, GenericHardware::Mode mode)
-{
-  return static_cast<int>(input / this->modes_to_resolution_.at(mode));
-}
-
-double GenericHardware::convertFromHardwareResolution(int input, GenericHardware::Mode mode)
-{
-  return static_cast<double>(input) * this->modes_to_resolution_.at(mode);
-}
-
 bool GenericHardware::supportsTargetMode(GenericHardware::Mode mode)
 {
   if (this->target_modes_to_parameter_.find(mode) == this->target_modes_to_parameter_.end())
@@ -161,4 +151,14 @@ std::shared_ptr<std::list<std::string>> GenericHardware::getConfigIdentifiers()
 std::shared_ptr<std::map<std::string, GenericHardwareParameter>> GenericHardware::getConfigIdentifierToParameter()
 {
   return this->config_identifier_to_parameter_;
+}
+
+int GenericHardware::convertToHardwareResolution(double input, GenericHardware::Mode mode)
+{
+  return static_cast<int>(input / this->modes_to_resolution_.at(mode));
+}
+
+double GenericHardware::convertFromHardwareResolution(int input, GenericHardware::Mode mode)
+{
+  return static_cast<double>(input) * this->modes_to_resolution_.at(mode);
 }
