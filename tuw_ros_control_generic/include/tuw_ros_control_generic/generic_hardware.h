@@ -34,6 +34,8 @@ public:
   virtual std::shared_ptr<std::map<std::string, GenericHardwareParameter>> getConfigIdentifierToParameter();
   virtual int convertToHardwareResolution(double input, Mode mode);
   virtual double convertFromHardwareResolution(int input, Mode mode);
+  static std::string modeToString(Mode mode);
+  static Mode modeFromString(std::string mode_string);
 private:
   // singleton variables
   static std::mutex mutex_;

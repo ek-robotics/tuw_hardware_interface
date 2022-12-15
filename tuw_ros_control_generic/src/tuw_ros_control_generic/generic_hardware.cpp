@@ -162,3 +162,34 @@ double GenericHardware::convertFromHardwareResolution(int input, GenericHardware
 {
   return static_cast<double>(input) * this->modes_to_resolution_.at(mode);
 }
+
+std::string GenericHardware::modeToString(GenericHardware::Mode mode)
+{
+  switch (mode)
+  {
+    case GenericHardware::Mode::POSITION:
+      return "POSITION";
+    case GenericHardware::Mode::VELOCITY:
+        return "VELOCITY";
+    case GenericHardware::Mode::EFFORT:
+      return "EFFORT";
+    default:
+      throw std::runtime_error("unknown mode");
+  }
+}
+
+GenericHardware::Mode GenericHardware::modeFromString(std::string mode_string)
+{
+  std::string upper_mode_string = mode_string;
+  auto to_upper_begin = upper_mode_string.begin();
+  auto to_upper_end = upper_mode_string.end();
+  std::transform(to_upper_begin, to_upper_end, upper_mode_string.begin(), std::ptr_fun<int, int>(std::toupper));
+
+  if (upper_mode_string == "POSITION")
+    return GenericHardware::Mode::POSITION;
+  if (upper_mode_string == "VELOCITY")
+    return GenericHardware::Mode::VELOCITY;
+  if (upper_mode_string == "EFFORT")
+    return GenericHardware::Mode::EFFORT;
+  throw std::runtime_error("unknown mode: " + mode_string);
+}

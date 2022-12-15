@@ -140,3 +140,33 @@ TEST_F(GenericHardwareTest, verifyConfigIdentifierToParameterValues)
   ASSERT_EQ(*complete_generic_hardware_->getConfigIdentifierToParameter()->at("ecp").getIdentifier(), "ecp");
   ASSERT_EQ(*complete_generic_hardware_->getConfigIdentifierToParameter()->at("rcp").getIdentifier(), "rcp");
 }
+
+TEST_F(GenericHardwareTest, PositionToString)
+{
+  ASSERT_EQ(GenericHardware::modeToString(GenericHardware::Mode::POSITION), "POSITION");
+}
+
+TEST_F(GenericHardwareTest, PositionFromString)
+{
+  ASSERT_EQ(GenericHardware::modeFromString("POSITION"), GenericHardware::Mode::POSITION);
+}
+
+TEST_F(GenericHardwareTest, VelocityToString)
+{
+  ASSERT_EQ(GenericHardware::modeToString(GenericHardware::Mode::VELOCITY), "VELOCITY");
+}
+
+TEST_F(GenericHardwareTest, VelocityFromString)
+{
+  ASSERT_EQ(GenericHardware::modeFromString("VELOCITY"), GenericHardware::Mode::VELOCITY);
+}
+
+TEST_F(GenericHardwareTest, EffortToString)
+{
+  ASSERT_EQ(GenericHardware::modeToString(GenericHardware::Mode::EFFORT), "EFFORT");
+}
+
+TEST_F(GenericHardwareTest, EffortFromString)
+{
+  ASSERT_EQ(GenericHardware::modeFromString("EFFORT"), GenericHardware::Mode::EFFORT);
+}
