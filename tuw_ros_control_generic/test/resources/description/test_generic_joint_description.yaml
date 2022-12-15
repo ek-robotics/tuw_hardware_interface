@@ -1,5 +1,5 @@
 name: joint
 id: 0
 connection: { port: "port", baudrate: 123, protocol: 2.0 }
-hardware:   { package: "tuw_ros_control_generic", path: "test/resources/description/test_generic_hardware_description.yaml" }
-config:     { package: "tuw_ros_control_generic", path: "test/resources/description/test_generic_config_description.yaml" }
+hardware:   { package: "tuw_ros_control_generic", path: "test/resources/description/test_generic_joint_description_hardware.yaml" }
+config:     { package: "tuw_ros_control_generic", path: "test/resources/description/test_generic_joint_description_config.yaml" }

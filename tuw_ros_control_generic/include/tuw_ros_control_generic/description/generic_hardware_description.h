@@ -17,11 +17,17 @@ class GenericHardwareDescription
 public:
   explicit GenericHardwareDescription(YAML::Node yaml);
   std::string getName();
+  std::shared_ptr<double> getPositionResolution();
+  std::shared_ptr<double> getVelocityResolution();
+  std::shared_ptr<double> getEffortResolution();
   std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>> getTargetIdentifierToDescription();
   std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>> getActualIdentifierToDescription();
   std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>> getConfigIdentifierToDescription();
 private:
   std::string name_;
+  std::shared_ptr<double> position_resolution_;
+  std::shared_ptr<double> velocity_resolution_;
+  std::shared_ptr<double> effort_resolution_;
   std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>> target_identifier_to_description_ {nullptr};
   std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>> actual_identifier_to_description_ {nullptr};
   std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>> config_identifier_to_description_ {nullptr};

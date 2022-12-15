@@ -26,6 +26,8 @@ public:
     EFFORT
   };
   std::string getName();
+//  int convertToHardwareResolution(double input, Mode mode);
+//  double convertFromHardwareResolution(int input, Mode mode);
   bool supportsTargetMode(Mode mode);
   bool supportsActualMode(Mode mode);
   GenericHardwareParameter getTargetParameterForMode(Mode mode);
@@ -38,6 +40,9 @@ private:
   static std::unique_ptr<std::map<std::string, std::shared_ptr<GenericHardware>>> hardware_table_;
   // instance variables
   std::string name_;
+//  std::unique_ptr<double> position_resolution {nullptr};
+//  std::unique_ptr<double> velocity_resolution {nullptr};
+//  std::unique_ptr<double> effort_resolution {nullptr};
   std::map<Mode, GenericHardwareParameter> target_modes_to_parameter_;
   std::map<Mode, GenericHardwareParameter> actual_modes_to_parameter_;
   std::shared_ptr<std::list<std::string>> config_identifiers_;

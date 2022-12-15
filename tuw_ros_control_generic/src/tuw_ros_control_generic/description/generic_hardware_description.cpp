@@ -13,6 +13,16 @@ using tuw_ros_control_generic::GenericHardwareParameterDescription;
 GenericHardwareDescription::GenericHardwareDescription(YAML::Node yaml)
 {
   this->name_ = yaml["name"].as<std::string>();
+
+  if (yaml["resolution"]["position"].IsDefined())
+    this->position_resolution_ = std::make_shared<double>(yaml["resolution"]["position"].as<double>());
+
+  if (yaml["resolution"]["velocity"].IsDefined())
+    this->velocity_resolution_ = std::make_shared<double>(yaml["resolution"]["velocity"].as<double>());
+
+  if (yaml["resolution"]["effort"].IsDefined())
+    this->effort_resolution_ = std::make_shared<double>(yaml["resolution"]["effort"].as<double>());
+
   this->target_identifier_to_description_ = std::make_shared<std::map<std::string, GenericHardwareParameterDescription>>();
   this->actual_identifier_to_description_ = std::make_shared<std::map<std::string, GenericHardwareParameterDescription>>();
   this->config_identifier_to_description_ = std::make_shared<std::map<std::string, GenericHardwareParameterDescription>>();
@@ -45,6 +55,21 @@ std::string GenericHardwareDescription::getName()
   return this->name_;
 }
 
+std::shared_ptr<double> GenericHardwareDescription::getPositionResolution()
+{
+  return this->position_resolution_;
+}
+
+std::shared_ptr<double> GenericHardwareDescription::getVelocityResolution()
+{
+  return this->velocity_resolution_;
+}
+
+std::shared_ptr<double> GenericHardwareDescription::getEffortResolution()
+{
+  return this->effort_resolution_;
+}
+
 std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>>
 GenericHardwareDescription::getTargetIdentifierToDescription()
 {
@@ -62,4 +87,3 @@ GenericHardwareDescription::getConfigIdentifierToDescription()
 {
   return this->config_identifier_to_description_;
 }
-
