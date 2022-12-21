@@ -2,6 +2,10 @@
 
 #include "tuw_ros_control_generic/generic_setup_prefix.h"
 
+#include <algorithm>
+#include <functional>
+#include <string>
+
 using tuw_ros_control_generic::GenericSetupPrefix;
 
 std::string GenericSetupPrefix::node_name_;

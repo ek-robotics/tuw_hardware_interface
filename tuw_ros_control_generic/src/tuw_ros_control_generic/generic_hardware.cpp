@@ -1,6 +1,14 @@
 // Copyright 2022 Eugen Kaltenegger
 
 #include <tuw_ros_control_generic/generic_hardware.h>
+
+#include <algorithm>
+#include <functional>
+#include <list>
+#include <map>
+#include <memory>
+#include <string>
+
 #include <tuw_ros_control_generic/generic_setup_prefix.h>
 
 using tuw_ros_control_generic::GenericHardware;
@@ -49,7 +57,7 @@ GenericHardware::GenericHardware(GenericHardwareDescription hardware_description
   if (hardware_description.getEffortResolution())
     this->modes_to_resolution_.insert({Mode::EFFORT, *hardware_description.getEffortResolution()});
 
-  for (const auto &key_value_pair: *hardware_description.getTargetIdentifierToDescription())
+  for (const auto &key_value_pair : *hardware_description.getTargetIdentifierToDescription())
   {
     auto key = key_value_pair.first;
     auto value = key_value_pair.second;
@@ -76,7 +84,7 @@ GenericHardware::GenericHardware(GenericHardwareDescription hardware_description
     }
   }
 
-  for (const auto &key_value_pair: *hardware_description.getActualIdentifierToDescription())
+  for (const auto &key_value_pair : *hardware_description.getActualIdentifierToDescription())
   {
     auto key = key_value_pair.first;
     auto value = key_value_pair.second;
@@ -103,7 +111,7 @@ GenericHardware::GenericHardware(GenericHardwareDescription hardware_description
     }
   }
 
-  for (const auto &key_value_pair: *hardware_description.getConfigIdentifierToDescription())
+  for (const auto &key_value_pair : *hardware_description.getConfigIdentifierToDescription())
   {
     auto key = key_value_pair.first;
     auto value = key_value_pair.second;

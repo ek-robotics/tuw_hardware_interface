@@ -1,9 +1,11 @@
 // Copyright 2022 Eugen Kaltenegger
 
-#ifndef TUW_ROS_CONTROL_GENERIC_GENERIC_CONFIG_MANAGER_H
-#define TUW_ROS_CONTROL_GENERIC_GENERIC_CONFIG_MANAGER_H
+#ifndef TUW_ROS_CONTROL_GENERIC_GENERIC_CONFIG_H
+#define TUW_ROS_CONTROL_GENERIC_GENERIC_CONFIG_H
 
+#include <map>
 #include <memory>
+#include <string>
 
 #include <ddynamic_reconfigure/ddynamic_reconfigure.h>
 
@@ -45,4 +47,4 @@ protected:
 };
 }  // namespace tuw_ros_control_generic
 
-#endif  // TUW_ROS_CONTROL_GENERIC_GENERIC_CONFIG_MANAGER_H
+#endif  // TUW_ROS_CONTROL_GENERIC_GENERIC_CONFIG_H

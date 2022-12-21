@@ -1,5 +1,7 @@
 // Copyright 2022 Eugen Kaltenegger
 
+#include <memory>
+#include <string>
 #include <utility>
 
 #include <tuw_ros_control_generic/description/generic_joint_description.h>

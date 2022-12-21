@@ -32,7 +32,6 @@ protected:
           GenericHardwareParameter(
                   GenericHardwareParameterDescription(
                           FileLoader::loadYAMLFromFile(TEST_FILE_PATH)["config_parameters"]["range"]));
-
 };
 
 TEST_F(GenericHardwareParameterTest, verifyTargetPointers)
@@ -132,7 +131,7 @@ TEST_F(GenericHardwareParameterTest, verifyEqualsOperator)
 {
   ASSERT_TRUE(target_ == target_);
   ASSERT_TRUE(actual_ == actual_);
-  ASSERT_TRUE(enum_   == enum_  );
-  ASSERT_TRUE(range_  == range_ );
+  ASSERT_TRUE(enum_ == enum_);
+  ASSERT_TRUE(range_ == range_);
   ASSERT_FALSE(target_ == actual_);
 }

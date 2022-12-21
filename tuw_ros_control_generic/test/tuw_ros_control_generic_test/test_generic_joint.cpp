@@ -3,6 +3,9 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
+#include <memory>
+#include <string>
+
 #include "../tuw_ros_control_generic_test_util/include/file_loader.h"
 
 #include <tuw_ros_control_generic/description/generic_hardware_description.h>
@@ -32,8 +35,12 @@ class ConnectionMock : public GenericConnection
 {
 public:
   ConnectionMock() = default;
-  bool connect() override {return true;};
-  bool disconnect() override {return true;};
+
+  bool connect() override
+  { return true; };
+
+  bool disconnect() override
+  { return true; };
   MOCK_METHOD(void, write, (int id, GenericHardwareParameter hardware_parameter, int data), (override));
   MOCK_METHOD(int, read, (int id, GenericHardwareParameter hardware_parameter), (override));
 };
@@ -42,13 +49,27 @@ class HardwareMock : public GenericHardware
 {
 public:
   HardwareMock() = default;
-  std::string getName() override {return "hardware_mock";};
-  bool supportsActualMode(Mode mode) override {return true;};
-  bool supportsTargetMode(Mode mode) override {return true;};
-  int convertToHardwareResolution(double input, Mode mode) override {return static_cast<int>(input);};
-  double convertFromHardwareResolution(int input, Mode mode) override {return static_cast<double>(input);};
-  GenericHardwareParameter getTargetParameterForMode(Mode mode) override {return this->target_state_parameter_;};
-  GenericHardwareParameter getActualParameterForMode(Mode mode) override {return this->actual_state_parameter_;};
+
+  std::string getName() override
+  { return "hardware_mock"; };
+
+  bool supportsActualMode(Mode mode) override
+  { return true; };
+
+  bool supportsTargetMode(Mode mode) override
+  { return true; };
+
+  int convertToHardwareResolution(double input, Mode mode) override
+  { return static_cast<int>(input); };
+
+  double convertFromHardwareResolution(int input, Mode mode) override
+  { return static_cast<double>(input); };
+
+  GenericHardwareParameter getTargetParameterForMode(Mode mode) override
+  { return this->target_state_parameter_; };
+
+  GenericHardwareParameter getActualParameterForMode(Mode mode) override
+  { return this->actual_state_parameter_; };
 
   GenericHardwareParameter target_state_parameter_ =
           GenericHardwareParameter(
@@ -123,21 +144,24 @@ TEST_F(GenericJointTest, verifyTargetEffort)
 
 TEST_F(GenericJointTest, verifyActualPosition)
 {
-  EXPECT_CALL(*this->connection_, read(0, hardware_->actual_state_parameter_)).Times(3).WillRepeatedly(testing::Return(1));
+  EXPECT_CALL(*this->connection_, read(0, hardware_->actual_state_parameter_)).
+          Times(3).WillRepeatedly(testing::Return(1));
   this->joint_->setMode(GenericHardware::Mode::POSITION);
   this->joint_->read(ros::Duration(1));
 }
 
 TEST_F(GenericJointTest, verifyActualVelocoty)
 {
-  EXPECT_CALL(*this->connection_, read(0, hardware_->actual_state_parameter_)).Times(3).WillRepeatedly(testing::Return(1));
+  EXPECT_CALL(*this->connection_, read(0, hardware_->actual_state_parameter_)).
+          Times(3).WillRepeatedly(testing::Return(1));
   this->joint_->setMode(GenericHardware::Mode::VELOCITY);
   this->joint_->read(ros::Duration(1));
 }
 
 TEST_F(GenericJointTest, verifyActualEffort)
 {
-  EXPECT_CALL(*this->connection_, read(0, hardware_->actual_state_parameter_)).Times(3).WillRepeatedly(testing::Return(1));
+  EXPECT_CALL(*this->connection_, read(0, hardware_->actual_state_parameter_)).
+          Times(3).WillRepeatedly(testing::Return(1));
   this->joint_->setMode(GenericHardware::Mode::EFFORT);
   this->joint_->read(ros::Duration(1));
 }

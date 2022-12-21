@@ -4,6 +4,7 @@
 #define TUW_ROS_CONTROL_GENERIC_DESCRIPTION_GENERIC_SETUP_DESCRIPTION_H
 
 #include <list>
+#include <string>
 
 #include <yaml-cpp/yaml.h>
 

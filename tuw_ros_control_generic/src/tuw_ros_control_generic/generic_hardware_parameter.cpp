@@ -2,6 +2,10 @@
 
 #include "tuw_ros_control_generic/generic_hardware_parameter.h"
 
+#include <map>
+#include <memory>
+#include <string>
+
 using tuw_ros_control_generic::GenericHardwareParameter;
 using tuw_ros_control_generic::GenericHardwareParameterDescription;
 
@@ -13,9 +17,9 @@ GenericHardwareParameter::GenericHardwareParameter(GenericHardwareParameterDescr
   this->length_ = hardware_parameter_description.getLength();
   this->enum_ = hardware_parameter_description.getEnum();
   this->range_ = hardware_parameter_description.getRange();
-  
-  if(!this->isValid())
-    throw std::runtime_error("parameter " + *this->getIdentifier() + " is invalid" );
+
+  if (!this->isValid())
+    throw std::runtime_error("parameter " + *this->getIdentifier() + " is invalid");
 
   if (this->isTarget())
     this->type_ = Type::TARGET;

@@ -18,7 +18,8 @@ using tuw_ros_control_generic::GenericSetupPrefix;
 class GenericConnectionTest : public ::testing::Test
 {
 protected:
-  void SetUp() override {
+  void SetUp() override
+  {
     GenericSetupPrefix::setSetupName("test_setup");
   }
 

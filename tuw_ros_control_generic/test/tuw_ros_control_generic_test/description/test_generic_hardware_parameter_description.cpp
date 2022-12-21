@@ -15,13 +15,17 @@ class GenericHardwareParameterDescriptionTest : public ::testing::Test
 {
 protected:
   GenericHardwareParameterDescription target_ =
-          GenericHardwareParameterDescription(FileLoader::loadYAMLFromFile(TEST_FILE_PATH)["target_state_parameters"]);
+          GenericHardwareParameterDescription(
+                  FileLoader::loadYAMLFromFile(TEST_FILE_PATH)["target_state_parameters"]);
   GenericHardwareParameterDescription actual_ =
-          GenericHardwareParameterDescription(FileLoader::loadYAMLFromFile(TEST_FILE_PATH)["actual_state_parameters"]);
+          GenericHardwareParameterDescription(
+                  FileLoader::loadYAMLFromFile(TEST_FILE_PATH)["actual_state_parameters"]);
   GenericHardwareParameterDescription enum_ =
-          GenericHardwareParameterDescription(FileLoader::loadYAMLFromFile(TEST_FILE_PATH)["config_parameters"]["enum"]);
+          GenericHardwareParameterDescription(
+                  FileLoader::loadYAMLFromFile(TEST_FILE_PATH)["config_parameters"]["enum"]);
   GenericHardwareParameterDescription range_ =
-          GenericHardwareParameterDescription(FileLoader::loadYAMLFromFile(TEST_FILE_PATH)["config_parameters"]["range"]);
+          GenericHardwareParameterDescription(
+                  FileLoader::loadYAMLFromFile(TEST_FILE_PATH)["config_parameters"]["range"]);
 };
 
 TEST_F(GenericHardwareParameterDescriptionTest, verifyTargetPointers)

@@ -2,13 +2,16 @@
 
 #include "tuw_ros_control_generic/generic_ros_control_hardware_interface.h"
 
+#include <list>
+#include <memory>
+#include <string>
+
 #include "tuw_ros_control_generic/description/generic_joint_description.h"
 #include "tuw_ros_control_generic/generic_setup_prefix.h"
 #include "tuw_ros_control_generic/description/generic_setup_description.h"
 
 #include <tuw_ros_control_generic/generic_config.h>
 #include <tuw_ros_control_generic/generic_hardware.h>
-
 
 using tuw_ros_control_generic::GenericSetupDescription;
 using tuw_ros_control_generic::GenericRosControlHardwareInterface;
@@ -124,21 +127,21 @@ bool GenericRosControlHardwareInterface::initJoint(GenericJointDescription joint
   try
   {
     std::shared_ptr<GenericJoint> joint = std::make_shared<GenericJoint>(joint_description);
-    
+
     // create connection and set it to joint
     // create hardware and set it to joint
     // create config and set it to joint
 
     this->joints_.push_back(joint);
-    
+
     this->joint_state_interface.registerHandle(*joint->getJointStateHandle());
     this->joint_position_interface.registerHandle(*joint->getJointPositionHandle());
     this->joint_velocity_interface.registerHandle(*joint->getJointVelocityHandle());
     this->joint_effort_interface.registerHandle(*joint->getJointEffortHandle());
-    
+
     ROS_INFO("[%s] FINISH setting up joint %s", PREFIX, joint->getName().LOG);
-    
-    return true; 
+
+    return true;
   }
   catch(...)
   {
@@ -148,7 +151,7 @@ bool GenericRosControlHardwareInterface::initJoint(GenericJointDescription joint
 
 std::shared_ptr<GenericJoint> GenericRosControlHardwareInterface::findJoint(const std::string &name)
 {
-  for (const auto &joint: this->joints_)
+  for (const auto &joint : this->joints_)
   {
     if (joint->getName() == name) return joint;
   }

@@ -6,7 +6,9 @@
 #include <tuw_ros_control_generic/generic_joint.h>
 #include <tuw_ros_control_generic/generic_setup_prefix.h>
 
+#include <memory>
 #include <utility>
+#include <string>
 
 using tuw_ros_control_generic::GenericConfig;
 using tuw_ros_control_generic::GenericConnection;
@@ -39,7 +41,7 @@ void GenericConfig::setupReconfigureServer()
   ros::NodeHandle node_handle(GenericSetupPrefix::getNodeName() + std::string("/") + this->joint_->getName());
   this->reconfigure_ = std::make_unique<ddynamic_reconfigure::DDynamicReconfigure>(node_handle);
 
-  for (const auto &identifier_parameter_pair: *this->hardware_->getConfigIdentifierToParameter())
+  for (const auto &identifier_parameter_pair : *this->hardware_->getConfigIdentifierToParameter())
   {
     auto identifier = identifier_parameter_pair.first;
     auto parameter = identifier_parameter_pair.second;
@@ -81,7 +83,7 @@ void GenericConfig::registerReconfigureRangeVariable(GenericHardwareParameter ha
 
 void GenericConfig::reconfigureConfig()
 {
-  for (const std::string &hardware_parameter_identifier: *this->hardware_->getConfigIdentifiers())
+  for (const std::string &hardware_parameter_identifier : *this->hardware_->getConfigIdentifiers())
   {
     int target_value = (this->target_config_values_)[hardware_parameter_identifier];
     int actual_value = (this->actual_config_values_)[hardware_parameter_identifier];
@@ -112,7 +114,6 @@ void GenericConfig::reconfigureValue(GenericHardwareParameter parameter, int tar
 
 void GenericConfig::setInitialConfig(GenericConfigDescription config_description)
 {
-  ;
   for (const auto& identifier_value_pair : config_description.getConfigMap())
   {
     auto identifier = identifier_value_pair.first;

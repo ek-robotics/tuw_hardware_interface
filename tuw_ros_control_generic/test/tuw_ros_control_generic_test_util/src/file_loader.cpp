@@ -2,6 +2,8 @@
 
 #include "../include/file_loader.h"
 
+#include <string>
+
 YAML::Node tuw_ros_control_generic_test::FileLoader::loadYAMLFromFile(const std::string& relative_path)
 {
   {

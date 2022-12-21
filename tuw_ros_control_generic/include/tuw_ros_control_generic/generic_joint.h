@@ -4,6 +4,7 @@
 #define TUW_ROS_CONTROL_GENERIC_GENERIC_JOINT_H
 
 #include <memory>
+#include <string>
 
 #include <ros/package.h>
 #include <joint_limits_interface/joint_limits.h>

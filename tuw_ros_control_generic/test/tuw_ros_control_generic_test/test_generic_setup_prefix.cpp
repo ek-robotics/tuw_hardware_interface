@@ -2,6 +2,8 @@
 
 #include <gtest/gtest.h>
 
+#include <string>
+
 #include <tuw_ros_control_generic/generic_setup_prefix.h>
 
 using tuw_ros_control_generic::GenericSetupPrefix;

@@ -3,6 +3,10 @@
 #ifndef TUW_ROS_CONTROL_GENERIC_GENERIC_HARDWARE_PARAMETER_H
 #define TUW_ROS_CONTROL_GENERIC_GENERIC_HARDWARE_PARAMETER_H
 
+#include <map>
+#include <memory>
+#include <string>
+
 #include <tuw_ros_control_generic/description/generic_hardware_parameter_description.h>
 
 namespace tuw_ros_control_generic

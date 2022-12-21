@@ -1,5 +1,8 @@
 // Copyright 2022 Eugen Kaltenegger
 
+#include <tuw_ros_control_generic/description/generic_joint_description.h>
+
+#include <memory>
 #include <string>
 
 #include <ros/ros.h>
@@ -8,7 +11,6 @@
 #include <tuw_ros_control_generic/description/generic_config_description.h>
 #include <tuw_ros_control_generic/description/generic_connection_description.h>
 #include <tuw_ros_control_generic/description/generic_hardware_description.h>
-#include <tuw_ros_control_generic/description/generic_joint_description.h>
 #include <tuw_ros_control_generic/generic_setup_prefix.h>
 
 using tuw_ros_control_generic::GenericConfigDescription;

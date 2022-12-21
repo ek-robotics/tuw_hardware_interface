@@ -2,6 +2,8 @@
 
 #include <gtest/gtest.h>
 
+#include <memory>
+
 #include <tuw_ros_control_generic/generic_hardware.h>
 #include <tuw_ros_control_generic/generic_setup_prefix.h>
 
@@ -94,9 +96,12 @@ TEST_F(GenericHardwareTest, verifySupportedTargetModes)
 
 TEST_F(GenericHardwareTest, verifySupportedTargetIdentifiers)
 {
-  ASSERT_EQ(*complete_generic_hardware_->getTargetParameterForMode(GenericHardware::Mode::POSITION).getIdentifier(), "target_position");
-  ASSERT_EQ(*complete_generic_hardware_->getTargetParameterForMode(GenericHardware::Mode::VELOCITY).getIdentifier(), "target_velocity");
-  ASSERT_EQ(*complete_generic_hardware_->getTargetParameterForMode(GenericHardware::Mode::EFFORT).getIdentifier(), "target_effort");
+  ASSERT_EQ(*complete_generic_hardware_->
+          getTargetParameterForMode(GenericHardware::Mode::POSITION).getIdentifier(), "target_position");
+  ASSERT_EQ(*complete_generic_hardware_->
+          getTargetParameterForMode(GenericHardware::Mode::VELOCITY).getIdentifier(), "target_velocity");
+  ASSERT_EQ(*complete_generic_hardware_->
+          getTargetParameterForMode(GenericHardware::Mode::EFFORT).getIdentifier(), "target_effort");
 }
 
 TEST_F(GenericHardwareTest, verifySupportedActualModes)
@@ -108,9 +113,12 @@ TEST_F(GenericHardwareTest, verifySupportedActualModes)
 
 TEST_F(GenericHardwareTest, verifySupportedActualIdentifiers)
 {
-  ASSERT_EQ(*complete_generic_hardware_->getActualParameterForMode(GenericHardware::Mode::POSITION).getIdentifier(), "actual_position");
-  ASSERT_EQ(*complete_generic_hardware_->getActualParameterForMode(GenericHardware::Mode::VELOCITY).getIdentifier(), "actual_velocity");
-  ASSERT_EQ(*complete_generic_hardware_->getActualParameterForMode(GenericHardware::Mode::EFFORT).getIdentifier(), "actual_effort");
+  ASSERT_EQ(*complete_generic_hardware_->
+          getActualParameterForMode(GenericHardware::Mode::POSITION).getIdentifier(), "actual_position");
+  ASSERT_EQ(*complete_generic_hardware_->
+          getActualParameterForMode(GenericHardware::Mode::VELOCITY).getIdentifier(), "actual_velocity");
+  ASSERT_EQ(*complete_generic_hardware_->
+          getActualParameterForMode(GenericHardware::Mode::EFFORT).getIdentifier(), "actual_effort");
 }
 
 TEST_F(GenericHardwareTest, verifyUnsupportedTargetModes)

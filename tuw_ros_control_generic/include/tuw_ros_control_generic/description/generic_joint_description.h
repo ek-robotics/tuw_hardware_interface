@@ -3,6 +3,7 @@
 #ifndef TUW_ROS_CONTROL_GENERIC_DESCRIPTION_GENERIC_JOINT_DESCRIPTION_H
 #define TUW_ROS_CONTROL_GENERIC_DESCRIPTION_GENERIC_JOINT_DESCRIPTION_H
 
+#include <memory>
 #include <string>
 
 #include <yaml-cpp/yaml.h>

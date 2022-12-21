@@ -1,7 +1,12 @@
 // Copyright 2022 Eugen Kaltenegger
 
-#ifndef DIP_WS_GENERIC_ROS_CONTROL_HARDWARE_INTERFACE_H
-#define DIP_WS_GENERIC_ROS_CONTROL_HARDWARE_INTERFACE_H
+#ifndef TUW_ROS_CONTROL_GENERIC_GENERIC_ROS_CONTROL_HARDWARE_INTERFACE_H
+#define TUW_ROS_CONTROL_GENERIC_GENERIC_ROS_CONTROL_HARDWARE_INTERFACE_H
+
+#include <list>
+#include <memory>
+#include <string>
+#include <vector>
 
 #include <hardware_interface/robot_hw.h>
 
@@ -32,6 +37,6 @@ protected:
   hardware_interface::VelocityJointInterface joint_velocity_interface;
   hardware_interface::EffortJointInterface joint_effort_interface;
 };
-}
+}  // namespace tuw_ros_control_generic
 
-#endif //DIP_WS_GENERIC_ROS_CONTROL_HARDWARE_INTERFACE_H
+#endif  // TUW_ROS_CONTROL_GENERIC_GENERIC_ROS_CONTROL_HARDWARE_INTERFACE_H

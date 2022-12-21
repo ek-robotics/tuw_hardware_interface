@@ -3,7 +3,11 @@
 #ifndef TUW_ROS_CONTROL_GENERIC_GENERIC_HARDWARE_H
 #define TUW_ROS_CONTROL_GENERIC_GENERIC_HARDWARE_H
 
+#include <list>
+#include <map>
+#include <memory>
 #include <mutex>
+#include <string>
 
 #include <ros/ros.h>
 

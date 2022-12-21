@@ -1,7 +1,11 @@
 // Copyright 2022 Eugen Kaltenegger
 
-#include <tuw_ros_control_generic/description/generic_joint_description.h>
 #include <tuw_ros_control_generic/description/generic_setup_description.h>
+
+#include <list>
+#include <string>
+
+#include <tuw_ros_control_generic/description/generic_joint_description.h>
 
 using tuw_ros_control_generic::GenericJointDescription;
 using tuw_ros_control_generic::GenericSetupDescription;

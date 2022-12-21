@@ -3,6 +3,9 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
+#include <memory>
+#include <string>
+
 #include "../tuw_ros_control_generic_test_util/include/file_loader.h"
 
 #include <tuw_ros_control_generic/description/generic_hardware_description.h>
@@ -51,16 +54,20 @@ protected:
 
 TEST_F(GenericConfigTest, verifyConstructorWithoutConfig)
 {
-  EXPECT_CALL(*mock_joint_, read(generic_hardware_->getConfigIdentifierToParameter()->at("ecp"))).Times(1).WillRepeatedly(testing::Return(1));
-  EXPECT_CALL(*mock_joint_, read(generic_hardware_->getConfigIdentifierToParameter()->at("rcp"))).Times(1).WillRepeatedly(testing::Return(0));
+  EXPECT_CALL(*mock_joint_, read(generic_hardware_->getConfigIdentifierToParameter()->at("ecp")))
+          .Times(1).WillRepeatedly(testing::Return(1));
+  EXPECT_CALL(*mock_joint_, read(generic_hardware_->getConfigIdentifierToParameter()->at("rcp")))
+          .Times(1).WillRepeatedly(testing::Return(0));
 
   GenericConfig generic_config = GenericConfig(mock_joint_, generic_hardware_);
 }
 
 TEST_F(GenericConfigTest, verifyServiceWithoutConfig)
 {
-  EXPECT_CALL(*mock_joint_, read(generic_hardware_->getConfigIdentifierToParameter()->at("ecp"))).Times(1).WillRepeatedly(testing::Return(1));
-  EXPECT_CALL(*mock_joint_, read(generic_hardware_->getConfigIdentifierToParameter()->at("rcp"))).Times(1).WillRepeatedly(testing::Return(0));
+  EXPECT_CALL(*mock_joint_, read(generic_hardware_->getConfigIdentifierToParameter()->at("ecp"))).Times(
+          1).WillRepeatedly(testing::Return(1));
+  EXPECT_CALL(*mock_joint_, read(generic_hardware_->getConfigIdentifierToParameter()->at("rcp"))).Times(
+          1).WillRepeatedly(testing::Return(0));
 
   GenericConfig generic_config = GenericConfig(mock_joint_, generic_hardware_);
 
@@ -72,8 +79,10 @@ TEST_F(GenericConfigTest, verifyConstructorWithConfig)
 {
   EXPECT_CALL(*mock_joint_, write(generic_hardware_->getConfigIdentifierToParameter()->at("ecp"), testing::_)).Times(1);
   EXPECT_CALL(*mock_joint_, write(generic_hardware_->getConfigIdentifierToParameter()->at("rcp"), testing::_)).Times(1);
-  EXPECT_CALL(*mock_joint_, read(generic_hardware_->getConfigIdentifierToParameter()->at("ecp"))).Times(2).WillRepeatedly(testing::Return(1));
-  EXPECT_CALL(*mock_joint_, read(generic_hardware_->getConfigIdentifierToParameter()->at("rcp"))).Times(2).WillRepeatedly(testing::Return(0));
+  EXPECT_CALL(*mock_joint_, read(generic_hardware_->getConfigIdentifierToParameter()->at("ecp"))).Times(
+          2).WillRepeatedly(testing::Return(1));
+  EXPECT_CALL(*mock_joint_, read(generic_hardware_->getConfigIdentifierToParameter()->at("rcp"))).Times(
+          2).WillRepeatedly(testing::Return(0));
 
   ROS_INFO("LOG INFO/WARNING/ERROR BELOW CAN BE IGNORED IN TESTS!");
 
@@ -84,8 +93,10 @@ TEST_F(GenericConfigTest, verifyServiceWithConfig)
 {
   EXPECT_CALL(*mock_joint_, write(generic_hardware_->getConfigIdentifierToParameter()->at("ecp"), testing::_)).Times(1);
   EXPECT_CALL(*mock_joint_, write(generic_hardware_->getConfigIdentifierToParameter()->at("rcp"), testing::_)).Times(1);
-  EXPECT_CALL(*mock_joint_, read(generic_hardware_->getConfigIdentifierToParameter()->at("ecp"))).Times(2).WillRepeatedly(testing::Return(1));
-  EXPECT_CALL(*mock_joint_, read(generic_hardware_->getConfigIdentifierToParameter()->at("rcp"))).Times(2).WillRepeatedly(testing::Return(0));
+  EXPECT_CALL(*mock_joint_, read(generic_hardware_->getConfigIdentifierToParameter()->at("ecp"))).Times(
+          2).WillRepeatedly(testing::Return(1));
+  EXPECT_CALL(*mock_joint_, read(generic_hardware_->getConfigIdentifierToParameter()->at("rcp"))).Times(
+          2).WillRepeatedly(testing::Return(0));
 
   ROS_INFO("LOG INFO/WARNING/ERROR BELOW CAN BE IGNORED IN TESTS!");
 

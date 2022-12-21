@@ -12,6 +12,7 @@
 namespace tuw_ros_control_generic
 {
 class GenericHardwareParameterDescription;
+
 class GenericHardwareDescription
 {
 public:
@@ -28,9 +29,12 @@ private:
   std::shared_ptr<double> position_resolution_;
   std::shared_ptr<double> velocity_resolution_;
   std::shared_ptr<double> effort_resolution_;
-  std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>> target_identifier_to_description_ {nullptr};
-  std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>> actual_identifier_to_description_ {nullptr};
-  std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>> config_identifier_to_description_ {nullptr};
+  std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>>
+          target_identifier_to_description_{nullptr};
+  std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>>
+          actual_identifier_to_description_{nullptr};
+  std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>>
+          config_identifier_to_description_{nullptr};
 };
 }  // namespace tuw_ros_control_generic
 
