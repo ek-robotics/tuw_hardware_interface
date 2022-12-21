@@ -12,6 +12,7 @@ find_package(
   rospy
   roslib
   roslint
+  urdf
   ddynamic_reconfigure
 )
 
@@ -21,6 +22,8 @@ catkin_package(
   CATKIN_DEPENDS
   roscpp
   rospy
+  urdf
+  ddynamic_reconfigure
 )
 
 

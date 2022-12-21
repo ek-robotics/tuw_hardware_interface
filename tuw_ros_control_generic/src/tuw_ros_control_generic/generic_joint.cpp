@@ -7,6 +7,7 @@
 #include <tuw_ros_control_generic/generic_setup_prefix.h>
 
 #include <utility>
+#include <urdf/model.h>
 
 using tuw_ros_control_generic::GenericConnection;
 using tuw_ros_control_generic::GenericHardware;
