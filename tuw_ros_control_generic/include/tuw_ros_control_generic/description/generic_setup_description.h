@@ -14,10 +14,10 @@ class GenericSetupDescription
 {
 public:
   explicit GenericSetupDescription(YAML::Node yaml);
-  std::string getSetupName();
+  std::string getName();
   std::list<GenericJointDescription> getJoints();
 protected:
-  std::string setup_name_;
+  std::string name_;
   std::list<GenericJointDescription> joints_ {std::list<GenericJointDescription>()};
 };
 }  // namespace tuw_ros_control_generic

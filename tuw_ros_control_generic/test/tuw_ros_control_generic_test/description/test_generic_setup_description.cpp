@@ -20,7 +20,7 @@ protected:
 
 TEST_F(GenericSetupDescriptionTest, verifySetupName)
 {
-  ASSERT_EQ(generic_setup_description_.getSetupName(), "setup_name");
+  ASSERT_EQ(generic_setup_description_.getName(), "setup_name");
 }
 
 TEST_F(GenericSetupDescriptionTest, verifyJointsNumber)

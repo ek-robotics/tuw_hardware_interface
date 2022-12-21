@@ -3,13 +3,14 @@
 #ifndef TUW_ROS_CONTROL_GENERIC_GENERIC_JOINT_H
 #define TUW_ROS_CONTROL_GENERIC_GENERIC_JOINT_H
 
-
 #include <memory>
 
 #include <ros/package.h>
 #include <joint_limits_interface/joint_limits.h>
 #include <joint_limits_interface/joint_limits_urdf.h>
 #include <joint_limits_interface/joint_limits_interface.h>
+
+#include <tuw_ros_control_generic/generic_hardware.h>
 
 using hardware_interface::JointHandle;
 using hardware_interface::JointStateHandle;
@@ -25,11 +26,12 @@ using joint_limits_interface::PositionJointSoftLimitsHandle;
 using joint_limits_interface::VelocityJointSoftLimitsHandle;
 using joint_limits_interface::EffortJointSoftLimitsHandle;
 
+using tuw_ros_control_generic::GenericHardware;
+
 namespace tuw_ros_control_generic
 {
 class GenericConfig;
 class GenericConnection;
-class GenericHardware;
 class GenericHardwareParameter;
 class GenericJointDescription;
 class GenericJoint

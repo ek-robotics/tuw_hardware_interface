@@ -8,16 +8,16 @@ using tuw_ros_control_generic::GenericSetupDescription;
 
 GenericSetupDescription::GenericSetupDescription(YAML::Node yaml)
 {
-  this->setup_name_ = yaml["setup"].as<std::string>();
+  this->name_ = yaml["setup"].as<std::string>();
   for (const auto& joint_yaml : yaml["joints"])
   {
     this->joints_.emplace_back(GenericJointDescription(joint_yaml));
   }
 }
 
-std::string GenericSetupDescription::getSetupName()
+std::string GenericSetupDescription::getName()
 {
-  return this->setup_name_;
+  return this->name_;
 }
 
 std::list<GenericJointDescription> GenericSetupDescription::getJoints()

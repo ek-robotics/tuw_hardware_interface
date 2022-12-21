@@ -1,12 +1,13 @@
 // Copyright 2022 Eugen Kaltenegger
 
+#include <utility>
+
 #include <tuw_ros_control_generic/description/generic_joint_description.h>
 #include <tuw_ros_control_generic/generic_connection.h>
 #include <tuw_ros_control_generic/generic_hardware.h>
 #include <tuw_ros_control_generic/generic_joint.h>
 #include <tuw_ros_control_generic/generic_setup_prefix.h>
 
-#include <utility>
 #include <urdf/model.h>
 
 using tuw_ros_control_generic::GenericConnection;
