@@ -38,6 +38,11 @@ GenericConnection::GenericConnection(GenericConnectionDescription connection_des
   // call connect in implementation
 }
 
+GenericConnection::GenericConnection()
+{
+  // constructor for mocking
+}
+
 GenericConnection::~GenericConnection()
 {
   // call disconnect in implementation

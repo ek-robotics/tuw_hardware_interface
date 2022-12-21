@@ -28,6 +28,12 @@ GenericConfig::GenericConfig(std::shared_ptr<GenericJoint> joint,
   this->setInitialConfig(std::move(config_description));
 }
 
+
+GenericConfig::GenericConfig()
+{
+  // constructor for mocking
+}
+
 void GenericConfig::setupReconfigureServer()
 {
   ros::NodeHandle node_handle(GenericSetupPrefix::getNodeName() + std::string("/") + this->joint_->getName());

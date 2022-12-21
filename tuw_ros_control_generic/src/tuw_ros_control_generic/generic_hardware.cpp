@@ -112,6 +112,11 @@ GenericHardware::GenericHardware(GenericHardwareDescription hardware_description
   }
 }
 
+GenericHardware::GenericHardware()
+{
+  // constructor for mocking
+}
+
 std::string tuw_ros_control_generic::GenericHardware::getName()
 {
   return this->name_;

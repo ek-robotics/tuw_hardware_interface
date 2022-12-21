@@ -39,6 +39,10 @@ public:
   GenericJoint() = default;
   ~GenericJoint() = default;
 
+  virtual void setConnection(std::shared_ptr<GenericConnection> connection);
+  virtual void setHardware(std::shared_ptr<GenericHardware> hardware);
+  virtual void setConfig(std::shared_ptr<GenericConfig> config);
+
   virtual std::string getName();
   virtual int getId();
 
@@ -48,7 +52,7 @@ public:
   virtual void write(GenericHardwareParameter hardware_parameter, int data);
   virtual int read(GenericHardwareParameter hardware_parameter);
 
-  bool setMode(GenericHardware::Mode mode);
+  virtual bool setMode(GenericHardware::Mode mode);
 
   JointStateHandle* getJointStateHandle();
   JointHandle* getJointPositionHandle();

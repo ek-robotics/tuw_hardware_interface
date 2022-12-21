@@ -19,6 +19,7 @@ public:
   static std::shared_ptr<GenericConnection> getConnection(GenericConnectionDescription connection_description);
   // instance functions
   explicit GenericConnection(GenericConnectionDescription connection_description);
+  GenericConnection();
   ~GenericConnection();
   virtual bool connect() = 0;
   virtual bool disconnect() = 0;

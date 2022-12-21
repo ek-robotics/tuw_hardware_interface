@@ -57,6 +57,21 @@ GenericJoint::GenericJoint(GenericJointDescription joint_description)
   }
 }
 
+void GenericJoint::setConnection(std::shared_ptr<GenericConnection> connection)
+{
+  this->connection_ = std::move(connection);
+}
+
+void GenericJoint::setHardware(std::shared_ptr<GenericHardware> hardware)
+{
+  this->hardware_ = std::move(hardware);
+}
+
+void GenericJoint::setConfig(std::shared_ptr<GenericConfig> config)
+{
+  this->config_ = std::move(config);
+}
+
 std::string GenericJoint::getName()
 {
   return this->name_;
@@ -199,7 +214,7 @@ double GenericJoint::readActual(GenericHardware::Mode mode, const std::string& m
 {
   if (this->hardware_->supportsActualMode(mode))
   {
-    int hardware_actual = this->connection_->read(this->id_, this->hardware_->getTargetParameterForMode(mode));
+    int hardware_actual = this->connection_->read(this->id_, this->hardware_->getActualParameterForMode(mode));
     return this->hardware_->convertFromHardwareResolution(hardware_actual, mode);
   }
   else

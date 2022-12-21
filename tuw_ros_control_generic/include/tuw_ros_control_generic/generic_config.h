@@ -23,6 +23,7 @@ public:
   GenericConfig(std::shared_ptr<GenericJoint> joint,
                 std::shared_ptr<GenericHardware> hardware,
                 GenericConfigDescription config_description);
+  GenericConfig();
 protected:
   void setupReconfigureServer();
   void registerReconfigureVariable(GenericHardwareParameter hardware_parameter);
