@@ -48,19 +48,22 @@ public:
   virtual void write(GenericHardwareParameter hardware_parameter, int data);
   virtual int read(GenericHardwareParameter hardware_parameter);
 
+  bool setMode(GenericHardware::Mode mode);
+
   JointStateHandle* getJointStateHandle();
   JointHandle* getJointPositionHandle();
   JointHandle* getJointVelocityHandle();
   JointHandle* getJointEffortHandle();
 private:
-  void writeTarget(int* target, GenericHardware::Mode mode, std::string mode_name);
-  void writeTargetPosition(double* target);
-  void writeTargetVelocity(double* target);
-  void writeTargetEffort(double* target);
+  void writeTarget(double target, GenericHardware::Mode mode, const std::string& mode_name);
+  void writeTargetPosition(double target);
+  void writeTargetVelocity(double target);
+  void writeTargetEffort(double target);
 
-  void readActualPosition(double* target);
-  void readActualVelocity(double* target);
-  void readActualEffort(double* target);
+  double readActual(GenericHardware::Mode mode, const std::string& mode_name);
+  double readActualPosition();
+  double readActualVelocity();
+  double readActualEffort();
 
   std::string name_;
   int id_;
@@ -69,14 +72,16 @@ private:
   std::shared_ptr<GenericHardware> hardware_;
   std::shared_ptr<GenericConfig> config_;
 
+  std::unique_ptr<GenericHardware::Mode> mode_;
+
   // target values
-  double target_position {0.0};
-  double target_velocity {0.0};
-  double target_effort {0.0};
+  double target_position_ {0.0};
+  double target_velocity_ {0.0};
+  double target_effort_ {0.0};
   // actual values
-  double actual_position {0.0};
-  double actual_velocity {0.0};
-  double actual_effort {0.0};
+  double actual_position_ {0.0};
+  double actual_velocity_ {0.0};
+  double actual_effort_ {0.0};
   // state handle
   std::unique_ptr<JointStateHandle> joint_state_handle_ {nullptr};
   // command handles
