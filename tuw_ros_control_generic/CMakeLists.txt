@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(tuw_ros_control_generic)
 
-set(CMAKE_CXX_FLAGS "-std=c++14 ${CMAKE_CXX_FLAGS}")
+add_compile_options(-std=c++14)
 
 link_libraries(yaml-cpp)
 
@@ -25,7 +25,6 @@ catkin_package(
   urdf
   ddynamic_reconfigure
 )
-
 
 include_directories(
   ./include
@@ -80,6 +79,16 @@ catkin_add_gtest(
 target_link_libraries(
   tuw_ros_control_generic_units_tests
   tuw_ros_control_generic
-  # gmock is only reqired if the mocks are created
-   gmock
+  gmock
+)
+
+install(
+  TARGETS ${PROJECT_NAME}
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
+)
+install(
+  DIRECTORY include/${PROJECT_NAME}/
+  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
 )
