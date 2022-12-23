@@ -15,7 +15,7 @@ GenericSetupDescription::GenericSetupDescription(YAML::Node yaml)
   this->name_ = yaml["setup"].as<std::string>();
   for (const auto& joint_yaml : yaml["joints"])
   {
-    this->joints_.emplace_back(GenericJointDescription(joint_yaml));
+    this->joints_.emplace_back(joint_yaml);
   }
 }
 

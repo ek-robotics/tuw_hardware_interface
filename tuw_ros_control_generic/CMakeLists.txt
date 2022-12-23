@@ -41,6 +41,7 @@ add_library(
   src/${PROJECT_NAME}/description/generic_hardware_description.cpp
   src/${PROJECT_NAME}/description/generic_hardware_parameter_description.cpp
   src/${PROJECT_NAME}/description/generic_joint_description.cpp
+  src/${PROJECT_NAME}/description/generic_setup_description.cpp
   src/${PROJECT_NAME}/generic_config.cpp
   src/${PROJECT_NAME}/generic_connection.cpp
   src/${PROJECT_NAME}/generic_hardware.cpp
