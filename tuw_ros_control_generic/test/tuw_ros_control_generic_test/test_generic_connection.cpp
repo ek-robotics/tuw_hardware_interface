@@ -23,8 +23,8 @@ protected:
     GenericSetupPrefix::setSetupName("test_setup");
   }
 
-  GenericConnectionDescription generic_connection_description_ =
-          GenericConnectionDescription(FileLoader::loadYAMLFromFile(TEST_FILE_PATH));
+  std::shared_ptr<GenericConnectionDescription> generic_connection_description_ =
+          std::make_shared<GenericConnectionDescription>(FileLoader::loadYAMLFromFile(TEST_FILE_PATH));
 };
 
 TEST_F(GenericConnectionTest, verifyPointer)
