@@ -23,7 +23,7 @@ std::string GenericConnectionDescription::getPort()
   return this->port_;
 }
 
-int GenericConnectionDescription::getBaudrate()
+int GenericConnectionDescription::getBaudrate() const
 {
   return this->baudrate_;
 }

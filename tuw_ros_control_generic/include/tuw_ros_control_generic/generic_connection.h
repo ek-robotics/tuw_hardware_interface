@@ -16,9 +16,9 @@ class GenericConnection
 {
 public:
   // singleton function
-  static std::shared_ptr<GenericConnection> getConnection(GenericConnectionDescription connection_description);
+  static std::shared_ptr<GenericConnection> getConnection(const std::shared_ptr<GenericConnectionDescription>& connection_description);
   // instance functions
-  explicit GenericConnection(GenericConnectionDescription connection_description);
+  explicit GenericConnection(std::shared_ptr<GenericConnectionDescription> connection_description);
   GenericConnection();
   ~GenericConnection();
   virtual bool connect() = 0;

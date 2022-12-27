@@ -15,7 +15,7 @@ public:
   explicit GenericConnectionDescription(YAML::Node yaml);
   std::string getHash();
   std::string getPort();
-  int getBaudrate();
+  int getBaudrate() const;
 private:
   std::string hash_;
   std::string port_;

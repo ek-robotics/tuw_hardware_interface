@@ -73,7 +73,7 @@ private:
   double readActualEffort();
 
   std::string name_;
-  int id_;
+  int id_ = 0;
 
   std::shared_ptr<GenericConnection> connection_;
   std::shared_ptr<GenericHardware> hardware_;

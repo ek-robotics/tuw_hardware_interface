@@ -14,9 +14,9 @@ using tuw_ros_control_generic::GenericConnectionDescription;
 std::mutex GenericConnection::mutex_;
 std::unique_ptr<std::map<std::string, std::shared_ptr<GenericConnection>>> GenericConnection::connection_table_;
 
-std::shared_ptr<GenericConnection>GenericConnection::getConnection(GenericConnectionDescription connection_description)
+std::shared_ptr<GenericConnection>GenericConnection::getConnection(const std::shared_ptr<GenericConnectionDescription>& connection_description)
 {
-  std::string connection_hash = connection_description.getHash();
+  std::string connection_hash = connection_description->getHash();
 
   if (GenericConnection::connection_table_ == nullptr)
   {
@@ -32,14 +32,15 @@ std::shared_ptr<GenericConnection>GenericConnection::getConnection(GenericConnec
 
   if (GenericConnection::connection_table_->find(connection_hash) == GenericConnection::connection_table_->end())
   {
+    // in implementations this should create a connection
     std::shared_ptr<GenericConnection> connection = nullptr;
     GenericConnection::connection_table_->insert({connection_hash, connection});
   }
 
-  return GenericConnection::connection_table_->at(connection_description.getHash());
+  return GenericConnection::connection_table_->at(connection_hash);
 }
 
-GenericConnection::GenericConnection(GenericConnectionDescription connection_description)
+GenericConnection::GenericConnection(std::shared_ptr<GenericConnectionDescription> connection_description)
 {
   // call connect in implementation
 }
