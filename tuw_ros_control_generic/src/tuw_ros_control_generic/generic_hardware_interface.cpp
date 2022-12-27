@@ -132,7 +132,6 @@ bool GenericHardwareInterface::initJoints(std::list<GenericJointDescription> joi
 
 bool GenericHardwareInterface::initJoint(GenericJointDescription joint_description)
 {
-  ROS_INFO("CALLING GENERIC INIT JOINT");
   try
   {
     std::shared_ptr<GenericJoint> joint = std::make_shared<GenericJoint>(joint_description);

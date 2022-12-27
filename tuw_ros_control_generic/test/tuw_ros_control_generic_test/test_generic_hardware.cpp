@@ -157,6 +157,7 @@ TEST_F(GenericHardwareTest, PositionToString)
 TEST_F(GenericHardwareTest, PositionFromString)
 {
   ASSERT_EQ(GenericHardware::modeFromString("POSITION"), GenericHardware::Mode::POSITION);
+  ASSERT_EQ(GenericHardware::modeFromString("_POSITION_"), GenericHardware::Mode::POSITION);
 }
 
 TEST_F(GenericHardwareTest, VelocityToString)
@@ -167,6 +168,7 @@ TEST_F(GenericHardwareTest, VelocityToString)
 TEST_F(GenericHardwareTest, VelocityFromString)
 {
   ASSERT_EQ(GenericHardware::modeFromString("VELOCITY"), GenericHardware::Mode::VELOCITY);
+  ASSERT_EQ(GenericHardware::modeFromString("_VELOCITY_"), GenericHardware::Mode::VELOCITY);
 }
 
 TEST_F(GenericHardwareTest, EffortToString)
@@ -177,4 +179,5 @@ TEST_F(GenericHardwareTest, EffortToString)
 TEST_F(GenericHardwareTest, EffortFromString)
 {
   ASSERT_EQ(GenericHardware::modeFromString("EFFORT"), GenericHardware::Mode::EFFORT);
+  ASSERT_EQ(GenericHardware::modeFromString("_EFFORT_"), GenericHardware::Mode::EFFORT);
 }

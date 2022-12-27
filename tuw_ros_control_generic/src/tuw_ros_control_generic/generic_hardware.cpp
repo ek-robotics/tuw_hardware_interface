@@ -198,11 +198,11 @@ GenericHardware::Mode GenericHardware::modeFromString(std::string mode_string)
   auto to_upper_end = upper_mode_string.end();
   std::transform(to_upper_begin, to_upper_end, upper_mode_string.begin(), std::ptr_fun<int, int>(std::toupper));
 
-  if (upper_mode_string == "POSITION")
+  if (upper_mode_string.find("POSITION") != std::string::npos)
     return GenericHardware::Mode::POSITION;
-  if (upper_mode_string == "VELOCITY")
+  if (upper_mode_string.find("VELOCITY") != std::string::npos)
     return GenericHardware::Mode::VELOCITY;
-  if (upper_mode_string == "EFFORT")
+  if (upper_mode_string.find("EFFORT") != std::string::npos)
     return GenericHardware::Mode::EFFORT;
   throw std::runtime_error("unknown mode: " + mode_string);
 }
