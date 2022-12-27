@@ -29,7 +29,10 @@ GenericJointDescription::GenericJointDescription(YAML::Node yaml)
     ROS_ERROR("[%s] missing connection description", PREFIX);
 
   if (yaml["hardware"].IsDefined())
-    this->hardware_description_ = std::make_shared<GenericHardwareDescription>(loadFile(yaml["hardware"]));
+  {
+    YAML::Node hardware_yaml = loadFile(yaml["hardware"]);
+    this->hardware_description_ = std::make_shared<GenericHardwareDescription>(hardware_yaml);
+  }
   else
     ROS_ERROR("[%s] missing hardware description", PREFIX);
 
@@ -64,8 +67,9 @@ std::shared_ptr<GenericConfigDescription> GenericJointDescription::getConfigDesc
   return this->config_description_;
 }
 
-YAML::Node GenericJointDescription::loadFile(YAML::Node yaml)
+YAML::Node GenericJointDescription::loadFile(YAML::Node location_yaml)
 {
-  std::string path = ros::package::getPath(yaml["package"].as<std::string>()) + "/" + yaml["path"].as<std::string>();
-  return YAML::LoadFile(path);
+  std::string path = ros::package::getPath(location_yaml["package"].as<std::string>()) + "/" + location_yaml["path"].as<std::string>();
+  YAML::Node yaml =  YAML::LoadFile(path);
+  return yaml;
 }

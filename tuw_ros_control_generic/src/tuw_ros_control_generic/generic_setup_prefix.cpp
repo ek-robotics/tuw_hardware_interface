@@ -19,7 +19,7 @@ void GenericSetupPrefix::setSetupName(const std::string& setup_name)
 std::string GenericSetupPrefix::getSetupName()
 {
   if (GenericSetupPrefix::setup_name_.empty())
-    ROS_WARN("the setup name get before set");
+    ROS_WARN("the setup name was requested before is was set");
 
   return GenericSetupPrefix::setup_name_;
 }
@@ -65,5 +65,9 @@ std::string GenericSetupPrefix::getLogPrefix()
   int cut_begin = 0;
   int cut_end = static_cast<int>(std::min(node_name.find_first_not_of('/'), node_name.size() - 1));
   node_name = node_name.erase(cut_begin, cut_end);
-  return GenericSetupPrefix::getNodeNameUpper() + "-" + GenericSetupPrefix::getSetupName();
+
+  if (GenericSetupPrefix::getSetupName().empty())
+    return GenericSetupPrefix::getNodeNameUpper();
+  else
+    return GenericSetupPrefix::getNodeNameUpper() + "-" + GenericSetupPrefix::getSetupName();
 }

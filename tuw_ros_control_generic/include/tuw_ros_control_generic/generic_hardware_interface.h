@@ -17,7 +17,7 @@ using tuw_ros_control_generic::GenericJointDescription;
 
 namespace tuw_ros_control_generic
 {
-class GenericRosControlHardwareInterface : public hardware_interface::RobotHW
+class GenericHardwareInterface : public hardware_interface::RobotHW
 {
 public:
   bool init(ros::NodeHandle &basic_node_handle, ros::NodeHandle &hardware_node_handle) override;
@@ -30,7 +30,7 @@ protected:
   virtual bool initJoint(GenericJointDescription joint_description);
   std::shared_ptr<GenericJoint> findJoint(const std::string& name);
 
-  std::string setup_parameter_ = "generic_setup";
+  static std::string setup_parameter_;
   std::vector<std::shared_ptr<GenericJoint>> joints_;
   hardware_interface::JointStateInterface joint_state_interface;
   hardware_interface::PositionJointInterface joint_position_interface;

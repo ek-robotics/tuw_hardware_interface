@@ -1,6 +1,6 @@
 // Copyright 2022 Eugen Kaltenegger
 
-#include "tuw_ros_control_generic/generic_ros_control_hardware_interface.h"
+#include "tuw_ros_control_generic/generic_hardware_interface.h"
 
 #include <list>
 #include <memory>
@@ -14,21 +14,29 @@
 #include <tuw_ros_control_generic/generic_hardware.h>
 
 using tuw_ros_control_generic::GenericSetupDescription;
-using tuw_ros_control_generic::GenericRosControlHardwareInterface;
+using tuw_ros_control_generic::GenericHardwareInterface;
 
-bool GenericRosControlHardwareInterface::init(ros::NodeHandle &basic_node_handle,
-                                              ros::NodeHandle &hardware_node_handle)
+std::string GenericHardwareInterface::setup_parameter_ = "generic_setup";
+
+bool GenericHardwareInterface::init(ros::NodeHandle &basic_node_handle,
+                                    ros::NodeHandle &hardware_node_handle)
 {
   std::string setup_file_path;
   YAML::Node setup_yaml;
 
+  if (!basic_node_handle.hasParam(GenericHardwareInterface::setup_parameter_))
+  {
+    ROS_ERROR("[%s] parameter %s is not set", PREFIX, GenericHardwareInterface::setup_parameter_.LOG);
+    return false;
+  }
+
   try
   {
-    basic_node_handle.getParam(this->setup_parameter_, setup_file_path);
+    basic_node_handle.getParam(GenericHardwareInterface::setup_parameter_, setup_file_path);
   }
   catch(...)
   {
-    ROS_ERROR("[%s] PARAMETER FOR SETUP FILE NOT FOUND (\"%s\")", PREFIX, this->setup_parameter_.LOG);
+    ROS_ERROR("[%s] PARAMETER FOR SETUP FILE NOT FOUND (\"%s\")", PREFIX, GenericHardwareInterface::setup_parameter_.LOG);
     return false;
   }
 
@@ -56,7 +64,7 @@ bool GenericRosControlHardwareInterface::init(ros::NodeHandle &basic_node_handle
   }
 }
 
-void GenericRosControlHardwareInterface::write(const ros::Time &time, const ros::Duration &period)
+void GenericHardwareInterface::write(const ros::Time &time, const ros::Duration &period)
 {
   for (const auto& joint : this->joints_)
   {
@@ -64,7 +72,7 @@ void GenericRosControlHardwareInterface::write(const ros::Time &time, const ros:
   }
 }
 
-void GenericRosControlHardwareInterface::read(const ros::Time &time, const ros::Duration &period)
+void GenericHardwareInterface::read(const ros::Time &time, const ros::Duration &period)
 {
   for (const auto& joint : this->joints_)
   {
@@ -72,8 +80,8 @@ void GenericRosControlHardwareInterface::read(const ros::Time &time, const ros::
   }
 }
 
-void GenericRosControlHardwareInterface::doSwitch(const std::list<hardware_interface::ControllerInfo> &start_list,
-                                                  const std::list<hardware_interface::ControllerInfo> &stop_list)
+void GenericHardwareInterface::doSwitch(const std::list<hardware_interface::ControllerInfo> &start_list,
+                                        const std::list<hardware_interface::ControllerInfo> &stop_list)
 {
   for (const auto& controller_info : start_list)
   {
@@ -98,7 +106,7 @@ void GenericRosControlHardwareInterface::doSwitch(const std::list<hardware_inter
   }
 }
 
-bool GenericRosControlHardwareInterface::initJoints(std::list<GenericJointDescription> joint_descriptions)
+bool GenericHardwareInterface::initJoints(std::list<GenericJointDescription> joint_descriptions)
 {
   try
   {
@@ -122,8 +130,9 @@ bool GenericRosControlHardwareInterface::initJoints(std::list<GenericJointDescri
   }
 }
 
-bool GenericRosControlHardwareInterface::initJoint(GenericJointDescription joint_description)
+bool GenericHardwareInterface::initJoint(GenericJointDescription joint_description)
 {
+  ROS_INFO("CALLING GENERIC INIT JOINT");
   try
   {
     std::shared_ptr<GenericJoint> joint = std::make_shared<GenericJoint>(joint_description);
@@ -149,7 +158,7 @@ bool GenericRosControlHardwareInterface::initJoint(GenericJointDescription joint
   }
 }
 
-std::shared_ptr<GenericJoint> GenericRosControlHardwareInterface::findJoint(const std::string &name)
+std::shared_ptr<GenericJoint> GenericHardwareInterface::findJoint(const std::string &name)
 {
   for (const auto &joint : this->joints_)
   {

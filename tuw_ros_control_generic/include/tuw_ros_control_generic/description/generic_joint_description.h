@@ -19,7 +19,7 @@ public:
   explicit GenericJointDescription(YAML::Node yaml);
   int getId();
   std::string getName();
-  std::shared_ptr<GenericConnectionDescription> getConnectionDescription();
+  virtual std::shared_ptr<GenericConnectionDescription> getConnectionDescription();
   std::shared_ptr<GenericHardwareDescription> getHardwareDescription();
   std::shared_ptr<GenericConfigDescription> getConfigDescription();
 protected:

@@ -18,8 +18,8 @@ GenericHardwareParameter::GenericHardwareParameter(GenericHardwareParameterDescr
   this->enum_ = hardware_parameter_description.getEnum();
   this->range_ = hardware_parameter_description.getRange();
 
-  if (!this->isValid())
-    throw std::runtime_error("parameter " + *this->getIdentifier() + " is invalid");
+//  if (!this->isValid())
+//    throw std::runtime_error("parameter " + *this->getIdentifier() + " is invalid");
 
   if (this->isTarget())
     this->type_ = Type::TARGET;

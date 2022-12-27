@@ -17,8 +17,8 @@ find_package(
 )
 
 catkin_package(
-  INCLUDE_DIRS
-  include
+  INCLUDE_DIRS include
+  LIBRARIES ${PROJECT_NAME}
   CATKIN_DEPENDS
   roscpp
   rospy
@@ -46,7 +46,7 @@ add_library(
   src/${PROJECT_NAME}/generic_hardware.cpp
   src/${PROJECT_NAME}/generic_hardware_parameter.cpp
   src/${PROJECT_NAME}/generic_joint.cpp
-  src/${PROJECT_NAME}/generic_ros_control_hardware_interface.cpp
+  src/${PROJECT_NAME}/generic_hardware_interface.cpp
   src/${PROJECT_NAME}/generic_setup_prefix.cpp
 )
 
