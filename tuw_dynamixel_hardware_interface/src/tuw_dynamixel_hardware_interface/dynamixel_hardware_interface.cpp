@@ -92,7 +92,6 @@ bool DynamixelHardwareInterface::initJoints(std::list<DynamixelJointDescription>
 
 bool DynamixelHardwareInterface::initJoint(DynamixelJointDescription joint_description)
 {
-  ROS_INFO("CALLING DYNAMIXEL INIT JOINT");
   try
   {
     std::shared_ptr<GenericJoint> joint = std::make_shared<GenericJoint>(joint_description);
@@ -101,29 +100,17 @@ bool DynamixelHardwareInterface::initJoint(DynamixelJointDescription joint_descr
     std::shared_ptr<GenericHardwareDescription> hardware_description = joint_description.getHardwareDescription();
     std::shared_ptr<GenericConfigDescription> config_description = joint_description.getConfigDescription();
 
-    ROS_INFO("A");
     std::shared_ptr<DynamixelConnection> connection =
             DynamixelConnection::getConnection(connection_description);
     joint->setConnection(connection);
 
-
-    ROS_INFO("B");
     std::shared_ptr<GenericHardware> hardware =
             GenericHardware::getHardware(*hardware_description);
     joint->setHardware(hardware);
 
-
-
-    ROS_INFO("C");
-//    std::shared_ptr<GenericConfig> config =
-//            std::make_shared<GenericConfig>(joint, hardware);
-//            std::make_shared<GenericConfig>(joint, hardware, *config_description);
-    ROS_INFO("D");
-//    joint->setConfig(config);
-    ROS_INFO("E");
-    // create connection and set it to joint
-    // create hardware and set it to joint
-    // create config and set it to joint
+    std::shared_ptr<GenericConfig> config =
+            std::make_shared<GenericConfig>(joint, hardware, *config_description);
+    joint->setConfig(config);
 
     this->joints_.push_back(joint);
 
