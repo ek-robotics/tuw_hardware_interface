@@ -3,9 +3,11 @@ project(tuw_hardware_interface_dynamixel)
 
 add_compile_options(-std=c++14)
 
+link_libraries(yaml-cpp)
+
 find_package(
   catkin
-  REQUIRED
+  REQUIRED COMPONENTS
   roscpp
   rospy
   tuw_ros_control_generic
@@ -15,13 +17,13 @@ find_package(
 
 catkin_package(
   INCLUDE_DIRS include
-#  LIBRARIES tuw_dynamixel_hardware_interface
+  LIBRARIES ${PROJECT_NAME}
   CATKIN_DEPENDS
-    roscpp
-    rospy
-    tuw_ros_control_generic
-    controller_manager
-    dynamixel_sdk
+  roscpp
+  rospy
+  tuw_ros_control_generic
+  controller_manager
+  dynamixel_sdk
   #  DEPENDS system_lib
 )
 

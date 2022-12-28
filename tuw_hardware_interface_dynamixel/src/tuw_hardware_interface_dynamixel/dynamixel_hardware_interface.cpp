@@ -1,12 +1,9 @@
 // Copyright 2022 Eugen Kaltenegger
 
-#include "../../include/tuw_hardware_interface_dynamixel/dynamixel_hardware_interface.h"
-#include "../../include/tuw_hardware_interface_dynamixel/dynamixel_connection.h"
-#include "../../include/tuw_hardware_interface_dynamixel/description/dynamixel_setup_description.h"
-#include "../../include/tuw_hardware_interface_dynamixel/description/dynamixel_joint_description.h"
-//#include <tuw_hardware_interface_dynamixel/dynamixel_hardware_interface.h>
-//#include <tuw_hardware_interface_dynamixel/dynamixel_connection.h>
-//#include <tuw_hardware_interface_dynamixel/description/dynamixel_setup_description.h>
+#include <tuw_hardware_interface_dynamixel/dynamixel_hardware_interface.h>
+#include <tuw_hardware_interface_dynamixel/dynamixel_connection.h>
+#include <tuw_hardware_interface_dynamixel/description/dynamixel_setup_description.h>
+#include <tuw_hardware_interface_dynamixel/description/dynamixel_joint_description.h>
 
 #include <tuw_ros_control_generic/description/generic_joint_description.h>
 #include <tuw_ros_control_generic/description/generic_setup_description.h>

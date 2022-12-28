@@ -1,7 +1,6 @@
 // Copyright 2022 Eugen Kaltenegger
 
-//#include <tuw_hardware_interface_dynamixel/description/dynamixel_connection_description.h>
-#include "../../../include/tuw_hardware_interface_dynamixel/description/dynamixel_connection_description.h"
+#include <tuw_hardware_interface_dynamixel/description/dynamixel_connection_description.h>
 
 using tuw_hardware_interface::DynamixelConnectionDescription;
 

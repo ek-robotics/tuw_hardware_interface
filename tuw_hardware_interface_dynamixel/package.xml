@@ -3,7 +3,7 @@
 
   <name>tuw_hardware_interface_dynamixel</name>
   <version>0.0.0</version>
-  <description>The tuw_dynamixel_hardware_interface package</description>
+  <description>Package with a hardware interface for Dynamixel hardware</description>
 
   <maintainer email="eugen.kaltenegger@gmail.com">Eugen Kaltenegger</maintainer>
 

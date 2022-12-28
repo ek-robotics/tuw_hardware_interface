@@ -19,7 +19,7 @@
   </rosparam>
   <rosparam file="$(find tuw_hardware_interface_dynamixel)/config/controller/dynamixel_test_setup.yaml" command="load"/>
 
-  <!-- start tuw_dynamixel_ros_control_node -->
+  <!-- start tuw_hardware_interface_dynamixel_node -->
   <node name="tuw_hardware_interface_dynamixel_node"
         pkg="tuw_hardware_interface_dynamixel"
         type="tuw_hardware_interface_dynamixel_node"
@@ -41,8 +41,8 @@
 
   <!-- set logging level to debug if flag is set -->
   <group if="$(arg debug)" >
-    <node pkg="rosservice" type="rosservice" name="set_logger_level_ros" args="call /tuw_dynamixel_hardware_interface_node/set_logger_level '{logger: 'ros', level: 'DEBUG'}'"/>
-    <node pkg="rosservice" type="rosservice" name="set_logger_level_rosout" args="call /tuw_dynamixel_hardware_interface_node/set_logger_level '{logger: 'rosout', level: 'DEBUG'}'"/>
+    <node pkg="rosservice" type="rosservice" name="set_logger_level_ros" args="call /tuw_hardware_interface_dynamixel_node/set_logger_level '{logger: 'ros', level: 'DEBUG'}'"/>
+    <node pkg="rosservice" type="rosservice" name="set_logger_level_rosout" args="call /tuw_hardware_interface_dynamixel_node/set_logger_level '{logger: 'rosout', level: 'DEBUG'}'"/>
   </group>
 
 </launch>

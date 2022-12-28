@@ -2,18 +2,17 @@
 
 #include <ros/ros.h>
 #include <controller_manager/controller_manager.h>
-//#include "tuw_dynamixel_hardware_interface/dynamixel_hardware_interface.h"
-#include "tuw_ros_control_generic/generic_setup_prefix.h"
-#include "../include/tuw_hardware_interface_dynamixel/dynamixel_hardware_interface.h"
+#include <tuw_ros_control_generic/generic_setup_prefix.h>
+#include <tuw_hardware_interface_dynamixel/dynamixel_hardware_interface.h>
 
 int main(int argc, char** argv)
 {
-  ros::init(argc, argv, "tuw_dynamixel_ros_control_node");
+  ros::init(argc, argv, "tuw_hardware_interface_dynamixel");
   ros::NodeHandle basic_nh;
   ros::NodeHandle hardware_nh("/hardware");
   ros::NodeHandle controller_nh("/controller");
   int control_loop_hz;
-  basic_nh.param("tuw_dynamixel_control_loop_hz", control_loop_hz, 300);
+  basic_nh.param("tuw_hardware_interface_dynamixel_loop_hz", control_loop_hz, 300);
   ros::Rate rate(control_loop_hz);
 
   ros::AsyncSpinner spinner(1);
