@@ -3,7 +3,7 @@
 #ifndef TUW_HARDWARE_INTERFACE_DYNAMIXEL_DYNAMIXEL_HARDWARE_INTERFACE_H
 #define TUW_HARDWARE_INTERFACE_DYNAMIXEL_DYNAMIXEL_HARDWARE_INTERFACE_H
 
-#include <tuw_ros_control_generic/generic_hardware_interface.h>
+#include <tuw_hardware_interface_template/generic_hardware_interface.h>
 
 #include <list>
 

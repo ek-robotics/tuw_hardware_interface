@@ -1,0 +1,95 @@
+cmake_minimum_required(VERSION 3.0.2)
+project(tuw_hardware_interface_template)
+
+add_compile_options(-std=c++14)
+
+link_libraries(yaml-cpp)
+
+find_package(
+  catkin
+  REQUIRED COMPONENTS
+  roscpp
+  rospy
+  roslib
+  roslint
+  urdf
+  ddynamic_reconfigure
+)
+
+catkin_package(
+  INCLUDE_DIRS include
+  LIBRARIES ${PROJECT_NAME}
+  CATKIN_DEPENDS
+  roscpp
+  rospy
+  urdf
+  ddynamic_reconfigure
+)
+
+include_directories(
+  ./include
+  ${catkin_INCLUDE_DIRS}
+)
+
+roslint_cpp()
+
+add_library(
+  tuw_hardware_interface_template
+  src/${PROJECT_NAME}/description/generic_config_description.cpp
+  src/${PROJECT_NAME}/description/generic_connection_description.cpp
+  src/${PROJECT_NAME}/description/generic_hardware_description.cpp
+  src/${PROJECT_NAME}/description/generic_hardware_parameter_description.cpp
+  src/${PROJECT_NAME}/description/generic_joint_description.cpp
+  src/${PROJECT_NAME}/description/generic_setup_description.cpp
+  src/${PROJECT_NAME}/generic_config.cpp
+  src/${PROJECT_NAME}/generic_connection.cpp
+  src/${PROJECT_NAME}/generic_hardware.cpp
+  src/${PROJECT_NAME}/generic_hardware_parameter.cpp
+  src/${PROJECT_NAME}/generic_joint.cpp
+  src/${PROJECT_NAME}/generic_hardware_interface.cpp
+  src/${PROJECT_NAME}/generic_setup_prefix.cpp
+)
+
+target_link_libraries(
+  tuw_hardware_interface_template
+  ${catkin_LIBRARIES}
+)
+
+# add gtests
+catkin_add_gtest(
+  tuw_hardware_interface_template_tests
+  # test util
+  test/${PROJECT_NAME}_util/src/file_loader.cpp
+  # test
+  test/${PROJECT_NAME}/description/test_generic_config_description.cpp
+  test/${PROJECT_NAME}/description/test_generic_connection_description.cpp
+  test/${PROJECT_NAME}/description/test_generic_hardware_description.cpp
+  test/${PROJECT_NAME}/description/test_generic_hardware_parameter_description.cpp
+  test/${PROJECT_NAME}/description/test_generic_joint_description.cpp
+  test/${PROJECT_NAME}/test_all.cpp
+  test/${PROJECT_NAME}/test_generic_config.cpp
+  test/${PROJECT_NAME}/test_generic_connection.cpp
+  test/${PROJECT_NAME}/test_generic_hardware.cpp
+  test/${PROJECT_NAME}/test_generic_hardware_parameter.cpp
+  test/${PROJECT_NAME}/test_generic_joint.cpp
+  test/${PROJECT_NAME}/test_generic_setup_prefix.cpp
+)
+
+# link libraries to gtests
+target_link_libraries(
+  tuw_hardware_interface_template_tests
+  tuw_hardware_interface_template
+  gmock
+)
+
+install(
+  TARGETS ${PROJECT_NAME}
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
+)
+
+install(
+  DIRECTORY include/${PROJECT_NAME}/
+  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+)

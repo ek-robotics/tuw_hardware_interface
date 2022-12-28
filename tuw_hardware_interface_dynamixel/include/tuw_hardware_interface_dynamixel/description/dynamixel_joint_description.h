@@ -3,7 +3,7 @@
 #ifndef TUW_HARDWARE_INTERFACE_DYNAMIXEL_DESCRIPTION_DYNAMIXEL_JOINT_DESCRIPTION_H
 #define TUW_HARDWARE_INTERFACE_DYNAMIXEL_DESCRIPTION_DYNAMIXEL_JOINT_DESCRIPTION_H
 
-#include <tuw_ros_control_generic/description/generic_joint_description.h>
+#include <tuw_hardware_interface_template/description/generic_joint_description.h>
 
 #include <memory>
 

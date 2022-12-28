@@ -2,7 +2,7 @@
 
 #include <ros/ros.h>
 #include <controller_manager/controller_manager.h>
-#include <tuw_ros_control_generic/generic_setup_prefix.h>
+#include <tuw_hardware_interface_template/generic_setup_prefix.h>
 #include <tuw_hardware_interface_dynamixel/dynamixel_hardware_interface.h>
 
 int main(int argc, char** argv)

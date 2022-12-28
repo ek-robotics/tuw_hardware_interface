@@ -5,10 +5,10 @@
 #include <tuw_hardware_interface_dynamixel/description/dynamixel_setup_description.h>
 #include <tuw_hardware_interface_dynamixel/description/dynamixel_joint_description.h>
 
-#include <tuw_ros_control_generic/description/generic_joint_description.h>
-#include <tuw_ros_control_generic/description/generic_setup_description.h>
-#include <tuw_ros_control_generic/generic_config.h>
-#include <tuw_ros_control_generic/generic_setup_prefix.h>
+#include <tuw_hardware_interface_template/description/generic_joint_description.h>
+#include <tuw_hardware_interface_template/description/generic_setup_description.h>
+#include <tuw_hardware_interface_template/generic_config.h>
+#include <tuw_hardware_interface_template/generic_setup_prefix.h>
 
 #include <list>
 #include <memory>

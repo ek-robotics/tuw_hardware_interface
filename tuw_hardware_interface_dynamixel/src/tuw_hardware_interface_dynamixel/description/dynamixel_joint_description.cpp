@@ -3,9 +3,9 @@
 #include <tuw_hardware_interface_dynamixel/description/dynamixel_connection_description.h>
 #include <tuw_hardware_interface_dynamixel/description/dynamixel_joint_description.h>
 
-#include <tuw_ros_control_generic/description/generic_hardware_description.h>
-#include <tuw_ros_control_generic/description/generic_config_description.h>
-#include <tuw_ros_control_generic/generic_setup_prefix.h>
+#include <tuw_hardware_interface_template/description/generic_hardware_description.h>
+#include <tuw_hardware_interface_template/description/generic_config_description.h>
+#include <tuw_hardware_interface_template/generic_setup_prefix.h>
 
 #include <memory>
 #include <string>

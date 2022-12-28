@@ -3,7 +3,7 @@
 #ifndef TUW_HARDWARE_INTERFACE_DYNAMIXEL_DYNAMIXEL_CONNECTION_H
 #define TUW_HARDWARE_INTERFACE_DYNAMIXEL_DYNAMIXEL_CONNECTION_H
 
-#include <tuw_ros_control_generic/generic_connection.h>
+#include <tuw_hardware_interface_template/generic_connection.h>
 
 #include <map>
 #include <memory>
