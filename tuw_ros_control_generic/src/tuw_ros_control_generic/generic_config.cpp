@@ -38,6 +38,7 @@ GenericConfig::GenericConfig()
 
 void GenericConfig::setupReconfigureServer()
 {
+  // TODO: reconfigure variables are added in alphabetical order instead of order as in yaml file - fix this!
   ros::NodeHandle node_handle(GenericSetupPrefix::getNodeName() + std::string("/") + this->joint_->getName());
   this->reconfigure_ = std::make_unique<ddynamic_reconfigure::DDynamicReconfigure>(node_handle);
 
