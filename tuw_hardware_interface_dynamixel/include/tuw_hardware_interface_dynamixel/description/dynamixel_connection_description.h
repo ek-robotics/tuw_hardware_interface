@@ -1,9 +1,11 @@
 // Copyright 2022 Eugen Kaltenegger
 
-#ifndef DIP_WS_DYNAMIXEL_CONNECTION_DESCRIPTION_H
-#define DIP_WS_DYNAMIXEL_CONNECTION_DESCRIPTION_H
+#ifndef TUW_HARDWARE_INTERFACE_DYNAMIXEL_DESCRIPTION_DYNAMIXEL_CONNECTION_DESCRIPTION_H
+#define TUW_HARDWARE_INTERFACE_DYNAMIXEL_DESCRIPTION_DYNAMIXEL_CONNECTION_DESCRIPTION_H
 
 #include <tuw_ros_control_generic/description/generic_connection_description.h>
+
+#include <string>
 
 using tuw_ros_control_generic::GenericConnectionDescription;
 
@@ -17,6 +19,6 @@ public:
 private:
   std::string protocol_;
 };
-}
+}  // namespace tuw_hardware_interface
 
-#endif //DIP_WS_DYNAMIXEL_CONNECTION_DESCRIPTION_H
+#endif  // TUW_HARDWARE_INTERFACE_DYNAMIXEL_DESCRIPTION_DYNAMIXEL_CONNECTION_DESCRIPTION_H

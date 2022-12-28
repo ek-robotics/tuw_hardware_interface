@@ -10,6 +10,10 @@
 #include <tuw_ros_control_generic/generic_config.h>
 #include <tuw_ros_control_generic/generic_setup_prefix.h>
 
+#include <list>
+#include <memory>
+#include <string>
+
 using tuw_hardware_interface::DynamixelHardwareInterface;
 using tuw_hardware_interface::DynamixelConnection;
 using tuw_ros_control_generic::GenericHardware;
@@ -39,7 +43,8 @@ bool tuw_hardware_interface::DynamixelHardwareInterface::init(ros::NodeHandle& b
   }
   catch(...)
   {
-    ROS_ERROR("[%s] PARAMETER FOR SETUP FILE NOT FOUND (\"%s\")", PREFIX, GenericHardwareInterface::setup_parameter_.LOG);
+    ROS_ERROR("[%s] PARAMETER FOR SETUP FILE NOT FOUND (\"%s\")",
+              PREFIX, GenericHardwareInterface::setup_parameter_.LOG);
     return false;
   }
 
@@ -49,7 +54,8 @@ bool tuw_hardware_interface::DynamixelHardwareInterface::init(ros::NodeHandle& b
   }
   catch (...)
   {
-    ROS_ERROR("[%s] SETUP FILE NOT FOUND OR INVALID (\"%s\")", PREFIX, setup_file_path.LOG);
+    ROS_ERROR("[%s] SETUP FILE NOT FOUND OR INVALID (\"%s\")",
+              PREFIX, setup_file_path.LOG);
     return false;
   }
 
@@ -97,18 +103,23 @@ bool DynamixelHardwareInterface::initJoint(DynamixelJointDescription joint_descr
   {
     std::shared_ptr<GenericJoint> joint = std::make_shared<GenericJoint>(joint_description);
 
-    std::shared_ptr<DynamixelConnectionDescription> connection_description = joint_description.getDynamixelConnectionDescription();
-    std::shared_ptr<GenericHardwareDescription> hardware_description = joint_description.getHardwareDescription();
-    std::shared_ptr<GenericConfigDescription> config_description = joint_description.getConfigDescription();
-
+    // connection
+    std::shared_ptr<DynamixelConnectionDescription> connection_description =
+            joint_description.getDynamixelConnectionDescription();
     std::shared_ptr<DynamixelConnection> connection =
             DynamixelConnection::getConnection(connection_description);
     joint->setConnection(connection);
 
+    // hardware
+    std::shared_ptr<GenericHardwareDescription> hardware_description =
+            joint_description.getHardwareDescription();
     std::shared_ptr<GenericHardware> hardware =
             GenericHardware::getHardware(*hardware_description);
     joint->setHardware(hardware);
 
+    // config
+    std::shared_ptr<GenericConfigDescription> config_description =
+            joint_description.getConfigDescription();
     std::shared_ptr<GenericConfig> config =
             std::make_shared<GenericConfig>(joint, hardware, *config_description);
     joint->setConfig(config);

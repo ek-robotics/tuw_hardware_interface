@@ -1,10 +1,13 @@
 // Copyright 2022 Eugen Kaltenegger
 
-#ifndef TUW_DYNAMIXEL_HARDWARE_INTERFACE_DYNAMIXEL_CONNECTION_H
-#define TUW_DYNAMIXEL_HARDWARE_INTERFACE_DYNAMIXEL_CONNECTION_H
+#ifndef TUW_HARDWARE_INTERFACE_DYNAMIXEL_DYNAMIXEL_CONNECTION_H
+#define TUW_HARDWARE_INTERFACE_DYNAMIXEL_DYNAMIXEL_CONNECTION_H
 
 #include <tuw_ros_control_generic/generic_connection.h>
 
+#include <map>
+#include <memory>
+#include <string>
 #include <dynamixel_sdk/dynamixel_sdk.h>
 
 #define PROTOCOL "2.0"
@@ -19,11 +22,13 @@ using tuw_ros_control_generic::GenericHardwareParameter;
 namespace tuw_hardware_interface
 {
 class DynamixelConnectionDescription;
+
 class DynamixelConnection : public GenericConnection
 {
 public:
   // singleton function
-  static std::shared_ptr<DynamixelConnection> getConnection(const std::shared_ptr<DynamixelConnectionDescription>& connection_description);
+  static std::shared_ptr<DynamixelConnection> getConnection
+          (const std::shared_ptr<DynamixelConnectionDescription>& connection_description);
   // instance functions
   explicit DynamixelConnection(std::shared_ptr<DynamixelConnectionDescription> connection_description);
   ~DynamixelConnection();
@@ -38,6 +43,6 @@ private:
   std::unique_ptr<PortHandler> port_handler_;
   std::unique_ptr<PacketHandler> packet_handler_;
 };
-}
+}  // namespace tuw_hardware_interface
 
-#endif  // TUW_DYNAMIXEL_HARDWARE_INTERFACE_DYNAMIXEL_CONNECTION_H
+#endif  // TUW_HARDWARE_INTERFACE_DYNAMIXEL_DYNAMIXEL_CONNECTION_H

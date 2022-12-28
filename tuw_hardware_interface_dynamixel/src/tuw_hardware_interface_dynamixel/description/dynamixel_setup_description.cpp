@@ -3,6 +3,8 @@
 #include <tuw_hardware_interface_dynamixel/description/dynamixel_joint_description.h>
 #include <tuw_hardware_interface_dynamixel/description/dynamixel_setup_description.h>
 
+#include <list>
+
 using tuw_hardware_interface::DynamixelSetupDescription;
 using tuw_hardware_interface::DynamixelJointDescription;
 

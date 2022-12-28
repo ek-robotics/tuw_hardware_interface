@@ -1,9 +1,11 @@
 // Copyright 2022 Eugen Kaltenegger
 
-#ifndef DIP_WS_DYNAMIXEL_JOINT_DESCRIPTION_H
-#define DIP_WS_DYNAMIXEL_JOINT_DESCRIPTION_H
+#ifndef TUW_HARDWARE_INTERFACE_DYNAMIXEL_DESCRIPTION_DYNAMIXEL_JOINT_DESCRIPTION_H
+#define TUW_HARDWARE_INTERFACE_DYNAMIXEL_DESCRIPTION_DYNAMIXEL_JOINT_DESCRIPTION_H
 
 #include <tuw_ros_control_generic/description/generic_joint_description.h>
+
+#include <memory>
 
 using tuw_ros_control_generic::GenericJointDescription;
 
@@ -18,6 +20,6 @@ public:
 private:
   std::shared_ptr<DynamixelConnectionDescription> connection_description_ {nullptr};
 };
-}
+}  // namespace tuw_hardware_interface
 
-#endif //DIP_WS_DYNAMIXEL_JOINT_DESCRIPTION_H
+#endif  // TUW_HARDWARE_INTERFACE_DYNAMIXEL_DESCRIPTION_DYNAMIXEL_JOINT_DESCRIPTION_H

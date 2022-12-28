@@ -2,6 +2,8 @@
 
 #include <tuw_hardware_interface_dynamixel/description/dynamixel_connection_description.h>
 
+#include <string>
+
 using tuw_hardware_interface::DynamixelConnectionDescription;
 
 DynamixelConnectionDescription::DynamixelConnectionDescription(YAML::Node yaml) : GenericConnectionDescription(yaml)

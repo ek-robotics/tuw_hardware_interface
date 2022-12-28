@@ -6,11 +6,17 @@
 #include <tuw_ros_control_generic/generic_hardware_parameter.h>
 #include <tuw_ros_control_generic/generic_connection.h>
 
+#include <map>
+#include <memory>
+#include <string>
+#include <utility>
+
 using tuw_hardware_interface::DynamixelConnection;
 
 std::unique_ptr<std::map<std::string, std::shared_ptr<DynamixelConnection>>> DynamixelConnection::connection_table_;
 
-std::shared_ptr<DynamixelConnection> DynamixelConnection::getConnection(const std::shared_ptr<DynamixelConnectionDescription>& connection_description)
+std::shared_ptr<DynamixelConnection> DynamixelConnection::getConnection
+        (const std::shared_ptr<DynamixelConnectionDescription>& connection_description)
 {
   std::string connection_hash = connection_description->getHash();
 
@@ -49,15 +55,18 @@ DynamixelConnection::~DynamixelConnection()
 bool DynamixelConnection::connect()
 {
   if (PROTOCOL != this->connection_description_->getProtocol())
-    throw std::runtime_error("This package supports protocol 2.0 only - requested protocol: " + this->connection_description_->getProtocol());
+    throw std::runtime_error("This package supports protocol 2.0 only - requested protocol: " +
+                             this->connection_description_->getProtocol());
 
-  this->port_handler_ = std::unique_ptr<PortHandler>(PortHandler::getPortHandler(this->connection_description_->getPort().c_str()));
+  this->port_handler_ = std::unique_ptr<PortHandler>(
+          PortHandler::getPortHandler(this->connection_description_->getPort().c_str()));
   this->packet_handler_ = std::unique_ptr<PacketHandler>(PacketHandler::getPacketHandler(std::stof(PROTOCOL)));
 
   if (!this->port_handler_->openPort())
     throw std::runtime_error("connection error - error opening port: " + this->connection_description_->getPort());
   if (!this->port_handler_->setBaudRate(this->connection_description_->getBaudrate()))
-    throw std::runtime_error("connection error - error setting baud: " + std::to_string(this->connection_description_->getBaudrate()));
+    throw std::runtime_error(
+            "connection error - error setting baud: " + std::to_string(this->connection_description_->getBaudrate()));
 
   return true;
 }
@@ -73,7 +82,7 @@ bool DynamixelConnection::disconnect()
 
 void DynamixelConnection::write(int id, GenericHardwareParameter hardware_parameter, int data)
 {
-  dynamixel::PortHandler *port_handler_pointer = this->port_handler_.get();
+  dynamixel::PortHandler* port_handler_pointer = this->port_handler_.get();
   auto address = static_cast<uint8_t>(*hardware_parameter.getAddress());
   auto length = static_cast<uint16_t>(*hardware_parameter.getLength());
   int communication_result = COMM_NOT_AVAILABLE;
@@ -122,7 +131,7 @@ void DynamixelConnection::write(int id, GenericHardwareParameter hardware_parame
 
 int DynamixelConnection::read(int id, GenericHardwareParameter hardware_parameter)
 {
-  dynamixel::PortHandler *port_handler_pointer = this->port_handler_.get();
+  dynamixel::PortHandler* port_handler_pointer = this->port_handler_.get();
   auto address = static_cast<uint8_t>(*hardware_parameter.getAddress());
   auto length = static_cast<uint16_t>(*hardware_parameter.getLength());
   int communication_result = COMM_NOT_AVAILABLE;
