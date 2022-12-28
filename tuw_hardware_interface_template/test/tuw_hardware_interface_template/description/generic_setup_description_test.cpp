@@ -2,13 +2,13 @@
 
 #include <gtest/gtest.h>
 
-#include "../../tuw_ros_control_generic_test_util/include/file_loader.h"
+#include <tuw_hardware_interface_template/utils/file_loader.h>
 
-#include <tuw_ros_control_generic/description/generic_setup_description.h>
+#include <tuw_hardware_interface_template/description/generic_setup_description.h>
 
-#define TEST_FILE_PATH "/test/resources/description/test_generic_setup_description.yaml"
+#define TEST_FILE_PATH "/test/resources/description/generic_setup_description_test.yaml"
 
-using tuw_ros_control_generic_test::FileLoader;
+using tuw_hardware_interface::FileLoader;
 using tuw_ros_control_generic::GenericSetupDescription;
 
 class GenericSetupDescriptionTest : public ::testing::Test

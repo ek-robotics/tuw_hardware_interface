@@ -1,21 +1,23 @@
 // Copyright 2022 Eugen Kaltenegger
 
-#include "../include/file_loader.h"
+#include "tuw_hardware_interface_template/utils/file_loader.h"
 
 #include <string>
 
-YAML::Node tuw_ros_control_generic_test::FileLoader::loadYAMLFromFile(const std::string& relative_path)
+using tuw_hardware_interface::FileLoader;
+
+YAML::Node FileLoader::loadYAMLFromFile(const std::string& relative_path)
 {
   {
-    std::string absolute_package_path = ros::package::getPath("tuw_ros_control_generic");
+    std::string absolute_package_path = ros::package::getPath("tuw_hardware_interface_template");
     std::string absolute_file_path = absolute_package_path + relative_path;
     return YAML::LoadFile(absolute_file_path);
   }
 }
 
-std::string tuw_ros_control_generic_test::FileLoader::loadURDFFromFile(const std::string &relative_path)
+std::string FileLoader::loadURDFFromFile(const std::string &relative_path)
 {
-  std::string absolute_package_path = ros::package::getPath("tuw_ros_control_generic");
+  std::string absolute_package_path = ros::package::getPath("tuw_hardware_interface_template");
   std::string absolute_file_path = absolute_package_path + relative_path;
 
   std::ifstream input_file(absolute_file_path);

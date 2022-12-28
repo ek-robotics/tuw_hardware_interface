@@ -10,7 +10,7 @@ find_package(
   REQUIRED COMPONENTS
   roscpp
   rospy
-  tuw_ros_control_generic
+  tuw_hardware_interface_template
   controller_manager
   dynamixel_sdk
 )
@@ -21,7 +21,7 @@ catkin_package(
   CATKIN_DEPENDS
   roscpp
   rospy
-  tuw_ros_control_generic
+  tuw_hardware_interface_template
   controller_manager
   dynamixel_sdk
   #  DEPENDS system_lib

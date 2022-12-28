@@ -2,14 +2,14 @@
 
 #include <gtest/gtest.h>
 
-#include "../tuw_ros_control_generic_test_util/include/file_loader.h"
+#include <tuw_hardware_interface_template/utils/file_loader.h>
 
-#include <tuw_ros_control_generic/description/generic_hardware_parameter_description.h>
-#include <tuw_ros_control_generic/generic_hardware_parameter.h>
+#include <tuw_hardware_interface_template/description/generic_hardware_parameter_description.h>
+#include <tuw_hardware_interface_template/generic_hardware_parameter.h>
 
-#define TEST_FILE_PATH "/test/resources/test_generic_hardware_parameter.yaml"
+#define TEST_FILE_PATH "/test/resources/generic_hardware_parameter_test.yaml"
 
-using tuw_ros_control_generic_test::FileLoader;
+using tuw_hardware_interface::FileLoader;
 using tuw_ros_control_generic::GenericHardwareParameter;
 using tuw_ros_control_generic::GenericHardwareParameterDescription;
 

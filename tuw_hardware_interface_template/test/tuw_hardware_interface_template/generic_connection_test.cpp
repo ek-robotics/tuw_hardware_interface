@@ -2,18 +2,18 @@
 
 #include <gtest/gtest.h>
 
-#include "../tuw_ros_control_generic_test_util/include/file_loader.h"
+#include <tuw_hardware_interface_template/utils/file_loader.h>
 
-#include <tuw_ros_control_generic/description/generic_connection_description.h>
-#include <tuw_ros_control_generic/generic_connection.h>
-#include <tuw_ros_control_generic/generic_setup_prefix.h>
+#include <tuw_hardware_interface_template/description/generic_connection_description.h>
+#include <tuw_hardware_interface_template/generic_connection.h>
+#include <tuw_hardware_interface_template/generic_setup_prefix.h>
 
-using tuw_ros_control_generic_test::FileLoader;
+using tuw_hardware_interface::FileLoader;
 using tuw_ros_control_generic::GenericConnection;
 using tuw_ros_control_generic::GenericConnectionDescription;
 using tuw_ros_control_generic::GenericSetupPrefix;
 
-#define TEST_FILE_PATH "/test/resources/test_generic_connection.yaml"
+#define TEST_FILE_PATH "/test/resources/generic_connection_test.yaml"
 
 class GenericConnectionTest : public ::testing::Test
 {

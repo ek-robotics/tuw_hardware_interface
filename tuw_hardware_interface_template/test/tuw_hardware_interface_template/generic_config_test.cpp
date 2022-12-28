@@ -3,20 +3,20 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
+#include <tuw_hardware_interface_template/utils/file_loader.h>
+
 #include <memory>
 #include <string>
 
-#include "../tuw_ros_control_generic_test_util/include/file_loader.h"
+#include <tuw_hardware_interface_template/description/generic_hardware_description.h>
+#include <tuw_hardware_interface_template/generic_config.h>
+#include <tuw_hardware_interface_template/generic_hardware.h>
+#include <tuw_hardware_interface_template/generic_joint.h>
+#include <tuw_hardware_interface_template/generic_setup_prefix.h>
 
-#include <tuw_ros_control_generic/description/generic_hardware_description.h>
-#include <tuw_ros_control_generic/generic_config.h>
-#include <tuw_ros_control_generic/generic_hardware.h>
-#include <tuw_ros_control_generic/generic_joint.h>
-#include <tuw_ros_control_generic/generic_setup_prefix.h>
+#define TEST_FILE_PATH "/test/resources/generic_config_test.yaml"
 
-#define TEST_FILE_PATH "/test/resources/test_generic_config.yaml"
-
-using tuw_ros_control_generic_test::FileLoader;
+using tuw_hardware_interface::FileLoader;
 using tuw_ros_control_generic::GenericConfig;
 using tuw_ros_control_generic::GenericConfigDescription;
 using tuw_ros_control_generic::GenericHardware;

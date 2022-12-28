@@ -10,7 +10,7 @@
 #include <yaml-cpp/node/node.h>
 #include <yaml-cpp/node/parse.h>
 
-namespace tuw_ros_control_generic_test
+namespace tuw_hardware_interface
 {
 class FileLoader
 {
@@ -19,6 +19,6 @@ public:
   static std::string loadURDFFromFile(const std::string& relative_path);
 private:
 };
-}  // namespace tuw_ros_control_generic_test
+}  // namespace tuw_hardware_interface
 
 #endif  // FILE_LOADER_H

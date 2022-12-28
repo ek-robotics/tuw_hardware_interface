@@ -2,19 +2,19 @@
 
 #include <gtest/gtest.h>
 
+#include <tuw_hardware_interface_template/utils/file_loader.h>
+
 #include <memory>
 
-#include <tuw_ros_control_generic/generic_hardware.h>
-#include <tuw_ros_control_generic/generic_setup_prefix.h>
+#include <tuw_hardware_interface_template/generic_hardware.h>
+#include <tuw_hardware_interface_template/generic_setup_prefix.h>
 
-#include "../tuw_ros_control_generic_test_util/include/file_loader.h"
-
-using tuw_ros_control_generic_test::FileLoader;
+using tuw_hardware_interface::FileLoader;
 using tuw_ros_control_generic::GenericHardware;
 using tuw_ros_control_generic::GenericHardwareDescription;
 using tuw_ros_control_generic::GenericSetupPrefix;
 
-#define TEST_FILE_PATH "/test/resources/test_generic_hardware.yaml"
+#define TEST_FILE_PATH "/test/resources/generic_hardware_test.yaml"
 
 class GenericHardwareTest : public ::testing::Test
 {

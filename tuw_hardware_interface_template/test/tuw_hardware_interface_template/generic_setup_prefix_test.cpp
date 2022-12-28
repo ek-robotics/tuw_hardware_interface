@@ -4,7 +4,7 @@
 
 #include <string>
 
-#include <tuw_ros_control_generic/generic_setup_prefix.h>
+#include <tuw_hardware_interface_template/generic_setup_prefix.h>
 
 using tuw_ros_control_generic::GenericSetupPrefix;
 

@@ -41,6 +41,7 @@ add_library(
   src/${PROJECT_NAME}/description/generic_hardware_parameter_description.cpp
   src/${PROJECT_NAME}/description/generic_joint_description.cpp
   src/${PROJECT_NAME}/description/generic_setup_description.cpp
+  src/${PROJECT_NAME}/utils/file_loader.cpp
   src/${PROJECT_NAME}/generic_config.cpp
   src/${PROJECT_NAME}/generic_connection.cpp
   src/${PROJECT_NAME}/generic_hardware.cpp
@@ -58,21 +59,19 @@ target_link_libraries(
 # add gtests
 catkin_add_gtest(
   tuw_hardware_interface_template_tests
-  # test util
-  test/${PROJECT_NAME}_util/src/file_loader.cpp
   # test
-  test/${PROJECT_NAME}/description/test_generic_config_description.cpp
-  test/${PROJECT_NAME}/description/test_generic_connection_description.cpp
-  test/${PROJECT_NAME}/description/test_generic_hardware_description.cpp
-  test/${PROJECT_NAME}/description/test_generic_hardware_parameter_description.cpp
-  test/${PROJECT_NAME}/description/test_generic_joint_description.cpp
-  test/${PROJECT_NAME}/test_all.cpp
-  test/${PROJECT_NAME}/test_generic_config.cpp
-  test/${PROJECT_NAME}/test_generic_connection.cpp
-  test/${PROJECT_NAME}/test_generic_hardware.cpp
-  test/${PROJECT_NAME}/test_generic_hardware_parameter.cpp
-  test/${PROJECT_NAME}/test_generic_joint.cpp
-  test/${PROJECT_NAME}/test_generic_setup_prefix.cpp
+  test/${PROJECT_NAME}/description/generic_config_description_test.cpp
+  test/${PROJECT_NAME}/description/generic_connection_description_test.cpp
+  test/${PROJECT_NAME}/description/generic_hardware_description_test.cpp
+  test/${PROJECT_NAME}/description/generic_hardware_parameter_description_test.cpp
+  test/${PROJECT_NAME}/description/generic_joint_description_test.cpp
+  test/${PROJECT_NAME}/all_tests.cpp
+  test/${PROJECT_NAME}/generic_config_test.cpp
+  test/${PROJECT_NAME}/generic_connection_test.cpp
+  test/${PROJECT_NAME}/generic_hardware_test.cpp
+  test/${PROJECT_NAME}/generic_hardware_parameter_test.cpp
+  test/${PROJECT_NAME}/generic_joint_test.cpp
+  test/${PROJECT_NAME}/generic_setup_prefix_test.cpp
 )
 
 # link libraries to gtests
