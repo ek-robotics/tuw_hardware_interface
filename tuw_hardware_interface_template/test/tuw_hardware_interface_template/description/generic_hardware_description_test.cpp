@@ -78,12 +78,22 @@ TEST_F(GenericHardwareDescriptionTest, verifyActualIdentifier)
   ASSERT_EQ(defined_resolution_generic_hardware_description_.getActualIdentifierToDescription()->size(), 3);
 }
 
-TEST_F(GenericHardwareDescriptionTest, verifyConfigPointer)
+TEST_F(GenericHardwareDescriptionTest, verifyConfigIdentifierToDescripionPointer)
 {
   ASSERT_TRUE(defined_resolution_generic_hardware_description_.getConfigIdentifierToDescription());
 }
 
-TEST_F(GenericHardwareDescriptionTest, verifyConfigIdentifier)
+TEST_F(GenericHardwareDescriptionTest, verifyConfigIdentifierToDescripionSize)
 {
   ASSERT_EQ(defined_resolution_generic_hardware_description_.getConfigIdentifierToDescription()->size(), 2);
+}
+
+TEST_F(GenericHardwareDescriptionTest, verifyConfigIdentifiersPointer)
+{
+  ASSERT_TRUE(defined_resolution_generic_hardware_description_.getConfigIdentifiers());
+}
+
+TEST_F(GenericHardwareDescriptionTest, verifyConfigIdentifiersSize)
+{
+  ASSERT_EQ(defined_resolution_generic_hardware_description_.getConfigIdentifiers()->size(), 2);
 }

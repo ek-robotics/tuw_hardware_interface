@@ -3,7 +3,6 @@
 #include <tuw_hardware_interface_template/generic_config.h>
 #include <tuw_hardware_interface_template/generic_connection.h>
 #include <tuw_hardware_interface_template/generic_hardware.h>
-#include <tuw_hardware_interface_template/generic_hardware_parameter.h>
 #include <tuw_hardware_interface_template/generic_joint.h>
 #include <tuw_hardware_interface_template/generic_setup_prefix.h>
 
@@ -40,16 +39,16 @@ GenericConfig::GenericConfig()
 
 void GenericConfig::setupReconfigureServer()
 {
-  // TODO: reconfigure variables are added in alphabetical order instead of order as in yaml file - fix this!
   ros::NodeHandle node_handle(GenericSetupPrefix::getNodeName() + std::string("/") + this->joint_->getName());
   this->reconfigure_ = std::make_unique<ddynamic_reconfigure::DDynamicReconfigure>(node_handle);
 
-  for (const auto &identifier_parameter_pair : *this->hardware_->getConfigIdentifierToParameter())
+  auto config_identifier_to_parameter = this->hardware_->getConfigIdentifierToParameter();
+
+  for (const auto &config_identifier : *this->hardware_->getConfigIdentifiers())
   {
-    auto identifier = identifier_parameter_pair.first;
-    auto parameter = identifier_parameter_pair.second;
+    auto parameter = config_identifier_to_parameter->at(config_identifier);
     this->registerReconfigureVariable(parameter);
-    this->actual_config_values_[identifier] = this->joint_->read(parameter);
+    this->actual_config_values_[config_identifier] = this->joint_->read(parameter);
   }
 
   auto callback = boost::bind(&GenericConfig::reconfigureConfig, this);

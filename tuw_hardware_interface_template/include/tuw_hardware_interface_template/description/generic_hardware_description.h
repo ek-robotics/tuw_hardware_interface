@@ -7,6 +7,8 @@
 #include <memory>
 #include <string>
 
+#include <boost/unordered_map.hpp>
+
 #include <yaml-cpp/yaml.h>
 
 namespace tuw_hardware_interface
@@ -24,6 +26,7 @@ public:
   std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>> getTargetIdentifierToDescription();
   std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>> getActualIdentifierToDescription();
   std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>> getConfigIdentifierToDescription();
+  std::shared_ptr<std::list<std::string>> getConfigIdentifiers();
 private:
   std::string name_;
   std::shared_ptr<double> position_resolution_;
@@ -35,6 +38,7 @@ private:
           actual_identifier_to_description_{nullptr};
   std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>>
           config_identifier_to_description_{nullptr};
+  std::shared_ptr<std::list<std::string>> config_identifiers_;
 };
 }  // namespace tuw_hardware_interface
 

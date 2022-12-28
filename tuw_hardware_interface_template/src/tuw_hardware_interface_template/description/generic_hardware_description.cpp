@@ -30,6 +30,8 @@ GenericHardwareDescription::GenericHardwareDescription(YAML::Node yaml)
   this->config_identifier_to_description_ =
           std::make_shared<std::map<std::string, GenericHardwareParameterDescription>>();
 
+  this->config_identifiers_ = std::make_shared<std::list<std::string>>();
+
   YAML::Node target_values_yaml = yaml["target_state_parameters"];
   YAML::Node actual_values_yaml = yaml["actual_state_parameters"];
   YAML::Node config_values_yaml = yaml["config_parameters"];
@@ -49,6 +51,7 @@ GenericHardwareDescription::GenericHardwareDescription(YAML::Node yaml)
   for (auto config_value_yaml : config_values_yaml)
   {
     std::string key = config_value_yaml["identifier"].as<std::string>();
+    this->config_identifiers_->emplace_back(key);
     this->config_identifier_to_description_->insert({key, GenericHardwareParameterDescription(config_value_yaml)});
   }
 }
@@ -89,4 +92,9 @@ std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>>
 GenericHardwareDescription::getConfigIdentifierToDescription()
 {
   return this->config_identifier_to_description_;
+}
+
+std::shared_ptr<std::list<std::string>> GenericHardwareDescription::getConfigIdentifiers()
+{
+  return this->config_identifiers_;
 }

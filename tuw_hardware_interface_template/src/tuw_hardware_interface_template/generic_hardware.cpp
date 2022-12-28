@@ -57,7 +57,7 @@ GenericHardware::GenericHardware(GenericHardwareDescription hardware_description
   if (hardware_description.getEffortResolution())
     this->modes_to_resolution_.insert({Mode::EFFORT, *hardware_description.getEffortResolution()});
 
-  for (const auto &key_value_pair : *hardware_description.getTargetIdentifierToDescription())
+  for (const auto& key_value_pair : *hardware_description.getTargetIdentifierToDescription())
   {
     auto key = key_value_pair.first;
     auto value = key_value_pair.second;
@@ -84,7 +84,7 @@ GenericHardware::GenericHardware(GenericHardwareDescription hardware_description
     }
   }
 
-  for (const auto &key_value_pair : *hardware_description.getActualIdentifierToDescription())
+  for (const auto& key_value_pair : *hardware_description.getActualIdentifierToDescription())
   {
     auto key = key_value_pair.first;
     auto value = key_value_pair.second;
@@ -111,11 +111,15 @@ GenericHardware::GenericHardware(GenericHardwareDescription hardware_description
     }
   }
 
-  for (const auto &key_value_pair : *hardware_description.getConfigIdentifierToDescription())
+  for (const auto& key : *hardware_description.getConfigIdentifiers())
+  {
+    this->config_identifiers_->emplace_back(key);
+  }
+
+  for (const auto& key_value_pair : *hardware_description.getConfigIdentifierToDescription())
   {
     auto key = key_value_pair.first;
     auto value = key_value_pair.second;
-    this->config_identifiers_->emplace_back(key);
     this->config_identifier_to_parameter_->insert({key, GenericHardwareParameter(value)});
   }
 }
@@ -183,7 +187,7 @@ std::string GenericHardware::modeToString(GenericHardware::Mode mode)
     case GenericHardware::Mode::POSITION:
       return "POSITION";
     case GenericHardware::Mode::VELOCITY:
-        return "VELOCITY";
+      return "VELOCITY";
     case GenericHardware::Mode::EFFORT:
       return "EFFORT";
     default:
