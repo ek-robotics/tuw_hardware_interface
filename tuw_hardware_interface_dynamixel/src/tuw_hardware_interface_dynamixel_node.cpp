@@ -18,7 +18,7 @@ int main(int argc, char** argv)
   ros::AsyncSpinner spinner(1);
   spinner.start();
 
-  tuw_ros_control_generic::GenericSetupPrefix::setSetupName("test_setup");
+  tuw_hardware_interface::GenericSetupPrefix::setSetupName("test_setup");
   tuw_hardware_interface::DynamixelHardwareInterface dynamixel_hardware_interface;
   if (dynamixel_hardware_interface.init(basic_nh, hardware_nh))
   {

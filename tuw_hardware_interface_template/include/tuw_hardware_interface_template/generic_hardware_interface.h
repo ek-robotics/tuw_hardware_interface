@@ -12,10 +12,10 @@
 
 #include <tuw_hardware_interface_template/generic_joint.h>
 
-using tuw_ros_control_generic::GenericJoint;
-using tuw_ros_control_generic::GenericJointDescription;
+using tuw_hardware_interface::GenericJoint;
+using tuw_hardware_interface::GenericJointDescription;
 
-namespace tuw_ros_control_generic
+namespace tuw_hardware_interface
 {
 class GenericHardwareInterface : public hardware_interface::RobotHW
 {
@@ -37,6 +37,6 @@ protected:
   hardware_interface::VelocityJointInterface joint_velocity_interface;
   hardware_interface::EffortJointInterface joint_effort_interface;
 };
-}  // namespace tuw_ros_control_generic
+}  // namespace tuw_hardware_interface
 
 #endif  // TUW_ROS_CONTROL_GENERIC_GENERIC_ROS_CONTROL_HARDWARE_INTERFACE_H

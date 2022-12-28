@@ -9,9 +9,9 @@
 #include <tuw_hardware_interface_template/generic_setup_prefix.h>
 
 using tuw_hardware_interface::FileLoader;
-using tuw_ros_control_generic::GenericConnection;
-using tuw_ros_control_generic::GenericConnectionDescription;
-using tuw_ros_control_generic::GenericSetupPrefix;
+using tuw_hardware_interface::GenericConnection;
+using tuw_hardware_interface::GenericConnectionDescription;
+using tuw_hardware_interface::GenericSetupPrefix;
 
 #define TEST_FILE_PATH "/test/resources/generic_connection_test.yaml"
 

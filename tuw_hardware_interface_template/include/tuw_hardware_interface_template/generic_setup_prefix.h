@@ -9,9 +9,9 @@
 #include <ros/ros.h>
 
 #define LOG c_str()
-#define PREFIX tuw_ros_control_generic::GenericSetupPrefix::getLogPrefix().LOG
+#define PREFIX tuw_hardware_interface::GenericSetupPrefix::getLogPrefix().LOG
 
-namespace tuw_ros_control_generic
+namespace tuw_hardware_interface
 {
 class GenericSetupPrefix
 {
@@ -28,6 +28,6 @@ protected:
   static std::string node_name_;
   static std::string setup_name_;
 };
-}  // namespace tuw_ros_control_generic
+}  // namespace tuw_hardware_interface
 
 #endif  // TUW_ROS_CONTROL_GENERIC_GENERIC_SETUP_PREFIX_H

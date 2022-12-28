@@ -13,10 +13,10 @@
 #include <tuw_hardware_interface_template/description/generic_hardware_description.h>
 #include <tuw_hardware_interface_template/generic_setup_prefix.h>
 
-using tuw_ros_control_generic::GenericConfigDescription;
-using tuw_ros_control_generic::GenericConnectionDescription;
-using tuw_ros_control_generic::GenericHardwareDescription;
-using tuw_ros_control_generic::GenericJointDescription;
+using tuw_hardware_interface::GenericConfigDescription;
+using tuw_hardware_interface::GenericConnectionDescription;
+using tuw_hardware_interface::GenericHardwareDescription;
+using tuw_hardware_interface::GenericJointDescription;
 
 GenericJointDescription::GenericJointDescription(YAML::Node yaml)
 {

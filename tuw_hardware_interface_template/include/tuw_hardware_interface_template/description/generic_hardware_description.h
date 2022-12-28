@@ -9,7 +9,7 @@
 
 #include <yaml-cpp/yaml.h>
 
-namespace tuw_ros_control_generic
+namespace tuw_hardware_interface
 {
 class GenericHardwareParameterDescription;
 
@@ -36,6 +36,6 @@ private:
   std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>>
           config_identifier_to_description_{nullptr};
 };
-}  // namespace tuw_ros_control_generic
+}  // namespace tuw_hardware_interface
 
-#endif  // TUW_ROS_CONTROL_GENERIC_DESCRIPTION_GENERIC_HARDWARE_DESCRIPTION_H
+#endif  // TUW_HARDWARE_INTERFACE_TEMPLATE_DESCRIPTION_GENERIC_HARDWARE_DESCRIPTION_H

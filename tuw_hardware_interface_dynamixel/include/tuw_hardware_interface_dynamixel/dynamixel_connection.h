@@ -15,10 +15,6 @@
 using dynamixel::PacketHandler;
 using dynamixel::PortHandler;
 
-using tuw_ros_control_generic::GenericConnection;
-using tuw_ros_control_generic::GenericConnectionDescription;
-using tuw_ros_control_generic::GenericHardwareParameter;
-
 namespace tuw_hardware_interface
 {
 class DynamixelConnectionDescription;

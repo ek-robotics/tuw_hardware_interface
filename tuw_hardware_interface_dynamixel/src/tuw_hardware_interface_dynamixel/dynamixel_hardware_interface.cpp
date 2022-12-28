@@ -16,12 +16,13 @@
 
 using tuw_hardware_interface::DynamixelHardwareInterface;
 using tuw_hardware_interface::DynamixelConnection;
-using tuw_ros_control_generic::GenericHardware;
-using tuw_ros_control_generic::GenericConfig;
-using tuw_ros_control_generic::GenericHardwareDescription;
-using tuw_ros_control_generic::GenericConfigDescription;
-using tuw_ros_control_generic::GenericSetupPrefix;
-using tuw_ros_control_generic::GenericSetupDescription;
+using tuw_hardware_interface::GenericHardware;
+using tuw_hardware_interface::GenericConfig;
+using tuw_hardware_interface::GenericHardwareDescription;
+using tuw_hardware_interface::GenericHardwareInterface;
+using tuw_hardware_interface::GenericConfigDescription;
+using tuw_hardware_interface::GenericSetupPrefix;
+using tuw_hardware_interface::GenericSetupDescription;
 
 std::string GenericHardwareInterface::setup_parameter_ = "dynamixel_hardware_interface_setup";
 

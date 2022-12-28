@@ -8,7 +8,7 @@
 
 #include <yaml-cpp/yaml.h>
 
-namespace tuw_ros_control_generic
+namespace tuw_hardware_interface
 {
 class GenericJointDescription;
 class GenericSetupDescription
@@ -21,7 +21,7 @@ protected:
   std::string name_;
   std::list<GenericJointDescription> joints_ {std::list<GenericJointDescription>()};
 };
-}  // namespace tuw_ros_control_generic
+}  // namespace tuw_hardware_interface
 
 
 #endif  // TUW_HARDWARE_INTERFACE_TEMPLATE_DESCRIPTION_GENERIC_SETUP_DESCRIPTION_H

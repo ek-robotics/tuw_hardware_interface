@@ -5,9 +5,9 @@
 #include <map>
 #include <string>
 
-using tuw_ros_control_generic::GenericConfigDescription;
+using tuw_hardware_interface::GenericConfigDescription;
 
-GenericConfigDescription::GenericConfigDescription(YAML::Node yaml)
+GenericConfigDescription::GenericConfigDescription(const YAML::Node& yaml)
 {
   for (auto key_value_pair : yaml)
   {

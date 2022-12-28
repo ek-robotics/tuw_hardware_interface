@@ -17,14 +17,14 @@
 #define TEST_FILE_PATH "/test/resources/generic_config_test.yaml"
 
 using tuw_hardware_interface::FileLoader;
-using tuw_ros_control_generic::GenericConfig;
-using tuw_ros_control_generic::GenericConfigDescription;
-using tuw_ros_control_generic::GenericHardware;
-using tuw_ros_control_generic::GenericHardwareDescription;
-using tuw_ros_control_generic::GenericHardwareParameter;
-using tuw_ros_control_generic::GenericHardwareParameterDescription;
-using tuw_ros_control_generic::GenericJoint;
-using tuw_ros_control_generic::GenericSetupPrefix;
+using tuw_hardware_interface::GenericConfig;
+using tuw_hardware_interface::GenericConfigDescription;
+using tuw_hardware_interface::GenericHardware;
+using tuw_hardware_interface::GenericHardwareDescription;
+using tuw_hardware_interface::GenericHardwareParameter;
+using tuw_hardware_interface::GenericHardwareParameterDescription;
+using tuw_hardware_interface::GenericJoint;
+using tuw_hardware_interface::GenericSetupPrefix;
 
 class JointMock : public GenericJoint
 {

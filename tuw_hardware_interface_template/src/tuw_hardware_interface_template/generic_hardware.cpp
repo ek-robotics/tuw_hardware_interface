@@ -11,8 +11,8 @@
 
 #include <tuw_hardware_interface_template/generic_setup_prefix.h>
 
-using tuw_ros_control_generic::GenericHardware;
-using tuw_ros_control_generic::GenericHardwareParameter;
+using tuw_hardware_interface::GenericHardware;
+using tuw_hardware_interface::GenericHardwareParameter;
 
 std::mutex GenericHardware::mutex_;
 std::unique_ptr<std::map<std::string, std::shared_ptr<GenericHardware>>> GenericHardware::hardware_table_;
@@ -125,7 +125,7 @@ GenericHardware::GenericHardware()
   // constructor for mocking
 }
 
-std::string tuw_ros_control_generic::GenericHardware::getName()
+std::string GenericHardware::getName()
 {
   return this->name_;
 }

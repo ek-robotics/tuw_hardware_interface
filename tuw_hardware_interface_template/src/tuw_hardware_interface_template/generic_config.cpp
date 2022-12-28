@@ -3,6 +3,7 @@
 #include <tuw_hardware_interface_template/generic_config.h>
 #include <tuw_hardware_interface_template/generic_connection.h>
 #include <tuw_hardware_interface_template/generic_hardware.h>
+#include <tuw_hardware_interface_template/generic_hardware_parameter.h>
 #include <tuw_hardware_interface_template/generic_joint.h>
 #include <tuw_hardware_interface_template/generic_setup_prefix.h>
 
@@ -10,9 +11,10 @@
 #include <utility>
 #include <string>
 
-using tuw_ros_control_generic::GenericConfig;
-using tuw_ros_control_generic::GenericConnection;
-using tuw_ros_control_generic::GenericJoint;
+using tuw_hardware_interface::GenericConfig;
+using tuw_hardware_interface::GenericConnection;
+using tuw_hardware_interface::GenericHardwareParameter;
+using tuw_hardware_interface::GenericJoint;
 
 GenericConfig::GenericConfig(std::shared_ptr<GenericJoint> joint,
                              std::shared_ptr<GenericHardware> hardware)

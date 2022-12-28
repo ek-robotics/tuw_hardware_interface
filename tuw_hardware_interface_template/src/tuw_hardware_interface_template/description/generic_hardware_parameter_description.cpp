@@ -7,7 +7,7 @@
 #include <string>
 #include <utility>
 
-using tuw_ros_control_generic::GenericHardwareParameterDescription;
+using tuw_hardware_interface::GenericHardwareParameterDescription;
 
 GenericHardwareParameterDescription::GenericHardwareParameterDescription(YAML::Node yaml)
 {

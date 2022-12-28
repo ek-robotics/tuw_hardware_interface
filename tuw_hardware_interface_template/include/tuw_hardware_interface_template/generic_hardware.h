@@ -14,7 +14,7 @@
 #include <tuw_hardware_interface_template/description/generic_hardware_description.h>
 #include <tuw_hardware_interface_template/generic_hardware_parameter.h>
 
-namespace tuw_ros_control_generic
+namespace tuw_hardware_interface
 {
 class GenericHardware
 {
@@ -53,6 +53,6 @@ private:
   std::shared_ptr<std::list<std::string>> config_identifiers_;
   std::shared_ptr<std::map<std::string, GenericHardwareParameter>> config_identifier_to_parameter_;
 };
-}  // namespace tuw_ros_control_generic
+}  // namespace tuw_hardware_interface
 
 #endif  // TUW_ROS_CONTROL_GENERIC_GENERIC_HARDWARE_H

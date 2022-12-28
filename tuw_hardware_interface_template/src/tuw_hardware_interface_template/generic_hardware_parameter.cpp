@@ -6,8 +6,8 @@
 #include <memory>
 #include <string>
 
-using tuw_ros_control_generic::GenericHardwareParameter;
-using tuw_ros_control_generic::GenericHardwareParameterDescription;
+using tuw_hardware_interface::GenericHardwareParameter;
+using tuw_hardware_interface::GenericHardwareParameterDescription;
 
 GenericHardwareParameter::GenericHardwareParameter(GenericHardwareParameterDescription hardware_parameter_description)
 {
@@ -39,7 +39,7 @@ GenericHardwareParameter::Type GenericHardwareParameter::getType()
   return this->type_;
 }
 
-bool tuw_ros_control_generic::GenericHardwareParameter::isValid()
+bool GenericHardwareParameter::isValid()
 {
   return this->isTarget() ^ this->isActual() ^ this->isEnum() ^ this->isRange();
 }

@@ -7,8 +7,6 @@
 
 #include <list>
 
-using tuw_ros_control_generic::GenericHardwareInterface;
-
 namespace tuw_hardware_interface
 {
 class DynamixelJointDescription;

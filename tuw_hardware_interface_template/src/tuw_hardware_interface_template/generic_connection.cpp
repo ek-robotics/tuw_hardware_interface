@@ -8,8 +8,8 @@
 
 #include <tuw_hardware_interface_template/description/generic_connection_description.h>
 
-using tuw_ros_control_generic::GenericConnection;
-using tuw_ros_control_generic::GenericConnectionDescription;
+using tuw_hardware_interface::GenericConnection;
+using tuw_hardware_interface::GenericConnectionDescription;
 
 std::mutex GenericConnection::mutex_;
 std::unique_ptr<std::map<std::string, std::shared_ptr<GenericConnection>>> GenericConnection::connection_table_;

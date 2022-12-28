@@ -9,7 +9,7 @@
 #define TEST_FILE_PATH "/test/resources/description/generic_connection_description_test.yaml"
 
 using tuw_hardware_interface::FileLoader;
-using tuw_ros_control_generic::GenericConnectionDescription;
+using tuw_hardware_interface::GenericConnectionDescription;
 
 class GenericConnectionDescriptionTest : public ::testing::Test
 {

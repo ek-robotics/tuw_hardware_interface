@@ -12,11 +12,11 @@
 
 #include <urdf/model.h>
 
-using tuw_ros_control_generic::GenericConnection;
-using tuw_ros_control_generic::GenericHardware;
-using tuw_ros_control_generic::GenericHardwareParameter;
-using tuw_ros_control_generic::GenericJoint;
-using tuw_ros_control_generic::GenericJointDescription;
+using tuw_hardware_interface::GenericConnection;
+using tuw_hardware_interface::GenericHardware;
+using tuw_hardware_interface::GenericHardwareParameter;
+using tuw_hardware_interface::GenericJoint;
+using tuw_hardware_interface::GenericJointDescription;
 
 GenericJoint::GenericJoint(GenericJointDescription joint_description)
 {

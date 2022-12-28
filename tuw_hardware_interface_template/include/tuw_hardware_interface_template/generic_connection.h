@@ -8,7 +8,7 @@
 #include <mutex>
 #include <string>
 
-namespace tuw_ros_control_generic
+namespace tuw_hardware_interface
 {
 class GenericHardwareParameter;
 class GenericConnectionDescription;
@@ -32,6 +32,6 @@ protected:
   // instance variables
   std::mutex connection_mutex_;
 };
-}  // namespace tuw_ros_control_generic
+}  // namespace tuw_hardware_interface
 
 #endif  // TUW_ROS_CONTROL_GENERIC_GENERIC_CONNECTION_H

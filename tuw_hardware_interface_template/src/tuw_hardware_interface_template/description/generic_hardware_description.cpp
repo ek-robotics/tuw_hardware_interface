@@ -7,8 +7,8 @@
 #include <memory>
 #include <string>
 
-using tuw_ros_control_generic::GenericHardwareDescription;
-using tuw_ros_control_generic::GenericHardwareParameterDescription;
+using tuw_hardware_interface::GenericHardwareDescription;
+using tuw_hardware_interface::GenericHardwareParameterDescription;
 
 GenericHardwareDescription::GenericHardwareDescription(YAML::Node yaml)
 {

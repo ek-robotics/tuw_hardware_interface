@@ -6,7 +6,7 @@
 #include <functional>
 #include <string>
 
-using tuw_ros_control_generic::GenericSetupPrefix;
+using tuw_hardware_interface::GenericSetupPrefix;
 
 std::string GenericSetupPrefix::node_name_;
 std::string GenericSetupPrefix::setup_name_;
@@ -37,7 +37,7 @@ std::string GenericSetupPrefix::getNodeName()
   return GenericSetupPrefix::node_name_;
 }
 
-std::string tuw_ros_control_generic::GenericSetupPrefix::getNodeNameLower()
+std::string GenericSetupPrefix::getNodeNameLower()
 {
   std::string node_name = GenericSetupPrefix::getNodeName();
   // to lower
@@ -47,7 +47,7 @@ std::string tuw_ros_control_generic::GenericSetupPrefix::getNodeNameLower()
   return node_name;
 }
 
-std::string tuw_ros_control_generic::GenericSetupPrefix::getNodeNameUpper()
+std::string GenericSetupPrefix::getNodeNameUpper()
 {
   std::string node_name = GenericSetupPrefix::getNodeName();
   // to upper

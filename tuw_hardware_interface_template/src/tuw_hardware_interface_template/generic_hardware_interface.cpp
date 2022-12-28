@@ -13,8 +13,9 @@
 #include <tuw_hardware_interface_template/generic_config.h>
 #include <tuw_hardware_interface_template/generic_hardware.h>
 
-using tuw_ros_control_generic::GenericSetupDescription;
-using tuw_ros_control_generic::GenericHardwareInterface;
+using tuw_hardware_interface::GenericJoint;
+using tuw_hardware_interface::GenericSetupDescription;
+using tuw_hardware_interface::GenericHardwareInterface;
 
 std::string GenericHardwareInterface::setup_parameter_ = "generic_setup";
 

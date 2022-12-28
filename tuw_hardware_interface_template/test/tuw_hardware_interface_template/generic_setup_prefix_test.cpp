@@ -6,7 +6,7 @@
 
 #include <tuw_hardware_interface_template/generic_setup_prefix.h>
 
-using tuw_ros_control_generic::GenericSetupPrefix;
+using tuw_hardware_interface::GenericSetupPrefix;
 
 TEST(GenericSetupNameTest, verifySetupName)
 {

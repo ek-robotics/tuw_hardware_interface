@@ -7,8 +7,8 @@
 
 #include <tuw_hardware_interface_template/description/generic_joint_description.h>
 
-using tuw_ros_control_generic::GenericJointDescription;
-using tuw_ros_control_generic::GenericSetupDescription;
+using tuw_hardware_interface::GenericJointDescription;
+using tuw_hardware_interface::GenericSetupDescription;
 
 GenericSetupDescription::GenericSetupDescription(YAML::Node yaml)
 {

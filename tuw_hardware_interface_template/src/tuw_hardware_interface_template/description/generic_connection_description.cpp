@@ -4,7 +4,7 @@
 
 #include <string>
 
-using tuw_ros_control_generic::GenericConnectionDescription;
+using tuw_hardware_interface::GenericConnectionDescription;
 
 GenericConnectionDescription::GenericConnectionDescription(YAML::Node yaml)
 {

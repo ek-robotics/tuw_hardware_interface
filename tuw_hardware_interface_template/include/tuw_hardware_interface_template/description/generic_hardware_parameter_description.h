@@ -9,7 +9,7 @@
 
 #include <yaml-cpp/yaml.h>
 
-namespace tuw_ros_control_generic
+namespace tuw_hardware_interface
 {
 class GenericHardwareParameterDescription
 {
@@ -29,6 +29,6 @@ protected:
   std::shared_ptr<std::map<std::string, int>> enum_ {nullptr};
   std::shared_ptr<std::map<std::string, int>> range_ {nullptr};
 };
-}  // namespace tuw_ros_control_generic
+}  // namespace tuw_hardware_interface
 
 #endif  // TUW_HARDWARE_INTERFACE_TEMPLATE_DESCRIPTION_GENERIC_HARDWARE_PARAMETER_DESCRIPTION_H

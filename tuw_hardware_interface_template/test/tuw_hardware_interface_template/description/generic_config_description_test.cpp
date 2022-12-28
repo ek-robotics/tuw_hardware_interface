@@ -9,7 +9,7 @@
 #define TEST_FILE_PATH "/test/resources/description/generic_config_description_test.yaml"
 
 using tuw_hardware_interface::FileLoader;
-using tuw_ros_control_generic::GenericConfigDescription;
+using tuw_hardware_interface::GenericConfigDescription;
 
 class GenericConfigDescriptionTest : public ::testing::Test
 {

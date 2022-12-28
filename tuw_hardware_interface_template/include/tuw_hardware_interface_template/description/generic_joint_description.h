@@ -8,7 +8,7 @@
 
 #include <yaml-cpp/yaml.h>
 
-namespace tuw_ros_control_generic
+namespace tuw_hardware_interface
 {
 class GenericConnectionDescription;
 class GenericHardwareDescription;
@@ -30,6 +30,6 @@ protected:
   std::shared_ptr<GenericHardwareDescription> hardware_description_ {nullptr};
   std::shared_ptr<GenericConfigDescription> config_description_ {nullptr};
 };
-}  // namespace tuw_ros_control_generic
+}  // namespace tuw_hardware_interface
 
 #endif  // TUW_HARDWARE_INTERFACE_TEMPLATE_DESCRIPTION_GENERIC_JOINT_DESCRIPTION_H

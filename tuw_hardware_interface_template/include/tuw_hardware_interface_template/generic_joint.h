@@ -27,9 +27,9 @@ using joint_limits_interface::PositionJointSoftLimitsHandle;
 using joint_limits_interface::VelocityJointSoftLimitsHandle;
 using joint_limits_interface::EffortJointSoftLimitsHandle;
 
-using tuw_ros_control_generic::GenericHardware;
+using tuw_hardware_interface::GenericHardware;
 
-namespace tuw_ros_control_generic
+namespace tuw_hardware_interface
 {
 class GenericConfig;
 class GenericConnection;
@@ -106,6 +106,6 @@ private:
   std::unique_ptr<VelocityJointSoftLimitsHandle> joint_velocity_soft_limit_handle_ {nullptr};
   std::unique_ptr<EffortJointSoftLimitsHandle> joint_effort_soft_limit_handle_ {nullptr};
 };
-}  // namespace tuw_ros_control_generic
+}  // namespace tuw_hardware_interface
 
 #endif  // TUW_ROS_CONTROL_GENERIC_GENERIC_JOINT_H

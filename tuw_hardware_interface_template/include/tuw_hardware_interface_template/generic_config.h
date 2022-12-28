@@ -12,7 +12,7 @@
 #include <tuw_hardware_interface_template/description/generic_config_description.h>
 #include <tuw_hardware_interface_template/description/generic_hardware_parameter_description.h>
 
-namespace tuw_ros_control_generic
+namespace tuw_hardware_interface
 {
 class GenericJoint;
 class GenericHardware;
@@ -45,6 +45,6 @@ protected:
   std::map<std::string, int> target_config_values_ {std::map<std::string, int>()};
   std::map<std::string, int> actual_config_values_ {std::map<std::string, int>()};
 };
-}  // namespace tuw_ros_control_generic
+}  // namespace tuw_hardware_interface
 
 #endif  // TUW_HARDWARE_INTERFACE_TEMPLATE_GENERIC_CONFIG_H

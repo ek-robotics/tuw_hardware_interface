@@ -9,7 +9,7 @@
 #define TEST_FILE_PATH "/test/resources/description/generic_joint_description_test.yaml"
 
 using tuw_hardware_interface::FileLoader;
-using tuw_ros_control_generic::GenericJointDescription;
+using tuw_hardware_interface::GenericJointDescription;
 
 class GenericJointDescriptionTest : public ::testing::Test
 {
