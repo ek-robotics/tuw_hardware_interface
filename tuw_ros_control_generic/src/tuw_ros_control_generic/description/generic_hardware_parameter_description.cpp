@@ -25,12 +25,12 @@ GenericHardwareParameterDescription::GenericHardwareParameterDescription(YAML::N
   {
     this->description_ = nullptr;
   }
-  // optional: range (enum)
+  // optional: enum
   try
   {
     YAML::Node range_enum_node = yaml["enum"];
 
-    if (!range_enum_node.IsDefined())
+    if (!range_enum_node.IsDefined() || range_enum_node.IsNull())
     {
       throw std::runtime_error("no enum");
     }
@@ -48,7 +48,7 @@ GenericHardwareParameterDescription::GenericHardwareParameterDescription(YAML::N
   {
     this->enum_ = nullptr;
   }
-  // optional: range (max, min)
+  // optional: range
   try
   {
     int min = yaml["range"]["min"].as<int>();

@@ -20,12 +20,20 @@ protected:
   GenericHardwareParameterDescription actual_ =
           GenericHardwareParameterDescription(
                   FileLoader::loadYAMLFromFile(TEST_FILE_PATH)["actual_state_parameters"]);
+
   GenericHardwareParameterDescription enum_ =
           GenericHardwareParameterDescription(
                   FileLoader::loadYAMLFromFile(TEST_FILE_PATH)["config_parameters"]["enum"]);
+  GenericHardwareParameterDescription enum_null_ =
+          GenericHardwareParameterDescription(
+                  FileLoader::loadYAMLFromFile(TEST_FILE_PATH)["config_parameters"]["enum_null"]);
+
   GenericHardwareParameterDescription range_ =
           GenericHardwareParameterDescription(
                   FileLoader::loadYAMLFromFile(TEST_FILE_PATH)["config_parameters"]["range"]);
+  GenericHardwareParameterDescription range_null_ =
+          GenericHardwareParameterDescription(
+                  FileLoader::loadYAMLFromFile(TEST_FILE_PATH)["config_parameters"]["range_null"]);
 };
 
 TEST_F(GenericHardwareParameterDescriptionTest, verifyTargetPointers)
@@ -71,6 +79,15 @@ TEST_F(GenericHardwareParameterDescriptionTest, verifyEnumPointers)
   ASSERT_FALSE(enum_.getRange());
 }
 
+TEST_F(GenericHardwareParameterDescriptionTest, verifyEnumNullPointers)
+{
+  ASSERT_TRUE(enum_null_.getIdentifier());
+  ASSERT_TRUE(enum_null_.getAddress());
+  ASSERT_TRUE(enum_null_.getLength());
+  ASSERT_TRUE(enum_null_.getEnum());
+  ASSERT_FALSE(enum_null_.getRange());
+}
+
 TEST_F(GenericHardwareParameterDescriptionTest, verifyEnumValues)
 {
   ASSERT_EQ(*enum_.getIdentifier(), "ecp");
@@ -89,6 +106,15 @@ TEST_F(GenericHardwareParameterDescriptionTest, verifyRangePointers)
   ASSERT_TRUE(range_.getLength());
   ASSERT_TRUE(range_.getRange());
   ASSERT_FALSE(range_.getEnum());
+}
+
+TEST_F(GenericHardwareParameterDescriptionTest, verifyNullPointers)
+{
+  ASSERT_TRUE(range_null_.getIdentifier());
+  ASSERT_TRUE(range_null_.getAddress());
+  ASSERT_TRUE(range_null_.getLength());
+  ASSERT_TRUE(range_null_.getRange());
+  ASSERT_FALSE(range_null_.getEnum());
 }
 
 TEST_F(GenericHardwareParameterDescriptionTest, verifyRangeValues)
