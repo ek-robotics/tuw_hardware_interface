@@ -50,7 +50,7 @@ target_link_libraries(
 
 add_executable(
   tuw_hardware_interface_dynamixel_node
-  src/tuw_hardware_interface_dynamixel_node.cpp
+  src/dynamixel_hardware_interface_node.cpp
 )
 
 add_dependencies(
