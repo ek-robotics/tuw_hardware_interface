@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="2">
 
-  <name>tuw_dynamixel_hardware_interface</name>
+  <name>tuw_hardware_interface_dynamixel</name>
   <version>0.0.0</version>
   <description>The tuw_dynamixel_hardware_interface package</description>
 

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(tuw_dynamixel_hardware_interface)
+project(tuw_hardware_interface_dynamixel)
 
 add_compile_options(-std=c++14)
 
@@ -33,7 +33,7 @@ include_directories(
 roslint_cpp()
 
 add_library(
-  tuw_dynamixel_hardware_interface
+  tuw_hardware_interface_dynamixel
   src/${PROJECT_NAME}/description/dynamixel_connection_description.cpp
   src/${PROJECT_NAME}/description/dynamixel_joint_description.cpp
   src/${PROJECT_NAME}/description/dynamixel_setup_description.cpp
@@ -42,22 +42,22 @@ add_library(
 )
 
 target_link_libraries(
-  tuw_dynamixel_hardware_interface
+  tuw_hardware_interface_dynamixel
   ${catkin_LIBRARIES}
 )
 
 add_executable(
-  tuw_dynamixel_hardware_interface_node
-  src/tuw_dynamixel_hardware_interface_node.cpp
+  tuw_hardware_interface_dynamixel_node
+  src/tuw_hardware_interface_dynamixel_node.cpp
 )
 
 add_dependencies(
-  tuw_dynamixel_hardware_interface_node
-  tuw_dynamixel_hardware_interface
+  tuw_hardware_interface_dynamixel_node
+  tuw_hardware_interface_dynamixel
 )
 
 target_link_libraries(
-  tuw_dynamixel_hardware_interface_node
-  tuw_dynamixel_hardware_interface
+  tuw_hardware_interface_dynamixel_node
+  tuw_hardware_interface_dynamixel
   ${catkin_LIBRARIES}
 )

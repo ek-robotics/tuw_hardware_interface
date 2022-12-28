@@ -3,13 +3,13 @@
 #ifndef DIP_WS_DYNAMIXEL_SETUP_DESCRIPTION_H
 #define DIP_WS_DYNAMIXEL_SETUP_DESCRIPTION_H
 
-#include "tuw_ros_control_generic/description/generic_setup_description.h"
-#include "dynamixel_joint_description.h"
+#include <tuw_ros_control_generic/description/generic_setup_description.h>
 
 using tuw_ros_control_generic::GenericSetupDescription;
 
 namespace tuw_hardware_interface
 {
+class DynamixelJointDescription;
 class DynamixelSetupDescription : public GenericSetupDescription
 {
 public:

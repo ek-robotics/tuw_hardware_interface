@@ -3,7 +3,7 @@
 #ifndef DIP_WS_DYNAMIXEL_CONNECTION_DESCRIPTION_H
 #define DIP_WS_DYNAMIXEL_CONNECTION_DESCRIPTION_H
 
-#include "tuw_ros_control_generic/description/generic_connection_description.h"
+#include <tuw_ros_control_generic/description/generic_connection_description.h>
 
 using tuw_ros_control_generic::GenericConnectionDescription;
 

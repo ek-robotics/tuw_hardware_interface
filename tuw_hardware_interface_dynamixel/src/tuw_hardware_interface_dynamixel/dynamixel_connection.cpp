@@ -1,7 +1,10 @@
 // Copyright 2022 Eugen Kaltenegger
 
-#include "../../include/tuw_dynamixel_hardware_interface/dynamixel_connection.h"
-#include "tuw_ros_control_generic/generic_hardware_parameter.h"
+#include "../../include/tuw_hardware_interface_dynamixel/description/dynamixel_connection_description.h"
+#include "../../include/tuw_hardware_interface_dynamixel/dynamixel_connection.h"
+//#include <tuw_hardware_interface_dynamixel/dynamixel_connection.h>
+#include <tuw_ros_control_generic/generic_hardware_parameter.h>
+#include <tuw_ros_control_generic/generic_connection.h>
 
 using tuw_hardware_interface::DynamixelConnection;
 

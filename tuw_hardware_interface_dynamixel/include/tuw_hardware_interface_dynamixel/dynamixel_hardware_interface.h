@@ -3,13 +3,13 @@
 #ifndef DIP_WS_DYNAMIXEL_HARDWARE_INTERFACE_H
 #define DIP_WS_DYNAMIXEL_HARDWARE_INTERFACE_H
 
-#include "tuw_ros_control_generic/generic_hardware_interface.h"
-#include "description/dynamixel_joint_description.h"
+#include <tuw_ros_control_generic/generic_hardware_interface.h>
 
 using tuw_ros_control_generic::GenericHardwareInterface;
 
 namespace tuw_hardware_interface
 {
+class DynamixelJointDescription;
 class DynamixelHardwareInterface : public GenericHardwareInterface
 {
 public:

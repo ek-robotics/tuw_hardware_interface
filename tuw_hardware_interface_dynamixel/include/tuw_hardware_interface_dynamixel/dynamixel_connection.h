@@ -3,8 +3,7 @@
 #ifndef TUW_DYNAMIXEL_HARDWARE_INTERFACE_DYNAMIXEL_CONNECTION_H
 #define TUW_DYNAMIXEL_HARDWARE_INTERFACE_DYNAMIXEL_CONNECTION_H
 
-#include "tuw_ros_control_generic/generic_connection.h"
-#include "description/dynamixel_connection_description.h"
+#include <tuw_ros_control_generic/generic_connection.h>
 
 #include <dynamixel_sdk/dynamixel_sdk.h>
 
@@ -12,12 +11,14 @@
 
 using dynamixel::PacketHandler;
 using dynamixel::PortHandler;
+
 using tuw_ros_control_generic::GenericConnection;
 using tuw_ros_control_generic::GenericConnectionDescription;
 using tuw_ros_control_generic::GenericHardwareParameter;
 
 namespace tuw_hardware_interface
 {
+class DynamixelConnectionDescription;
 class DynamixelConnection : public GenericConnection
 {
 public:
