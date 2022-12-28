@@ -1,7 +1,7 @@
 // Copyright 2022 Eugen Kaltenegger
 
-#ifndef FILE_LOADER_H
-#define FILE_LOADER_H
+#ifndef TUW_HARDWARE_INTERFACE_TEMPLATE_UTILS_FILE_LOADER_H
+#define TUW_HARDWARE_INTERFACE_TEMPLATE_UTILS_FILE_LOADER_H
 
 #include <fstream>
 #include <string>
@@ -21,4 +21,4 @@ private:
 };
 }  // namespace tuw_hardware_interface
 
-#endif  // FILE_LOADER_H
+#endif  // TUW_HARDWARE_INTERFACE_TEMPLATE_UTILS_FILE_LOADER_H

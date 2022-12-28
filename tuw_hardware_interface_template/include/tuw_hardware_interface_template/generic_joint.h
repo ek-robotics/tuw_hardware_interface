@@ -1,7 +1,7 @@
 // Copyright 2022 Eugen Kaltenegger
 
-#ifndef TUW_ROS_CONTROL_GENERIC_GENERIC_JOINT_H
-#define TUW_ROS_CONTROL_GENERIC_GENERIC_JOINT_H
+#ifndef TUW_HARDWARE_INTERFACE_TEMPLATE_GENERIC_JOINT_H
+#define TUW_HARDWARE_INTERFACE_TEMPLATE_GENERIC_JOINT_H
 
 #include <memory>
 #include <string>
@@ -108,4 +108,4 @@ private:
 };
 }  // namespace tuw_hardware_interface
 
-#endif  // TUW_ROS_CONTROL_GENERIC_GENERIC_JOINT_H
+#endif  // TUW_HARDWARE_INTERFACE_TEMPLATE_GENERIC_JOINT_H

@@ -11,7 +11,6 @@
 #include <tuw_hardware_interface_template/description/generic_setup_description.h>
 
 #include <tuw_hardware_interface_template/generic_config.h>
-#include <tuw_hardware_interface_template/generic_hardware.h>
 
 using tuw_hardware_interface::GenericJoint;
 using tuw_hardware_interface::GenericSetupDescription;
@@ -37,7 +36,8 @@ bool GenericHardwareInterface::init(ros::NodeHandle &basic_node_handle,
   }
   catch(...)
   {
-    ROS_ERROR("[%s] PARAMETER FOR SETUP FILE NOT FOUND (\"%s\")", PREFIX, GenericHardwareInterface::setup_parameter_.LOG);
+    ROS_ERROR("[%s] PARAMETER FOR SETUP FILE NOT FOUND (\"%s\")",
+              PREFIX, GenericHardwareInterface::setup_parameter_.LOG);
     return false;
   }
 
@@ -47,7 +47,8 @@ bool GenericHardwareInterface::init(ros::NodeHandle &basic_node_handle,
   }
   catch (...)
   {
-    ROS_ERROR("[%s] SETUP FILE NOT FOUND OR INVALID (\"%s\")", PREFIX, setup_file_path.LOG);
+    ROS_ERROR("[%s] SETUP FILE NOT FOUND OR INVALID (\"%s\")",
+              PREFIX, setup_file_path.LOG);
     return false;
   }
 

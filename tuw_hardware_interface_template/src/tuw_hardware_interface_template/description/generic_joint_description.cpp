@@ -69,7 +69,9 @@ std::shared_ptr<GenericConfigDescription> GenericJointDescription::getConfigDesc
 
 YAML::Node GenericJointDescription::loadFile(YAML::Node location_yaml)
 {
-  std::string path = ros::package::getPath(location_yaml["package"].as<std::string>()) + "/" + location_yaml["path"].as<std::string>();
+  std::string package_path = ros::package::getPath(location_yaml["package"].as<std::string>());
+  std::string file_path = location_yaml["path"].as<std::string>();
+  std::string path = package_path + "/" + file_path;
   YAML::Node yaml =  YAML::LoadFile(path);
   return yaml;
 }

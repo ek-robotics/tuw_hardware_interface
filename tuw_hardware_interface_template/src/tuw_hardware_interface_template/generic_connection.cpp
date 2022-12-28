@@ -14,7 +14,8 @@ using tuw_hardware_interface::GenericConnectionDescription;
 std::mutex GenericConnection::mutex_;
 std::unique_ptr<std::map<std::string, std::shared_ptr<GenericConnection>>> GenericConnection::connection_table_;
 
-std::shared_ptr<GenericConnection>GenericConnection::getConnection(const std::shared_ptr<GenericConnectionDescription>& connection_description)
+std::shared_ptr<GenericConnection> GenericConnection::getConnection
+        (const std::shared_ptr<GenericConnectionDescription>& connection_description)
 {
   std::string connection_hash = connection_description->getHash();
 

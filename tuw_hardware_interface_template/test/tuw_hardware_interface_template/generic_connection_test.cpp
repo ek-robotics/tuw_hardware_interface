@@ -2,6 +2,8 @@
 
 #include <gtest/gtest.h>
 
+#include <memory>
+
 #include <tuw_hardware_interface_template/utils/file_loader.h>
 
 #include <tuw_hardware_interface_template/description/generic_connection_description.h>

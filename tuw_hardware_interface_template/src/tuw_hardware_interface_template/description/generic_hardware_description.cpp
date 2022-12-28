@@ -3,6 +3,7 @@
 #include <tuw_hardware_interface_template/description/generic_hardware_description.h>
 #include <tuw_hardware_interface_template/description/generic_hardware_parameter_description.h>
 
+#include <list>
 #include <map>
 #include <memory>
 #include <string>

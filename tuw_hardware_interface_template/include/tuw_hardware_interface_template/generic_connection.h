@@ -1,7 +1,7 @@
 // Copyright 2022 Eugen Kaltenegger
 
-#ifndef TUW_ROS_CONTROL_GENERIC_GENERIC_CONNECTION_H
-#define TUW_ROS_CONTROL_GENERIC_GENERIC_CONNECTION_H
+#ifndef TUW_HARDWARE_INTERFACE_TEMPLATE_GENERIC_CONNECTION_H
+#define TUW_HARDWARE_INTERFACE_TEMPLATE_GENERIC_CONNECTION_H
 
 #include <map>
 #include <memory>
@@ -11,12 +11,15 @@
 namespace tuw_hardware_interface
 {
 class GenericHardwareParameter;
+
 class GenericConnectionDescription;
+
 class GenericConnection
 {
 public:
   // singleton function
-  static std::shared_ptr<GenericConnection> getConnection(const std::shared_ptr<GenericConnectionDescription>& connection_description);
+  static std::shared_ptr<GenericConnection> getConnection
+          (const std::shared_ptr<GenericConnectionDescription>& connection_description);
   // instance functions
   explicit GenericConnection(std::shared_ptr<GenericConnectionDescription> connection_description);
   GenericConnection();
@@ -34,4 +37,4 @@ protected:
 };
 }  // namespace tuw_hardware_interface
 
-#endif  // TUW_ROS_CONTROL_GENERIC_GENERIC_CONNECTION_H
+#endif  // TUW_HARDWARE_INTERFACE_TEMPLATE_GENERIC_CONNECTION_H
