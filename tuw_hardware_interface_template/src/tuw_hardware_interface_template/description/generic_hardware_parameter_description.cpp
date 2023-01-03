@@ -28,16 +28,16 @@ GenericHardwareParameterDescription::GenericHardwareParameterDescription(YAML::N
   // optional: enum
   try
   {
-    YAML::Node range_enum_node = yaml["enum"];
+    YAML::Node enum_node = yaml["enum"];
 
-    if (!range_enum_node.IsDefined() || range_enum_node.IsNull())
+    if (!enum_node.IsDefined() || enum_node.IsNull())
     {
       throw std::runtime_error("no enum");
     }
 
     this->enum_ = std::make_shared<std::map<std::string, int>>();
 
-    for (YAML::const_iterator iterator = range_enum_node.begin() ; iterator != range_enum_node.end(); ++iterator)
+    for (YAML::const_iterator iterator = enum_node.begin() ; iterator != enum_node.end(); ++iterator)
     {
       std::string key = iterator->first.as<std::string>();
       int value = iterator->second.as<int>();
@@ -51,8 +51,15 @@ GenericHardwareParameterDescription::GenericHardwareParameterDescription(YAML::N
   // optional: range
   try
   {
-    int min = yaml["range"]["min"].as<int>();
-    int max = yaml["range"]["max"].as<int>();
+    YAML::Node range_node = yaml["range"];
+
+    if (!range_node.IsDefined() || range_node.IsNull())
+    {
+      throw std::runtime_error("no range");
+    }
+
+    int min = range_node["min"].as<int>();
+    int max = range_node["max"].as<int>();
     this->range_ = std::make_shared<std::map<std::string, int>>();
     this->range_->insert(std::pair<std::string, int>("min", min));
     this->range_->insert(std::pair<std::string, int>("max", max));
