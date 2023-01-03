@@ -1,0 +1,40 @@
+name: "TMCM-106"
+
+resolution:
+#  position: 0.08800 # deg
+  position: 0.0015358897418 # rad
+  velocity: 0.22900 # rpm
+  effort:   0.00336 # A
+
+target_state_parameters:
+  - identifier: target_position
+    address: 0
+    range: { min: -2147483648, max: 2147483647 }
+  - identifier: target_velocity
+    address: 2
+    range: { min: -200000, max: 200000 }
+  - identifier: target_effort
+    address: 155
+    range: {min: -20000, max: 20000 }
+
+actual_state_parameters:
+  - identifier: actual_position
+    address: 1
+  - identifier: actual_velocity
+    address: 3
+  - identifier: actual_effort
+    address: 150
+
+config_parameters:
+  - identifier: communication_mode
+    description: "Communication Mode"
+    address: 159
+    enum: { "Block based on hall sensor": 0,
+            "FOC based on hall sensor": 6,
+            "FOC based on encoder": 7,
+            "FOC controlled (velocity mode only)": 8}
+
+  - identifier: motor_poles
+    description: "Number of Motor Poles"
+    address: 253
+    range: { min: 2, max: 254 }
