@@ -27,7 +27,7 @@ int main(int argc, char** argv)
   }
   else
   {
-    ROS_ERROR("[%s] failed to initialize dynamixel_ros_control", PREFIX);
+    ROS_ERROR("[%s] ERROR initializing", PREFIX);
     ROS_ERROR("[%s] shutting down ...", PREFIX);
     ros::shutdown();
   }
