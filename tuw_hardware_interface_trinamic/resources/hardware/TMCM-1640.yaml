@@ -1,10 +1,9 @@
 name: "TMCM-106"
 
 resolution:
-#  position: 0.08800 # deg
-  position: 0.0015358897418 # rad
-  velocity: 0.22900 # rpm
-  effort:   0.00336 # A
+  position: 1.0   #
+  velocity: 1.0   # rpm
+  effort:   0.001 # A
 
 target_state_parameters:
   - identifier: target_position
