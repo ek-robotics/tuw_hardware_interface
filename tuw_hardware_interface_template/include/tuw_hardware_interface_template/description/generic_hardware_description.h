@@ -19,16 +19,18 @@ class GenericHardwareParameterDescription;
 class GenericHardwareDescription
 {
 public:
+  GenericHardwareDescription() = default;
+  ~GenericHardwareDescription() = default;
   explicit GenericHardwareDescription(YAML::Node yaml);
-  std::string getName();
-  std::shared_ptr<double> getPositionResolution();
-  std::shared_ptr<double> getVelocityResolution();
-  std::shared_ptr<double> getEffortResolution();
-  std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>> getTargetIdentifierToDescription();
-  std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>> getActualIdentifierToDescription();
-  std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>> getConfigIdentifierToDescription();
-  std::shared_ptr<std::list<std::string>> getConfigIdentifiers();
-private:
+  virtual std::string getName();
+  virtual std::shared_ptr<double> getPositionResolution();
+  virtual std::shared_ptr<double> getVelocityResolution();
+  virtual std::shared_ptr<double> getEffortResolution();
+  virtual std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>> getTargetIdentifierToDescription();
+  virtual std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>> getActualIdentifierToDescription();
+  virtual std::shared_ptr<std::map<std::string, GenericHardwareParameterDescription>> getConfigIdentifierToDescription();
+  virtual std::shared_ptr<std::list<std::string>> getConfigIdentifiers();
+protected:
   std::string name_;
   std::shared_ptr<double> position_resolution_;
   std::shared_ptr<double> velocity_resolution_;
