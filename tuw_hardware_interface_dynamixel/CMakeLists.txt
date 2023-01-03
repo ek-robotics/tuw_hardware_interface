@@ -10,7 +10,10 @@ find_package(
   REQUIRED COMPONENTS
   roscpp
   rospy
+  roslint
+  urdf
   tuw_hardware_interface_template
+  ddynamic_reconfigure
   controller_manager
   dynamixel_sdk
 )
@@ -21,7 +24,10 @@ catkin_package(
   CATKIN_DEPENDS
   roscpp
   rospy
+  roslint
+  urdf
   tuw_hardware_interface_template
+  ddynamic_reconfigure
   controller_manager
   dynamixel_sdk
   #  DEPENDS system_lib
