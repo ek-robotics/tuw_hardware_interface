@@ -19,11 +19,11 @@ public:
   GenericJointDescription() = default;
   ~GenericJointDescription() = default;
   explicit GenericJointDescription(YAML::Node yaml);
-  int getId();
-  std::string getName();
+  virtual int getId();
+  virtual std::string getName();
   virtual std::shared_ptr<GenericConnectionDescription> getConnectionDescription();
-  std::shared_ptr<GenericHardwareDescription> getHardwareDescription();
-  std::shared_ptr<GenericConfigDescription> getConfigDescription();
+  virtual std::shared_ptr<GenericHardwareDescription> getHardwareDescription();
+  virtual std::shared_ptr<GenericConfigDescription> getConfigDescription();
 protected:
   static YAML::Node loadFile(YAML::Node yaml);
   int id_;

@@ -24,20 +24,20 @@ public:
     ENUM,
     RANGE
   };
-  Type getType();
-  std::shared_ptr<std::string> getIdentifier();
-  std::shared_ptr<std::string> getDescription();
-  std::shared_ptr<int> getAddress();
-  std::shared_ptr<int> getLength();
-  std::shared_ptr<std::map<std::string, int>> getEnum();
-  std::shared_ptr<std::map<std::string, int>> getRange();
-  bool operator==(const GenericHardwareParameter& other) const;
+  virtual Type getType();
+  virtual std::shared_ptr<std::string> getIdentifier();
+  virtual std::shared_ptr<std::string> getDescription();
+  virtual std::shared_ptr<int> getAddress();
+  virtual std::shared_ptr<int> getLength();
+  virtual std::shared_ptr<std::map<std::string, int>> getEnum();
+  virtual std::shared_ptr<std::map<std::string, int>> getRange();
+  virtual bool operator==(const GenericHardwareParameter& other) const;
 protected:
-  bool isValid();
-  bool isTarget();
-  bool isActual();
-  bool isRange();
-  bool isEnum();
+  virtual bool isValid();
+  virtual bool isTarget();
+  virtual bool isActual();
+  virtual bool isRange();
+  virtual bool isEnum();
   Type type_;
   std::shared_ptr<std::string> identifier_ {nullptr};
   std::shared_ptr<std::string> description_ {nullptr};
