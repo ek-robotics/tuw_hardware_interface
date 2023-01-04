@@ -27,7 +27,7 @@ actual_state_parameters:
 config_parameters:
   - identifier: driver_switch
     description: "Enable or disable driver"
-    parameter: 159
+    parameter: 255
     enum: { "Disable driver": 0,
             "Enable driver": 1 }
   - identifier: communication_mode
