@@ -16,13 +16,13 @@ using tuw_hardware_interface::DynamixelJointDescription;
 using tuw_hardware_interface::GenericHardwareDescription;
 using tuw_hardware_interface::GenericConfigDescription;
 
-DynamixelJointDescription::DynamixelJointDescription(const YAML::Node& yaml) : GenericJointDescription(yaml)
+DynamixelJointDescription::DynamixelJointDescription(const YAML::Node& yaml)
 {
   this->id_ = yaml["id"].as<int>();
   this->name_ = yaml["name"].as<std::string>();
 
   if (yaml["connection"].IsDefined())
-    this->connection_description_ =
+    this->dynamixel_connection_description_ =
             std::make_shared<DynamixelConnectionDescription>(yaml["connection"]);
   else
     ROS_ERROR("[%s] missing connection description", PREFIX);
@@ -42,5 +42,5 @@ DynamixelJointDescription::DynamixelJointDescription(const YAML::Node& yaml) : G
 
 std::shared_ptr<DynamixelConnectionDescription> DynamixelJointDescription::getDynamixelConnectionDescription()
 {
-  return this->connection_description_;
+  return this->dynamixel_connection_description_;
 }

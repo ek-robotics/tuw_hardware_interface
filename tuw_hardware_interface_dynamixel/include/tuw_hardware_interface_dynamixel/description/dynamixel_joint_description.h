@@ -16,7 +16,7 @@ public:
   explicit DynamixelJointDescription(const YAML::Node& yaml);
   std::shared_ptr<DynamixelConnectionDescription> getDynamixelConnectionDescription();
 private:
-  std::shared_ptr<DynamixelConnectionDescription> connection_description_ {nullptr};
+  std::shared_ptr<DynamixelConnectionDescription> dynamixel_connection_description_ {nullptr};
 };
 }  // namespace tuw_hardware_interface
 
