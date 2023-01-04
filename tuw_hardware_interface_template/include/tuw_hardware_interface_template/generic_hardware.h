@@ -23,7 +23,8 @@ public:
   static std::shared_ptr<GenericHardware> getHardware(GenericHardwareDescription hardware_description);
   // instance variables
   explicit GenericHardware(GenericHardwareDescription hardware_description);
-  GenericHardware();
+  GenericHardware() = default;
+  ~GenericHardware() = default;
   enum Mode
   {
     POSITION,

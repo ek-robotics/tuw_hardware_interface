@@ -16,6 +16,8 @@ class GenericConfigDescription;
 class GenericJointDescription
 {
 public:
+  GenericJointDescription() = default;
+  ~GenericJointDescription() = default;
   explicit GenericJointDescription(YAML::Node yaml);
   int getId();
   std::string getName();

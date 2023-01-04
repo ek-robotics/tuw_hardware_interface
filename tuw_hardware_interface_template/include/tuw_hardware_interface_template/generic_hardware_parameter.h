@@ -14,6 +14,8 @@ namespace tuw_hardware_interface
 class GenericHardwareParameter
 {
 public:
+  GenericHardwareParameter() = default;
+  ~GenericHardwareParameter() = default;
   explicit GenericHardwareParameter(GenericHardwareParameterDescription hardware_parameter_description);
   enum Type
   {

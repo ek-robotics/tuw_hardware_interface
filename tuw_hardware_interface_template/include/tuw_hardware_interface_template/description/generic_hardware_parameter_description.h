@@ -14,6 +14,8 @@ namespace tuw_hardware_interface
 class GenericHardwareParameterDescription
 {
 public:
+  GenericHardwareParameterDescription() = default;
+  ~GenericHardwareParameterDescription() = default;
   explicit GenericHardwareParameterDescription(YAML::Node yaml);
   std::shared_ptr<std::string> getIdentifier();
   std::shared_ptr<std::string> getDescription();
