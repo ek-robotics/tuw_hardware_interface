@@ -20,7 +20,7 @@ TrinamicJointDescription::TrinamicJointDescription(const YAML::Node& yaml)
   if (yaml["hardware"].IsDefined())
   {
     YAML::Node hardware_yaml = loadFile(yaml["hardware"]);
-    this->hardware_description_ = std::make_shared<GenericHardwareDescription>(hardware_yaml);
+    this->trinamic_hardware_description_ = std::make_shared<TrinamicHardwareDescription>(hardware_yaml);
   }
   else
     ROS_ERROR("[%s] missing hardware description", PREFIX);

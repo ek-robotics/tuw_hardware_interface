@@ -62,8 +62,8 @@ bool tuw_hardware_interface::TrinamicHardwareParameter::isRange()
   return this->getIdentifier() &&
          this->getDescription() &&
          this->getParameter() &&
-         this->getEnum() &&
-         !this->getRange();
+         this->getRange() &&
+         !this->getEnum();
 }
 
 bool tuw_hardware_interface::TrinamicHardwareParameter::isEnum()
@@ -71,6 +71,6 @@ bool tuw_hardware_interface::TrinamicHardwareParameter::isEnum()
   return this->getIdentifier() &&
          this->getDescription() &&
          this->getParameter() &&
-         this->getRange() &&
-         !this->getEnum();
+         this->getEnum() &&
+         !this->getRange();
 }

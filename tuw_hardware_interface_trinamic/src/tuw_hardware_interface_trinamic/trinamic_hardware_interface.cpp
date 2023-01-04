@@ -9,7 +9,10 @@
 
 using tuw_hardware_interface::TrinamicHardware;
 using tuw_hardware_interface::TrinamicHardwareInterface;
+using tuw_hardware_interface::GenericHardwareInterface;
 using tuw_hardware_interface::TrinamicJointDescription;
+
+std::string GenericHardwareInterface::setup_parameter_ = "trinamic_hardware_interface_setup";
 
 bool TrinamicHardwareInterface::init(ros::NodeHandle& basic_node_handle,
                                                              ros::NodeHandle& hardware_node_handle)
@@ -96,6 +99,7 @@ bool TrinamicHardwareInterface::initJoint(
     std::shared_ptr<TMCM1640Connection> connection =
             TMCM1640Connection::getConnection(connection_description);
     joint->setConnection(connection);
+    ROS_INFO("set connection");
 
     // hardware
     std::shared_ptr<TrinamicHardwareDescription> hardware_description =
@@ -103,6 +107,7 @@ bool TrinamicHardwareInterface::initJoint(
     std::shared_ptr<TrinamicHardware> hardware =
             TrinamicHardware::getHardware(*hardware_description);
     joint->setHardware(hardware);
+    ROS_INFO("set hardware");
 
     // config
     std::shared_ptr<GenericConfigDescription> config_description =
@@ -110,6 +115,7 @@ bool TrinamicHardwareInterface::initJoint(
     std::shared_ptr<GenericConfig> config =
             std::make_shared<GenericConfig>(joint, hardware, *config_description);
     joint->setConfig(config);
+    ROS_INFO("set config");
 
     this->joints_.push_back(joint);
 
