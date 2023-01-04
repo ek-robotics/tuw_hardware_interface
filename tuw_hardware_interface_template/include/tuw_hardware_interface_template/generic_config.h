@@ -29,13 +29,13 @@ public:
                 GenericConfigDescription config_description);
 protected:
   virtual void setupReconfigureServer();
+  virtual void setInitialConfig(GenericConfigDescription config_description);
+  virtual void reconfigureConfig();
+  virtual void reconfigureValue(GenericHardwareParameter parameter, int target_value);
+
   void registerReconfigureVariable(GenericHardwareParameter hardware_parameter);
   void registerReconfigureEnumVariable(GenericHardwareParameter hardware_parameter);
   void registerReconfigureRangeVariable(GenericHardwareParameter hardware_parameter);
-
-  void reconfigureValue(GenericHardwareParameter parameter, int target_value);
-
-  void setInitialConfig(GenericConfigDescription config_description);
 
   std::shared_ptr<GenericJoint> joint_ {nullptr};
   std::shared_ptr<GenericHardware> hardware_ {nullptr};
@@ -44,7 +44,6 @@ protected:
 
   std::map<std::string, int> target_config_values_ {std::map<std::string, int>()};
   std::map<std::string, int> actual_config_values_ {std::map<std::string, int>()};
-  void reconfigureConfig();
 };
 }  // namespace tuw_hardware_interface
 
