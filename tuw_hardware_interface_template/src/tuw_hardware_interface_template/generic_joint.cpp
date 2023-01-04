@@ -100,21 +100,21 @@ void GenericJoint::write(const ros::Duration &period)
         this->joint_position_soft_limit_handle_->enforceLimits(period);
       else if (this->joint_position_limit_handle_ != nullptr)
         this->joint_position_limit_handle_->enforceLimits(period);
-      this->writeTargetPosition(this->target_position_);
+      this->writeTarget(this->target_position_, GenericHardware::Mode::POSITION, "POSITION");
       break;
     case GenericHardware::Mode::VELOCITY:
       if (this->joint_velocity_soft_limit_handle_ != nullptr)
         this->joint_velocity_soft_limit_handle_->enforceLimits(period);
       else if (this->joint_velocity_limit_handle_ != nullptr)
         this->joint_velocity_limit_handle_->enforceLimits(period);
-      this->writeTargetVelocity(this->target_velocity_);
+      this->writeTarget(this->target_velocity_, GenericHardware::Mode::VELOCITY, "VELOCITY");
       break;
     case GenericHardware::Mode::EFFORT:
       if (this->joint_effort_soft_limit_handle_ != nullptr)
         this->joint_effort_soft_limit_handle_->enforceLimits(period);
       else if (this->joint_effort_limit_handle_ != nullptr)
         this->joint_effort_limit_handle_->enforceLimits(period);
-      this->writeTargetEffort(this->target_effort_);
+      this->writeTarget(this->target_effort_, GenericHardware::Mode::EFFORT, "EFFORT");
       break;
   }
 }
@@ -123,28 +123,28 @@ void GenericJoint::read(const ros::Duration &period)
 {
   if (this->hardware_->supportsActualMode(GenericHardware::Mode::POSITION))
   {
-    this->actual_position_ = this->readActualPosition();
+    this->actual_position_ = this->readActual(GenericHardware::Mode::POSITION, "POSITION");
   }
 
   if (this->hardware_->supportsActualMode(GenericHardware::Mode::VELOCITY))
   {
-    this->actual_velocity_ = this->readActualVelocity();
+    this->actual_velocity_ = this->readActual(GenericHardware::Mode::VELOCITY, "VELOCITY");
   }
 
   if (this->hardware_->supportsActualMode(GenericHardware::Mode::EFFORT))
   {
-    this->actual_effort_ = this->readActualEffort();
+    this->actual_effort_ = this->readActual(GenericHardware::Mode::EFFORT, "EFFORT");
   }
 }
 
 void GenericJoint::write(GenericHardwareParameter hardware_parameter, int data)
 {
-  this->connection_->write(this->id_, std::move(hardware_parameter), data);
+  this->connection_->write(this->id_, hardware_parameter, data);
 }
 
 int GenericJoint::read(GenericHardwareParameter hardware_parameter)
 {
-  return this->connection_->read(this->id_, std::move(hardware_parameter));
+  return this->connection_->read(this->id_, hardware_parameter);
 }
 
 bool GenericJoint::setMode(GenericHardware::Mode mode)
@@ -198,21 +198,6 @@ void GenericJoint::writeTarget(double target, GenericHardware::Mode mode, const 
   }
 }
 
-void GenericJoint::writeTargetPosition(double target)
-{
-  this->writeTarget(target, GenericHardware::Mode::POSITION, "POSITION");
-}
-
-void GenericJoint::writeTargetVelocity(double target)
-{
-  this->writeTarget(target, GenericHardware::Mode::VELOCITY, "VELOCITY");
-}
-
-void GenericJoint::writeTargetEffort(double target)
-{
-  this->writeTarget(target, GenericHardware::Mode::EFFORT, "EFFORT");
-}
-
 double GenericJoint::readActual(GenericHardware::Mode mode, const std::string& mode_name)
 {
   if (this->hardware_->supportsActualMode(mode))
@@ -225,19 +210,4 @@ double GenericJoint::readActual(GenericHardware::Mode mode, const std::string& m
     ROS_WARN("[%s] %s is not supporting target mode %s", PREFIX, this->hardware_->getName().LOG, mode_name.LOG);
     throw std::runtime_error("unsupported actual mode requested");
   }
-}
-
-double GenericJoint::readActualPosition()
-{
-  return this->readActual(GenericHardware::Mode::POSITION, "POSITION");
-}
-
-double GenericJoint::readActualVelocity()
-{
-  return this->readActual(GenericHardware::Mode::VELOCITY, "VELOCITY");
-}
-
-double GenericJoint::readActualEffort()
-{
-  return this->readActual(GenericHardware::Mode::EFFORT, "EFFORT");
 }

@@ -61,16 +61,9 @@ public:
   JointHandle* getJointPositionHandle();
   JointHandle* getJointVelocityHandle();
   JointHandle* getJointEffortHandle();
-private:
-  void writeTarget(double target, GenericHardware::Mode mode, const std::string& mode_name);
-  void writeTargetPosition(double target);
-  void writeTargetVelocity(double target);
-  void writeTargetEffort(double target);
-
-  double readActual(GenericHardware::Mode mode, const std::string& mode_name);
-  double readActualPosition();
-  double readActualVelocity();
-  double readActualEffort();
+protected:
+  virtual void writeTarget(double target, GenericHardware::Mode mode, const std::string& mode_name);
+  virtual double readActual(GenericHardware::Mode mode, const std::string& mode_name);
 
   std::string name_;
   int id_ = 0;
