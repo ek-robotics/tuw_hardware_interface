@@ -17,14 +17,36 @@ using tuw_hardware_interface::TrinamicReply;
 using tuw_hardware_interface::GenericHardwareParameter;
 using tuw_hardware_interface::GenericSetupPrefix;
 
+std::unique_ptr<std::map<std::string, std::shared_ptr<TMCM1640Connection>>> TMCM1640Connection::connection_table_;
+
 std::shared_ptr<TMCM1640Connection> TMCM1640Connection::getConnection(const std::shared_ptr<GenericConnectionDescription>& connection_description)
 {
-  return nullptr;
-}
+  std::string connection_hash = connection_description->getHash();
 
+  if (TMCM1640Connection::connection_table_ == nullptr)
+  {
+    TMCM1640Connection::mutex_.lock();
+
+    if (TMCM1640Connection::connection_table_ == nullptr)
+
+      TMCM1640Connection::connection_table_ =
+              std::make_unique<std::map<std::string, std::shared_ptr<TMCM1640Connection>>>();
+
+    TMCM1640Connection::mutex_.unlock();
+  }
+
+  if (TMCM1640Connection::connection_table_->find(connection_hash) == TMCM1640Connection::connection_table_->end())
+  {
+    std::shared_ptr<TMCM1640Connection> connection = std::make_shared<TMCM1640Connection>(connection_description);
+    TMCM1640Connection::connection_table_->insert({connection_hash, connection});
+  }
+
+  return TMCM1640Connection::connection_table_->at(connection_hash);
+}
 
 TMCM1640Connection::TMCM1640Connection(std::shared_ptr<GenericConnectionDescription> connection_description)
 {
+  this->connection_description_ = connection_description;
   this->connect();
 }
 
@@ -108,20 +130,31 @@ bool TMCM1640Connection::disconnect()
 
 void TMCM1640Connection::write(int id, GenericHardwareParameter hardware_parameter, int data)
 {
+  ROS_INFO("parent_write");
+}
+
+int TMCM1640Connection::read(int id, GenericHardwareParameter hardware_parameter)
+{
+  ROS_INFO("parent_read");
+  return 0;
+}
+
+void TMCM1640Connection::writeTrinamic(int id, TrinamicHardwareParameter hardware_parameter, int data)
+{
   unsigned char module_address = 0;
   unsigned char command_number = SET_AXIS_PARAMETER;
-  auto type_number = static_cast<unsigned char>(*hardware_parameter.getAddress());
+  auto type_number = static_cast<unsigned char>(*hardware_parameter.getParameter());
   auto id_number = static_cast<unsigned char>(id);
 
   TrinamicCommand command(module_address, command_number, type_number, id_number, data);
   TrinamicReply reply = this->communicate(command);
 }
 
-int TMCM1640Connection::read(int id, GenericHardwareParameter hardware_parameter)
+int TMCM1640Connection::readTrinamic(int id, TrinamicHardwareParameter hardware_parameter)
 {
   unsigned char module_address = 0;
   unsigned char command_number = GET_AXIS_PARAMETER;
-  auto type_number = static_cast<unsigned char>(*hardware_parameter.getAddress());
+  auto type_number = static_cast<unsigned char>(*hardware_parameter.getParameter());
   auto id_number = static_cast<unsigned char>(id);
 
   TrinamicCommand command(module_address, command_number, type_number, id_number, 0);

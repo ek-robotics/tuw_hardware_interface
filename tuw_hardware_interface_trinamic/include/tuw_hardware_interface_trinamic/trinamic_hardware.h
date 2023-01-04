@@ -14,6 +14,8 @@ class TrinamicHardware : public GenericHardware
 public:
   static std::shared_ptr<TrinamicHardware> getHardware(TrinamicHardwareDescription hardware_description);
   explicit TrinamicHardware(TrinamicHardwareDescription hardware_description);
+  bool supportsTargetMode(Mode mode) override;
+  bool supportsActualMode(Mode mode) override;
   TrinamicHardwareParameter getTargetTrinamicParameterForMode(Mode mode);
   TrinamicHardwareParameter getActualTrinamicParameterForMode(Mode mode);
   std::shared_ptr<std::map<std::string, TrinamicHardwareParameter>> getConfigIdentifierToTrinamicParameter();

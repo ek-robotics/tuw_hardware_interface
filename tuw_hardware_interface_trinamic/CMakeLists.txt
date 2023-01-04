@@ -47,9 +47,11 @@ add_library(
   src/${PROJECT_NAME}/trinamic_connection/trinamic_message/trinamic_message.cpp
   src/${PROJECT_NAME}/trinamic_connection/trinamic_message/trinamic_reply.cpp
   src/${PROJECT_NAME}/trinamic_connection/tmcm1640_connection.cpp
+  src/${PROJECT_NAME}/trinamic_config.cpp
   src/${PROJECT_NAME}/trinamic_hardware.cpp
   src/${PROJECT_NAME}/trinamic_hardware_interface.cpp
   src/${PROJECT_NAME}/trinamic_hardware_parameter.cpp
+  src/${PROJECT_NAME}/trinamic_joint.cpp
 )
 
 target_link_libraries(

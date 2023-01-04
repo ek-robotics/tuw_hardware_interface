@@ -55,21 +55,21 @@ TrinamicHardware::TrinamicHardware(TrinamicHardwareDescription hardware_descript
     if (key == "target_position")
     {
       if (this->modes_to_resolution_.find(Mode::POSITION) != this->modes_to_resolution_.end())
-        this->target_modes_to_parameter_.insert({Mode::POSITION, TrinamicHardwareParameter(value)});
+        this->target_modes_to_trinamic_parameter_.insert({Mode::POSITION, TrinamicHardwareParameter(value)});
       else
         ROS_WARN("[%s] target mode POSITION requires position resolution", PREFIX);
     }
     else if (key == "target_velocity")
     {
       if (this->modes_to_resolution_.find(Mode::VELOCITY) != this->modes_to_resolution_.end())
-        this->target_modes_to_parameter_.insert({Mode::VELOCITY, TrinamicHardwareParameter(value)});
+        this->target_modes_to_trinamic_parameter_.insert({Mode::VELOCITY, TrinamicHardwareParameter(value)});
       else
         ROS_WARN("[%s] target mode VELOCITY requires position resolution", PREFIX);
     }
     else if (key == "target_effort")
     {
       if (this->modes_to_resolution_.find(Mode::EFFORT) != this->modes_to_resolution_.end())
-        this->target_modes_to_parameter_.insert({Mode::EFFORT, TrinamicHardwareParameter(value)});
+        this->target_modes_to_trinamic_parameter_.insert({Mode::EFFORT, TrinamicHardwareParameter(value)});
       else
         ROS_WARN("[%s] target mode EFFORT requires position resolution", PREFIX);
     }
@@ -82,21 +82,21 @@ TrinamicHardware::TrinamicHardware(TrinamicHardwareDescription hardware_descript
     if (key == "actual_position")
     {
       if (this->modes_to_resolution_.find(Mode::POSITION) != this->modes_to_resolution_.end())
-        this->actual_modes_to_parameter_.insert({Mode::POSITION, TrinamicHardwareParameter(value)});
+        this->actual_modes_to_trinamic_parameter_.insert({Mode::POSITION, TrinamicHardwareParameter(value)});
       else
         ROS_WARN("[%s] actual mode POSITION requires position resolution", PREFIX);
     }
     else if (key == "actual_velocity")
     {
       if (this->modes_to_resolution_.find(Mode::VELOCITY) != this->modes_to_resolution_.end())
-        this->actual_modes_to_parameter_.insert({Mode::VELOCITY, TrinamicHardwareParameter(value)});
+        this->actual_modes_to_trinamic_parameter_.insert({Mode::VELOCITY, TrinamicHardwareParameter(value)});
       else
         ROS_WARN("[%s] actual mode VELOCITY requires position resolution", PREFIX);
     }
     else if (key == "actual_effort")
     {
       if (this->modes_to_resolution_.find(Mode::EFFORT) != this->modes_to_resolution_.end())
-        this->actual_modes_to_parameter_.insert({Mode::EFFORT, TrinamicHardwareParameter(value)});
+        this->actual_modes_to_trinamic_parameter_.insert({Mode::EFFORT, TrinamicHardwareParameter(value)});
       else
         ROS_WARN("[%s] actual mode EFFORT requires position resolution", PREFIX);
     }
@@ -130,4 +130,20 @@ std::shared_ptr<std::map<std::string, TrinamicHardwareParameter>>
 TrinamicHardware::getConfigIdentifierToTrinamicParameter()
 {
   return this->config_identifier_to_trinamic_parameter_;
+}
+
+bool tuw_hardware_interface::TrinamicHardware::supportsTargetMode(tuw_hardware_interface::GenericHardware::Mode mode)
+{
+  if (this->target_modes_to_trinamic_parameter_.find(mode) == this->target_modes_to_trinamic_parameter_.end())
+    return false;
+  else
+    return true;
+}
+
+bool tuw_hardware_interface::TrinamicHardware::supportsActualMode(tuw_hardware_interface::GenericHardware::Mode mode)
+{
+  if (this->actual_modes_to_trinamic_parameter_.find(mode) == this->actual_modes_to_trinamic_parameter_.end())
+    return false;
+  else
+    return true;
 }
