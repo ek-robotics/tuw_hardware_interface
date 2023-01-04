@@ -7,33 +7,32 @@ resolution:
 
 target_state_parameters:
   - identifier: target_position
-    address: 0
+    parameter: 0
     range: { min: -2147483648, max: 2147483647 }
   - identifier: target_velocity
-    address: 2
+    parameter: 2
     range: { min: -200000, max: 200000 }
   - identifier: target_effort
-    address: 155
+    parameter: 155
     range: {min: -20000, max: 20000 }
 
 actual_state_parameters:
   - identifier: actual_position
-    address: 1
+    parameter: 1
   - identifier: actual_velocity
-    address: 3
+    parameter: 3
   - identifier: actual_effort
-    address: 150
+    parameter: 150
 
 config_parameters:
   - identifier: communication_mode
     description: "Communication Mode"
-    address: 159
+    parameter: 159
     enum: { "Block based on hall sensor": 0,
             "FOC based on hall sensor": 6,
             "FOC based on encoder": 7,
-            "FOC controlled (velocity mode only)": 8}
-
+            "FOC controlled (velocity mode only)": 8 }
   - identifier: motor_poles
     description: "Number of Motor Poles"
-    address: 253
+    parameter: 253
     range: { min: 2, max: 254 }
