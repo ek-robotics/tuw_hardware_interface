@@ -8,8 +8,9 @@
 using tuw_hardware_interface::DynamixelSetupDescription;
 using tuw_hardware_interface::DynamixelJointDescription;
 
-DynamixelSetupDescription::DynamixelSetupDescription(YAML::Node yaml) : GenericSetupDescription(yaml)
+DynamixelSetupDescription::DynamixelSetupDescription(YAML::Node yaml)
 {
+  this->name_ = yaml["setup"].as<std::string>();
   for (const auto& joint_yaml : yaml["joints"])
   {
     DynamixelJointDescription joint_description = DynamixelJointDescription(joint_yaml);
