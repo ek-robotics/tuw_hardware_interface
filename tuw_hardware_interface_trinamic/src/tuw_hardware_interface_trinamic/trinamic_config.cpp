@@ -64,7 +64,7 @@ void tuw_hardware_interface::TrinamicConfig::setInitialConfig(GenericConfigDescr
     else
     {
       auto hardware_name = this->trinamic_hardware_->getName();
-      ROS_INFO("[%s] the config parameter %s is not valid for %s", PREFIX, identifier.LOG, hardware_name.LOG);
+      ROS_WARN("[%s] the config parameter %s is not valid for %s", PREFIX, identifier.LOG, hardware_name.LOG);
     }
   }
 }

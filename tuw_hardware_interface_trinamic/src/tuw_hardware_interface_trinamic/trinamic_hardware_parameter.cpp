@@ -36,7 +36,7 @@ std::shared_ptr<int> TrinamicHardwareParameter::getParameter()
 
 bool tuw_hardware_interface::TrinamicHardwareParameter::isValid()
 {
-  return GenericHardwareParameter::isValid();
+  return this->isTarget() ^ this->isActual() ^ this->isEnum() ^ this->isRange();
 }
 
 bool tuw_hardware_interface::TrinamicHardwareParameter::isTarget()

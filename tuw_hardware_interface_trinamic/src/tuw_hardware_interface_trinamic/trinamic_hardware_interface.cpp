@@ -101,7 +101,6 @@ bool TrinamicHardwareInterface::initJoint(
     std::shared_ptr<TMCM1640Connection> connection =
             TMCM1640Connection::getConnection(connection_description);
     joint->setTrinamicConnection(connection);
-    ROS_INFO("set connection");
 
     // hardware
     std::shared_ptr<TrinamicHardwareDescription> hardware_description =
@@ -109,7 +108,6 @@ bool TrinamicHardwareInterface::initJoint(
     std::shared_ptr<TrinamicHardware> hardware =
             TrinamicHardware::getHardware(*hardware_description);
     joint->setTrinamicHardware(hardware);
-    ROS_INFO("set hardware");
 
     // config
     std::shared_ptr<GenericConfigDescription> config_description =
@@ -117,7 +115,6 @@ bool TrinamicHardwareInterface::initJoint(
     std::shared_ptr<TrinamicConfig> config =
             std::make_shared<TrinamicConfig>(joint, hardware, *config_description);
     joint->setConfig(config);
-    ROS_INFO("set config");
 
     this->joints_.push_back(joint);
 

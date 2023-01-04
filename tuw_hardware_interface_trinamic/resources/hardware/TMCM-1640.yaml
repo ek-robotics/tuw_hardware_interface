@@ -1,4 +1,4 @@
-name: "TMCM-106"
+name: "TMCM-1640"
 
 resolution:
   position: 1.0   #
@@ -25,6 +25,11 @@ actual_state_parameters:
     parameter: 150
 
 config_parameters:
+  - identifier: driver_switch
+    description: "Enable or disable driver"
+    parameter: 159
+    enum: { "Disable driver": 0,
+            "Enable driver": 1 }
   - identifier: communication_mode
     description: "Communication Mode"
     parameter: 159
@@ -37,10 +42,10 @@ config_parameters:
     parameter: 253
     range: { min: 2, max: 254 }
   - identifier: ramp_switch
-    description:
+    description: "Enable or disable velocity ramp"
     parameter: 146
-    enum: { "Disabled": 0,
-            "Enabled": 1 }
+    enum: { "Disabled ramp": 0,
+            "Enabled ramp": 1 }
   - identifier: target_reached_distance
     description: "Maximum distance at which the position end flag is set"
     parameter: 10
@@ -69,11 +74,11 @@ config_parameters:
     description: "I parameter of velocity PID regulator"
     parameter: 235
     range: { min: 0, max: 65535 }
-  - identifier: torque_p_parameter
+  - identifier: current_p_parameter
     description: "P parameter of current PID regulator"
     parameter: 172
     range: { min: 0, max: 65535 }
-  - identifier: torque_i_parameter
+  - identifier: current_i_parameter
     description: "I parameter of current PID regulator"
     parameter: 173
     range: { min: 0, max: 65535 }
