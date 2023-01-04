@@ -59,7 +59,7 @@ TEST_F(GenericConfigTest, verifyConstructorWithoutConfig)
   EXPECT_CALL(*mock_joint_, read(generic_hardware_->getConfigIdentifierToParameter()->at("rcp")))
           .Times(1).WillRepeatedly(testing::Return(0));
 
-  GenericConfig generic_config = GenericConfig(mock_joint_, generic_hardware_);
+  GenericConfig generic_config(mock_joint_, generic_hardware_);
 }
 
 TEST_F(GenericConfigTest, verifyServiceWithoutConfig)
@@ -69,7 +69,7 @@ TEST_F(GenericConfigTest, verifyServiceWithoutConfig)
   EXPECT_CALL(*mock_joint_, read(generic_hardware_->getConfigIdentifierToParameter()->at("rcp"))).Times(
           1).WillRepeatedly(testing::Return(0));
 
-  GenericConfig generic_config = GenericConfig(mock_joint_, generic_hardware_);
+  GenericConfig generic_config(mock_joint_, generic_hardware_);
 
   EXPECT_TRUE(ros::service::waitForService("tuw_ros_control_generic_unit_test/test_joint/set_parameters", true));
   ros::Duration(0.01).sleep();  // required to supress warning about closed service
@@ -86,7 +86,7 @@ TEST_F(GenericConfigTest, verifyConstructorWithConfig)
 
   ROS_INFO("LOG INFO/WARNING/ERROR BELOW CAN BE IGNORED IN TESTS!");
 
-  GenericConfig generic_config = GenericConfig(mock_joint_, generic_hardware_, generic_config_description_);
+  GenericConfig generic_config(mock_joint_, generic_hardware_, generic_config_description_);
 }
 
 TEST_F(GenericConfigTest, verifyServiceWithConfig)
@@ -100,7 +100,7 @@ TEST_F(GenericConfigTest, verifyServiceWithConfig)
 
   ROS_INFO("LOG INFO/WARNING/ERROR BELOW CAN BE IGNORED IN TESTS!");
 
-  GenericConfig generic_config = GenericConfig(mock_joint_, generic_hardware_, generic_config_description_);
+  GenericConfig generic_config(mock_joint_, generic_hardware_, generic_config_description_);
 
   EXPECT_TRUE(ros::service::exists("tuw_ros_control_generic_unit_test/test_joint/set_parameters", false));
   ros::Duration(0.01).sleep();  // required to supress warning about closed service
