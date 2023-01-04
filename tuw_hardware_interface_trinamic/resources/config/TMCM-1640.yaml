@@ -1,1 +1,13 @@
 motor_poles: 20
+driver_switch: 1
+ramp_switch: 0
+communication_mode: 8
+target_reached_distance: 5
+target_reached_velocity: 500
+motor_halted_velocity: 5
+maximum_effort: 5000
+position_p_parameter: 300
+velocity_p_parameter: 500
+velocity_i_parameter: 500
+effort_p_parameter: 300
+effort_i_parameter: 300
