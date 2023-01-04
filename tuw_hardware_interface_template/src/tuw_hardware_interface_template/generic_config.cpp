@@ -17,7 +17,8 @@ using tuw_hardware_interface::GenericJoint;
 
 GenericConfig::GenericConfig(std::shared_ptr<GenericJoint> joint,
                              std::shared_ptr<GenericHardware> hardware)
-        : joint_(std::move(joint)), hardware_(std::move(hardware))
+        : joint_(std::move(joint)),
+          hardware_(std::move(hardware))
 {
   this->setupReconfigureServer();
 }
@@ -25,16 +26,11 @@ GenericConfig::GenericConfig(std::shared_ptr<GenericJoint> joint,
 GenericConfig::GenericConfig(std::shared_ptr<GenericJoint> joint,
                              std::shared_ptr<GenericHardware> hardware,
                              GenericConfigDescription config_description)
-        : joint_(std::move(joint)), hardware_(std::move(hardware))
+        : joint_(std::move(joint)),
+          hardware_(std::move(hardware))
 {
   this->setupReconfigureServer();
   this->setInitialConfig(std::move(config_description));
-}
-
-
-GenericConfig::GenericConfig()
-{
-  // constructor for mocking
 }
 
 void GenericConfig::setupReconfigureServer()
@@ -44,7 +40,7 @@ void GenericConfig::setupReconfigureServer()
 
   auto config_identifier_to_parameter = this->hardware_->getConfigIdentifierToParameter();
 
-  for (const auto &config_identifier : *this->hardware_->getConfigIdentifiers())
+  for (const auto& config_identifier : *this->hardware_->getConfigIdentifiers())
   {
     auto parameter = config_identifier_to_parameter->at(config_identifier);
     this->registerReconfigureVariable(parameter);
@@ -69,7 +65,7 @@ void GenericConfig::registerReconfigureEnumVariable(GenericHardwareParameter har
   auto identifier = *hardware_parameter.getIdentifier();
   auto description = *hardware_parameter.getDescription();
   auto enum_map = *hardware_parameter.getEnum();
-  int *target = &this->target_config_values_[identifier];
+  int* target = &this->target_config_values_[identifier];
   this->reconfigure_->registerEnumVariable<int>(identifier, target, description, enum_map);
 }
 
@@ -79,13 +75,13 @@ void GenericConfig::registerReconfigureRangeVariable(GenericHardwareParameter ha
   auto description = *hardware_parameter.getDescription();
   auto minimum = hardware_parameter.getRange()->at("min");
   auto maximum = hardware_parameter.getRange()->at("max");
-  int *target = &this->target_config_values_[identifier];
+  int* target = &this->target_config_values_[identifier];
   this->reconfigure_->registerVariable<int>(identifier, target, description, minimum, maximum);
 }
 
 void GenericConfig::reconfigureConfig()
 {
-  for (const std::string &hardware_parameter_identifier : *this->hardware_->getConfigIdentifiers())
+  for (const std::string& hardware_parameter_identifier : *this->hardware_->getConfigIdentifiers())
   {
     int target_value = (this->target_config_values_)[hardware_parameter_identifier];
     int actual_value = (this->actual_config_values_)[hardware_parameter_identifier];
