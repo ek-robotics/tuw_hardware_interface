@@ -18,7 +18,7 @@ public:
   TrinamicHardwareParameter getActualTrinamicParameterForMode(Mode mode);
   std::shared_ptr<std::map<std::string, TrinamicHardwareParameter>> getConfigIdentifierToTrinamicParameter();
 protected:
-  static std::unique_ptr<std::map<std::string, std::shared_ptr<TrinamicHardware>>> hardware_table_;
+  static std::unique_ptr<std::map<std::string, std::shared_ptr<TrinamicHardware>>> trinamic_hardware_table_;
   std::map<Mode, TrinamicHardwareParameter> target_modes_to_trinamic_parameter_;
   std::map<Mode, TrinamicHardwareParameter> actual_modes_to_trinamic_parameter_;
   std::shared_ptr<std::map<std::string, TrinamicHardwareParameter>> config_identifier_to_trinamic_parameter_;

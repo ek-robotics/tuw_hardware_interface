@@ -6,28 +6,30 @@
 using tuw_hardware_interface::TrinamicHardware;
 using tuw_hardware_interface::TrinamicHardwareParameter;
 
+std::unique_ptr<std::map<std::string, std::shared_ptr<TrinamicHardware>>> TrinamicHardware::trinamic_hardware_table_;
+
 std::shared_ptr<TrinamicHardware> TrinamicHardware::getHardware(TrinamicHardwareDescription hardware_description)
 {
   std::string hardware_name = hardware_description.getName();
 
-  if (TrinamicHardware::hardware_table_ == nullptr)
+  if (TrinamicHardware::trinamic_hardware_table_ == nullptr)
   {
     TrinamicHardware::mutex_.lock();
 
-    if (TrinamicHardware::hardware_table_ == nullptr)
+    if (TrinamicHardware::trinamic_hardware_table_ == nullptr)
 
-      TrinamicHardware::hardware_table_ = std::make_unique<std::map<std::string, std::shared_ptr<TrinamicHardware>>>();
+      TrinamicHardware::trinamic_hardware_table_ = std::make_unique<std::map<std::string, std::shared_ptr<TrinamicHardware>>>();
 
     TrinamicHardware::mutex_.unlock();
   }
 
-  if (TrinamicHardware::hardware_table_->find(hardware_name) == TrinamicHardware::hardware_table_->end())
+  if (TrinamicHardware::trinamic_hardware_table_->find(hardware_name) == TrinamicHardware::trinamic_hardware_table_->end())
   {
     std::shared_ptr<TrinamicHardware> hardware = std::make_shared<TrinamicHardware>(hardware_description);
-    GenericHardware::hardware_table_->insert({hardware_name, hardware});
+    TrinamicHardware::trinamic_hardware_table_->insert({hardware_name, hardware});
   }
 
-  return TrinamicHardware::hardware_table_->at(hardware_description.getName());
+  return TrinamicHardware::trinamic_hardware_table_->at(hardware_description.getName());
 }
 
 TrinamicHardware::TrinamicHardware(TrinamicHardwareDescription hardware_description)
@@ -109,7 +111,8 @@ TrinamicHardware::TrinamicHardware(TrinamicHardwareDescription hardware_descript
   {
     auto key = key_value_pair.first;
     auto value = key_value_pair.second;
-    this->config_identifier_to_parameter_->insert({key, TrinamicHardwareParameter(value)});
+    std::pair<std::string, TrinamicHardwareParameter> pair = {key, TrinamicHardwareParameter(value)};
+    this->config_identifier_to_trinamic_parameter_->insert(pair);
   }
 }
 
