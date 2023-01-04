@@ -42,7 +42,7 @@ public:
   virtual double convertFromHardwareResolution(int input, Mode mode);
   static std::string modeToString(Mode mode);
   static Mode modeFromString(std::string mode_string);
-private:
+protected:
   // singleton variables
   static std::mutex mutex_;
   static std::unique_ptr<std::map<std::string, std::shared_ptr<GenericHardware>>> hardware_table_;
