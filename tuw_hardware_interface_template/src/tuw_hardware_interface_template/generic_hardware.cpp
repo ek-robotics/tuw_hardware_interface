@@ -68,14 +68,14 @@ GenericHardware::GenericHardware(GenericHardwareDescription hardware_description
       else
         ROS_WARN("[%s] target mode POSITION requires position resolution", PREFIX);
     }
-    if (key == "target_velocity")
+    else if (key == "target_velocity")
     {
       if (this->modes_to_resolution_.find(Mode::VELOCITY) != this->modes_to_resolution_.end())
         this->target_modes_to_parameter_.insert({Mode::VELOCITY, GenericHardwareParameter(value)});
       else
         ROS_WARN("[%s] target mode VELOCITY requires position resolution", PREFIX);
     }
-    if (key == "target_effort")
+    else if (key == "target_effort")
     {
       if (this->modes_to_resolution_.find(Mode::EFFORT) != this->modes_to_resolution_.end())
         this->target_modes_to_parameter_.insert({Mode::EFFORT, GenericHardwareParameter(value)});
@@ -95,14 +95,14 @@ GenericHardware::GenericHardware(GenericHardwareDescription hardware_description
       else
         ROS_WARN("[%s] actual mode POSITION requires position resolution", PREFIX);
     }
-    if (key == "actual_velocity")
+    else if (key == "actual_velocity")
     {
       if (this->modes_to_resolution_.find(Mode::VELOCITY) != this->modes_to_resolution_.end())
         this->actual_modes_to_parameter_.insert({Mode::VELOCITY, GenericHardwareParameter(value)});
       else
         ROS_WARN("[%s] actual mode VELOCITY requires position resolution", PREFIX);
     }
-    if (key == "actual_effort")
+    else if (key == "actual_effort")
     {
       if (this->modes_to_resolution_.find(Mode::EFFORT) != this->modes_to_resolution_.end())
         this->actual_modes_to_parameter_.insert({Mode::EFFORT, GenericHardwareParameter(value)});
@@ -122,11 +122,6 @@ GenericHardware::GenericHardware(GenericHardwareDescription hardware_description
     auto value = key_value_pair.second;
     this->config_identifier_to_parameter_->insert({key, GenericHardwareParameter(value)});
   }
-}
-
-GenericHardware::GenericHardware()
-{
-  // constructor for mocking
 }
 
 std::string GenericHardware::getName()
