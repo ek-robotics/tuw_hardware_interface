@@ -18,16 +18,16 @@ GenericHardwareParameter::GenericHardwareParameter(GenericHardwareParameterDescr
   this->enum_ = hardware_parameter_description.getEnum();
   this->range_ = hardware_parameter_description.getRange();
 
-//  if (!this->isValid())
-//    throw std::runtime_error("parameter " + *this->getIdentifier() + " is invalid");
+  if (!this->isValid())
+    throw std::runtime_error("parameter " + *this->getIdentifier() + " is invalid");
 
   if (this->isTarget())
     this->type_ = Type::TARGET;
-  if (this->isActual())
+  else if (this->isActual())
     this->type_ = Type::ACTUAL;
-  if (this->isEnum()  )
+  else if (this->isEnum()  )
     this->type_ = Type::ENUM;
-  if (this->isRange() )
+  else if (this->isRange() )
     this->type_ = Type::RANGE;
 
   if ((this->type_ == Type::ENUM || this->type_ == Type::RANGE) && this->description_ == nullptr)
