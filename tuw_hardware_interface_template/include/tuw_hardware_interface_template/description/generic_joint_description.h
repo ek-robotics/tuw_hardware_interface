@@ -8,11 +8,12 @@
 
 #include <yaml-cpp/yaml.h>
 
+#include <tuw_hardware_interface_template/description/generic_connection_description.h>
+#include <tuw_hardware_interface_template/description/generic_hardware_description.h>
+#include <tuw_hardware_interface_template/description/generic_config_description.h>
+
 namespace tuw_hardware_interface
 {
-class GenericConnectionDescription;
-class GenericHardwareDescription;
-class GenericConfigDescription;
 class GenericJointDescription
 {
 public:
@@ -26,7 +27,7 @@ public:
   virtual std::shared_ptr<GenericConfigDescription> getConfigDescription();
 protected:
   static YAML::Node loadFile(YAML::Node yaml);
-  int id_;
+  int id_ {0};
   std::string name_;
   std::shared_ptr<GenericConnectionDescription> connection_description_ {nullptr};
   std::shared_ptr<GenericHardwareDescription> hardware_description_ {nullptr};
