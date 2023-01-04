@@ -86,7 +86,7 @@ void TrinamicConfig::reconfigureValue(TrinamicHardwareParameter parameter, int t
 
 void TrinamicConfig::reconfigureConfig()
 {
-  for (const std::string& hardware_parameter_identifier : *this->hardware_->getConfigIdentifiers())
+  for (const std::string& hardware_parameter_identifier : *this->trinamic_hardware_->getConfigIdentifiers())
   {
     int target_value = (this->target_config_values_)[hardware_parameter_identifier];
     int actual_value = (this->actual_config_values_)[hardware_parameter_identifier];
