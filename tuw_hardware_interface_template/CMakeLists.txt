@@ -22,6 +22,8 @@ catkin_package(
   CATKIN_DEPENDS
   roscpp
   rospy
+  roslib
+  roslint
   urdf
   ddynamic_reconfigure
 )
@@ -34,7 +36,7 @@ include_directories(
 roslint_cpp()
 
 add_library(
-  tuw_hardware_interface_template
+  ${PROJECT_NAME}
   src/${PROJECT_NAME}/description/generic_config_description.cpp
   src/${PROJECT_NAME}/description/generic_connection_description.cpp
   src/${PROJECT_NAME}/description/generic_hardware_description.cpp
@@ -52,14 +54,12 @@ add_library(
 )
 
 target_link_libraries(
-  tuw_hardware_interface_template
+  ${PROJECT_NAME}
   ${catkin_LIBRARIES}
 )
 
-# add gtests
 catkin_add_gtest(
-  tuw_hardware_interface_template_tests
-  # test
+  ${PROJECT_NAME}_tests
   test/${PROJECT_NAME}/description/generic_config_description_test.cpp
   test/${PROJECT_NAME}/description/generic_connection_description_test.cpp
   test/${PROJECT_NAME}/description/generic_hardware_description_test.cpp
@@ -74,10 +74,9 @@ catkin_add_gtest(
   test/${PROJECT_NAME}/generic_setup_prefix_test.cpp
 )
 
-# link libraries to gtests
 target_link_libraries(
-  tuw_hardware_interface_template_tests
-  tuw_hardware_interface_template
+  ${PROJECT_NAME}_tests
+  ${PROJECT_NAME}
   gmock
 )
 

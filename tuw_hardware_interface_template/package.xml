@@ -15,12 +15,14 @@
 
   <build_depend>roscpp</build_depend>
   <build_depend>rospy</build_depend>
+  <build_depend>roslib</build_depend>
   <build_depend>roslint</build_depend>
   <build_depend>urdf</build_depend>
   <build_depend>ddynamic_reconfigure</build_depend>
 
   <build_export_depend>roscpp</build_export_depend>
   <build_export_depend>rospy</build_export_depend>
+  <build_export_depend>roslib</build_export_depend>
   <build_export_depend>roslint</build_export_depend>
   <build_export_depend>urdf</build_export_depend>
   <build_export_depend>ddynamic_reconfigure</build_export_depend>
