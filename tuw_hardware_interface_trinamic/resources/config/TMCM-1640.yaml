@@ -1,11 +1,11 @@
 motor_poles: 20
 driver_switch: 1
 ramp_switch: 0
-communication_mode: 8
+communication_mode: 6
 target_reached_distance: 5
-target_reached_velocity: 500
+target_reached_velocity: 5
 motor_halted_velocity: 5
-maximum_current: 5000
+maximum_current: 1000
 position_p_parameter: 300
 velocity_p_parameter: 500
 velocity_i_parameter: 500
