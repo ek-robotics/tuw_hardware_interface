@@ -30,6 +30,11 @@ config_parameters:
     parameter: 255
     enum: { "Disable driver": 0,
             "Enable driver": 1 }
+  - identifier: overvoltage_protection
+    description: "Enable or disable overvoltage protection"
+    parameter: 245
+    enum: { "Disable overvoltage protection": 0,
+            "Enable overvoltage protection": 1 }
   - identifier: communication_mode
     description: "Communication Mode"
     parameter: 159

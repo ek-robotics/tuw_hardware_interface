@@ -1,4 +1,5 @@
 motor_poles: 20
+overvoltage_protection: 1
 driver_switch: 1
 ramp_switch: 0
 communication_mode: 6
