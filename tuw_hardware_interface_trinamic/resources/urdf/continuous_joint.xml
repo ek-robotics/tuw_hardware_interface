@@ -12,7 +12,7 @@
     <joint name="trinamic_joint" type="continuous">
 
         <!-- Limits -->
-        <limit velocity="5.0" effort="10.0"/>
+        <limit velocity="500.0" effort="500.0"/>
 
         <parent link="parent_link"/>
         <child link="child_link"/>
