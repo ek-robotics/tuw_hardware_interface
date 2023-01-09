@@ -4,6 +4,20 @@
 
 using tuw_hardware_interface::TrinamicReply;
 
+TrinamicReply::TrinamicReply(unsigned char reply_address,
+                             unsigned char module_address,
+                             unsigned char status,
+                             unsigned char command,
+                             int value)
+{
+  this->setByte1(reply_address);
+  this->setByte2(module_address);
+  this->setByte3(status);
+  this->setByte4(command);
+  this->setValue(value);
+  this->setChecksum(this->calculateChecksum());
+}
+
 unsigned char TrinamicReply::getReplyAddress()
 {
   return this->getByte1();

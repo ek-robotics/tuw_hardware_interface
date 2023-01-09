@@ -4,6 +4,20 @@
 
 using tuw_hardware_interface::TrinamicMessage;
 
+
+tuw_hardware_interface::TrinamicMessage::TrinamicMessage(unsigned char byte1,
+                                                         unsigned char byte2,
+                                                         unsigned char byte3,
+                                                         unsigned char byte4,
+                                                         int value)
+{
+  this->setByte1(byte1);
+  this->setByte2(byte2);
+  this->setByte3(byte3);
+  this->setByte4(byte4);
+  this->setValue(value);
+}
+
 unsigned char* TrinamicMessage::getBufferPointer()
 {
   return this->buffer_;

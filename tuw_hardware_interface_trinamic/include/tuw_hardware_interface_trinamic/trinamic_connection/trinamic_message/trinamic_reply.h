@@ -10,6 +10,13 @@ namespace tuw_hardware_interface
 class TrinamicReply : public TrinamicMessage
 {
 public:
+  TrinamicReply() = default;
+  ~TrinamicReply() = default;
+  TrinamicReply(unsigned char reply_address,
+                unsigned char module_address,
+                unsigned char status,
+                unsigned char command,
+                int value);
   unsigned char getReplyAddress();
   unsigned char getModuleAddress();
   unsigned char getStatus();

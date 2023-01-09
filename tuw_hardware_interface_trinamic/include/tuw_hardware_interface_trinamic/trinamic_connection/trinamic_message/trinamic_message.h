@@ -10,6 +10,14 @@ namespace tuw_hardware_interface
 class TrinamicMessage
 {
 public:
+  TrinamicMessage(unsigned char byte1,
+                  unsigned char byte2,
+                  unsigned char byte3,
+                  unsigned char byte4,
+                  int value);
+  TrinamicMessage() = default;
+  ~TrinamicMessage() = default;
+
   unsigned char* getBufferPointer();
   size_t getBufferSize();
   unsigned char calculateChecksum();
@@ -17,9 +25,6 @@ public:
   std::string toString();
 
 protected:
-  TrinamicMessage() = default;
-  ~TrinamicMessage() = default;
-
   void setByte1(unsigned char byte);
   unsigned char getByte1();
   void setByte2(unsigned char byte);

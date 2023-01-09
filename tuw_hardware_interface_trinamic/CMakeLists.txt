@@ -9,6 +9,7 @@ find_package(catkin
   REQUIRED COMPONENTS
   roscpp
   rospy
+  roslib
   roslint
   urdf
   tuw_hardware_interface_template
@@ -22,12 +23,12 @@ catkin_package(
   CATKIN_DEPENDS
   roscpp
   rospy
+  roslib
   roslint
   urdf
-  tuw_hardware_interface_template
   ddynamic_reconfigure
+  tuw_hardware_interface_template
   controller_manager
-  #  DEPENDS system_lib
 )
 
 include_directories(
@@ -38,7 +39,7 @@ include_directories(
 roslint_cpp()
 
 add_library(
-  tuw_hardware_interface_trinamic
+  ${PROJECT_NAME}
   src/${PROJECT_NAME}/description/trinamic_hardware_description.cpp
   src/${PROJECT_NAME}/description/trinamic_hardware_parameter_description.cpp
   src/${PROJECT_NAME}/description/trinamic_joint_description.cpp
@@ -55,22 +56,36 @@ add_library(
 )
 
 target_link_libraries(
-  tuw_hardware_interface_trinamic
+  ${PROJECT_NAME}
   ${catkin_LIBRARIES}
 )
 
+catkin_add_gtest(
+  ${PROJECT_NAME}_tests
+  test/${PROJECT_NAME}/trinamic_connection/trinamic_message/trinamic_command_test.cpp
+  test/${PROJECT_NAME}/trinamic_connection/trinamic_message/trinamic_message_test.cpp
+  test/${PROJECT_NAME}/trinamic_connection/trinamic_message/trinamic_reply_test.cpp
+  test/${PROJECT_NAME}/all_tests.cpp
+)
+
+target_link_libraries(
+  ${PROJECT_NAME}_tests
+  ${PROJECT_NAME}
+  gmock
+)
+
 add_executable(
-  tuw_hardware_interface_trinamic_node
+  ${PROJECT_NAME}_node
   src/trinamic_hardware_interface_node.cpp
 )
 
 add_dependencies(
-  tuw_hardware_interface_trinamic_node
-  tuw_hardware_interface_trinamic
+  ${PROJECT_NAME}_node
+  ${PROJECT_NAME}
 )
 
 target_link_libraries(
-  tuw_hardware_interface_trinamic_node
-  tuw_hardware_interface_trinamic
+  ${PROJECT_NAME}_node
+  ${PROJECT_NAME}
   ${catkin_LIBRARIES}
 )

@@ -15,6 +15,8 @@ public:
                   unsigned char type,
                   unsigned char id,
                   int value);
+  TrinamicCommand() = default;
+  ~TrinamicCommand() = default;
 protected:
   void setModuleAddress(unsigned char module_address);
   void setCommand(unsigned char command);

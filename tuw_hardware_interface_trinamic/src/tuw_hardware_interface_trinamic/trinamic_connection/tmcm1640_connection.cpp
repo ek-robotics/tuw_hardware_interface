@@ -141,7 +141,7 @@ int TMCM1640Connection::read(int id, GenericHardwareParameter hardware_parameter
 
 void TMCM1640Connection::writeTrinamic(int id, TrinamicHardwareParameter hardware_parameter, int data)
 {
-  unsigned char module_address = 0;
+  unsigned char module_address = 1;
   unsigned char command_number = SET_AXIS_PARAMETER;
   auto type_number = static_cast<unsigned char>(*hardware_parameter.getParameter());
   auto id_number = static_cast<unsigned char>(id);
@@ -152,7 +152,7 @@ void TMCM1640Connection::writeTrinamic(int id, TrinamicHardwareParameter hardwar
 
 int TMCM1640Connection::readTrinamic(int id, TrinamicHardwareParameter hardware_parameter)
 {
-  unsigned char module_address = 0;
+  unsigned char module_address = 1;
   unsigned char command_number = GET_AXIS_PARAMETER;
   auto type_number = static_cast<unsigned char>(*hardware_parameter.getParameter());
   auto id_number = static_cast<unsigned char>(id);
