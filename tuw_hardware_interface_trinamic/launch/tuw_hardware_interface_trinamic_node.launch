@@ -4,7 +4,7 @@
   <arg name="spawn_controllers" default="true"/>
 
   <!-- set mode flat (position /velocity / effort) -->
-  <arg name="mode" default="position"/>
+  <arg name="mode" default="velocity"/>
 
   <!-- set debug flag (true / false) -->
   <arg name="debug" default="false"/>
