@@ -10,6 +10,7 @@
 #include <memory>
 #include <string>
 #include <utility>
+#include <ros/ros.h>
 
 using tuw_hardware_interface::DynamixelConnection;
 
@@ -82,6 +83,7 @@ bool DynamixelConnection::disconnect()
 
 void DynamixelConnection::write(int id, GenericHardwareParameter hardware_parameter, int data)
 {
+  ros::Time start = ros::Time::now();
   dynamixel::PortHandler* port_handler_pointer = this->port_handler_.get();
   auto address = static_cast<uint8_t>(*hardware_parameter.getAddress());
   auto length = static_cast<uint16_t>(*hardware_parameter.getLength());
@@ -97,6 +99,7 @@ void DynamixelConnection::write(int id, GenericHardwareParameter hardware_parame
     case 1:
       data_1_byte = static_cast<uint8_t>(data);
       this->connection_mutex_.lock();
+//      communication_result = this->packet_handler_->write1ByteTxOnly(port_handler_pointer, id, address, data_1_byte);
       communication_result = this->packet_handler_->write1ByteTxRx
               (port_handler_pointer, id, address, data_1_byte, &error);
       this->connection_mutex_.unlock();
@@ -104,6 +107,7 @@ void DynamixelConnection::write(int id, GenericHardwareParameter hardware_parame
     case 2:
       data_2_byte = static_cast<uint16_t>(data);
       this->connection_mutex_.lock();
+//      communication_result = this->packet_handler_->write2ByteTxOnly(port_handler_pointer, id, address, data_2_byte);
       communication_result = this->packet_handler_->write2ByteTxRx
               (port_handler_pointer, id, address, data_2_byte, &error);
       this->connection_mutex_.unlock();
@@ -111,6 +115,7 @@ void DynamixelConnection::write(int id, GenericHardwareParameter hardware_parame
     case 4:
       data_4_byte = static_cast<uint32_t>(data);
       this->connection_mutex_.lock();
+//      communication_result = this->packet_handler_->write4ByteTxOnly(port_handler_pointer, id, address, data_4_byte);
       communication_result = this->packet_handler_->write4ByteTxRx
               (port_handler_pointer, id, address, data_4_byte, &error);
       this->connection_mutex_.unlock();
@@ -125,12 +130,19 @@ void DynamixelConnection::write(int id, GenericHardwareParameter hardware_parame
     std::string error_message(
             "communication error (joint ID: " + std::to_string(id) + ") - " +
             "writing parameter " + *hardware_parameter.getIdentifier());
+    ROS_WARN("%s", error_message.c_str());
     throw std::runtime_error(error_message);
   }
+
+  ros::Time end = ros::Time::now();
+  ros::Duration duration = ros::Duration(end - start);
+  ROS_DEBUG("dynamixel write was: %ld", duration.toNSec());
 }
 
 int DynamixelConnection::read(int id, GenericHardwareParameter hardware_parameter)
 {
+  ros::Time start = ros::Time::now();
+
   dynamixel::PortHandler* port_handler_pointer = this->port_handler_.get();
   auto address = static_cast<uint8_t>(*hardware_parameter.getAddress());
   auto length = static_cast<uint16_t>(*hardware_parameter.getLength());
@@ -173,6 +185,10 @@ int DynamixelConnection::read(int id, GenericHardwareParameter hardware_paramete
             "reading parameter " + *hardware_parameter.getIdentifier());
     throw std::runtime_error(error_message);
   }
+
+  ros::Time end = ros::Time::now();
+  ros::Duration duration = ros::Duration(end - start);
+  ROS_DEBUG("dynamixel read was: %ld", duration.toNSec());
 
   return data;
 }

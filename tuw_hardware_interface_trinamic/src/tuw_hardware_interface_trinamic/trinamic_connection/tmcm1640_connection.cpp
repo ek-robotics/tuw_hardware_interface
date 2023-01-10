@@ -141,6 +141,7 @@ int TMCM1640Connection::read(int id, GenericHardwareParameter hardware_parameter
 
 void TMCM1640Connection::writeTrinamic(int id, TrinamicHardwareParameter hardware_parameter, int data)
 {
+  ros::Time start = ros::Time::now();
   unsigned char module_address = 1;
   unsigned char command_number = SET_AXIS_PARAMETER;
   auto type_number = static_cast<unsigned char>(*hardware_parameter.getParameter());
@@ -148,10 +149,15 @@ void TMCM1640Connection::writeTrinamic(int id, TrinamicHardwareParameter hardwar
 
   TrinamicCommand command(module_address, command_number, type_number, id_number, data);
   TrinamicReply reply = this->communicate(command);
+
+  ros::Time end = ros::Time::now();
+  ros::Duration duration = ros::Duration(end - start);
+  ROS_DEBUG("trinamic write was: %ld", duration.toNSec());
 }
 
 int TMCM1640Connection::readTrinamic(int id, TrinamicHardwareParameter hardware_parameter)
 {
+  ros::Time start = ros::Time::now();
   unsigned char module_address = 1;
   unsigned char command_number = GET_AXIS_PARAMETER;
   auto type_number = static_cast<unsigned char>(*hardware_parameter.getParameter());
@@ -160,6 +166,10 @@ int TMCM1640Connection::readTrinamic(int id, TrinamicHardwareParameter hardware_
   TrinamicCommand command(module_address, command_number, type_number, id_number, 0);
   TrinamicReply reply = this->communicate(command);
   return reply.getValue();
+
+  ros::Time end = ros::Time::now();
+  ros::Duration duration = ros::Duration(end - start);
+  ROS_DEBUG("trinamic read was: %ld", duration.toNSec());
 }
 
 TrinamicReply TMCM1640Connection::communicate(TrinamicCommand command)
