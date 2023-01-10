@@ -1,12 +1,7 @@
-setup: iwos
+setup: test_setup
 joints:
-  - name: "left_revolute"
+  - name: trinamic_joint
     id: 0
     connection: { port: "/dev/ttyACM0", baudrate: 57600 }
-    hardware:   { package: "tuw_hardware_interface_trinamic", path: "resources/hardware/revolute/trinamic_TMCM-1640.yaml" }
-    config:     { package: "tuw_hardware_interface_trinamic", path: "resources/config/revolute/trinamic_TMCM-1640.yaml" }
-  - name: "left_revolute"
-    id: 0
-    connection: { port: "/dev/ttyACM1", baudrate: 57600 }
-    hardware:   { package: "tuw_hardware_interface_trinamic", path: "resources/hardware/revolute/trinamic_TMCM-1640.yaml" }
-    config:     { package: "tuw_hardware_interface_trinamic", path: "resources/config/revolute/trinamic_TMCM-1640.yaml" }
+    hardware:   { package: "tuw_hardware_interface_trinamic", path: "resources/hardware/TMCM-1640.yaml" }
+    config:     { package: "tuw_hardware_interface_trinamic", path: "resources/config/TMCM-1640.yaml" }
