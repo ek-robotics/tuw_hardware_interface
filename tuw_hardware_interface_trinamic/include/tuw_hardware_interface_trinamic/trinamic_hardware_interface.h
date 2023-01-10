@@ -6,6 +6,9 @@
 #include "tuw_hardware_interface_template/generic_hardware_interface.h"
 #include "tuw_hardware_interface_trinamic/description/trinamic_joint_description.h"
 
+#include <pluginlib/class_list_macros.hpp>
+#include <hardware_interface/robot_hw.h>
+
 namespace tuw_hardware_interface
 {
 class TrinamicHardwareInterface : public GenericHardwareInterface

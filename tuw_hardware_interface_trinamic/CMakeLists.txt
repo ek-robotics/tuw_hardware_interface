@@ -15,6 +15,7 @@ find_package(catkin
   tuw_hardware_interface_template
   ddynamic_reconfigure
   controller_manager
+  hardware_interface
 )
 
 catkin_package(
@@ -29,6 +30,7 @@ catkin_package(
   ddynamic_reconfigure
   tuw_hardware_interface_template
   controller_manager
+  hardware_interface
 )
 
 include_directories(
@@ -39,7 +41,7 @@ include_directories(
 roslint_cpp()
 
 add_library(
-  ${PROJECT_NAME}
+  tuw_hardware_interface_trinamic
   src/${PROJECT_NAME}/description/trinamic_hardware_description.cpp
   src/${PROJECT_NAME}/description/trinamic_hardware_parameter_description.cpp
   src/${PROJECT_NAME}/description/trinamic_joint_description.cpp
@@ -56,7 +58,7 @@ add_library(
 )
 
 target_link_libraries(
-  ${PROJECT_NAME}
+  tuw_hardware_interface_trinamic
   ${catkin_LIBRARIES}
 )
 

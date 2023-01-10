@@ -141,3 +141,5 @@ bool DynamixelHardwareInterface::initJoint(DynamixelJointDescription joint_descr
     return false;
   }
 }
+
+PLUGINLIB_EXPORT_CLASS(tuw_hardware_interface::DynamixelHardwareInterface, hardware_interface::RobotHW)

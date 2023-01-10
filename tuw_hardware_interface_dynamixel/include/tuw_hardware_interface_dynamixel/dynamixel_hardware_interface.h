@@ -7,6 +7,8 @@
 
 #include <list>
 
+#include <pluginlib/class_list_macros.hpp>
+
 namespace tuw_hardware_interface
 {
 class DynamixelJointDescription;

@@ -132,3 +132,5 @@ bool TrinamicHardwareInterface::initJoint(
     return false;
   }
 }
+
+PLUGINLIB_EXPORT_CLASS(tuw_hardware_interface::TrinamicHardwareInterface, hardware_interface::RobotHW)
