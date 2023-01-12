@@ -33,11 +33,12 @@ public:
   bool disconnect() override;
   void write(int id, GenericHardwareParameter hardware_parameter, int data) override;
   int read(int id, GenericHardwareParameter hardware_parameter) override;
+  void read(int id, std::vector<std::pair<GenericHardwareParameter, int*>> parameter_data_pairs) override;
 private:
   static std::unique_ptr<std::map<std::string, std::shared_ptr<DynamixelConnection>>> connection_table_;
   std::shared_ptr<DynamixelConnectionDescription> connection_description_;
-  std::unique_ptr<PortHandler> port_handler_;
-  std::unique_ptr<PacketHandler> packet_handler_;
+  std::unique_ptr<dynamixel::PortHandler> port_handler_;
+  std::unique_ptr<dynamixel::PacketHandler> packet_handler_;
 };
 }  // namespace tuw_hardware_interface
 

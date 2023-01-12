@@ -121,19 +121,24 @@ void GenericJoint::write(const ros::Duration &period)
 
 void GenericJoint::read(const ros::Duration &period)
 {
-  if (this->hardware_->supportsActualMode(GenericHardware::Mode::POSITION))
+  std::map<GenericHardware::Mode, std::shared_ptr<int>> map;
+  std::vector<std::pair<::GenericHardwareParameter, int*>> actual;
+  for (GenericHardware::Mode mode : this->hardware_->getSupportedActualModes())
   {
-    this->actual_position_ = this->readActual(GenericHardware::Mode::POSITION, "POSITION");
+    map.insert(std::pair<GenericHardware::Mode, std::shared_ptr<int>>(mode, std::make_shared<int>()));
+    actual.emplace_back(this->hardware_->getActualParameterForMode(mode), map.at(mode).get());
   }
 
-  if (this->hardware_->supportsActualMode(GenericHardware::Mode::VELOCITY))
-  {
-    this->actual_velocity_ = this->readActual(GenericHardware::Mode::VELOCITY, "VELOCITY");
-  }
+  this->connection_->read(this->id_, actual);
 
-  if (this->hardware_->supportsActualMode(GenericHardware::Mode::EFFORT))
+  for (GenericHardware::Mode mode : this->hardware_->getSupportedActualModes())
   {
-    this->actual_effort_ = this->readActual(GenericHardware::Mode::EFFORT, "EFFORT");
+    if (mode == GenericHardware::Mode::POSITION)
+      this->actual_position_ = this->hardware_->convertFromHardwareResolution(*map.at(mode), mode);
+    if (mode == GenericHardware::Mode::VELOCITY)
+      this->actual_velocity_ = this->hardware_->convertFromHardwareResolution(*map.at(mode), mode);
+    if (mode == GenericHardware::Mode::EFFORT)
+      this->actual_effort_ = this->hardware_->convertFromHardwareResolution(*map.at(mode), mode);
   }
 }
 

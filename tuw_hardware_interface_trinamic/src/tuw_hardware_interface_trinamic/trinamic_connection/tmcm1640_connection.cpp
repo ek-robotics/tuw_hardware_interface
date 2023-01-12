@@ -227,3 +227,13 @@ TrinamicReply TMCM1640Connection::communicate(TrinamicCommand command)
     throw std::system_error(error_code, error_message.c_str());
   }
 }
+
+void TMCM1640Connection::readTrinamic(int id, std::vector<std::pair<TrinamicHardwareParameter, int*>> parameter_data_pairs)
+{
+  for (auto parameter_data_pair : parameter_data_pairs)
+  {
+    auto hardware_parameter = parameter_data_pair.first;
+    auto data_pointer = parameter_data_pair.second;
+    *data_pointer = this->readTrinamic(id, hardware_parameter);
+  }
+}

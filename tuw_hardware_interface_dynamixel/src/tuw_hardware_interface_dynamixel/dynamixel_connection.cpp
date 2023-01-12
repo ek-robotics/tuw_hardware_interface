@@ -11,6 +11,7 @@
 #include <string>
 #include <utility>
 #include <ros/ros.h>
+#include "tuw_hardware_interface_template/generic_setup_prefix.h"
 
 using tuw_hardware_interface::DynamixelConnection;
 
@@ -99,7 +100,6 @@ void DynamixelConnection::write(int id, GenericHardwareParameter hardware_parame
     case 1:
       data_1_byte = static_cast<uint8_t>(data);
       this->connection_mutex_.lock();
-//      communication_result = this->packet_handler_->write1ByteTxOnly(port_handler_pointer, id, address, data_1_byte);
       communication_result = this->packet_handler_->write1ByteTxRx
               (port_handler_pointer, id, address, data_1_byte, &error);
       this->connection_mutex_.unlock();
@@ -107,7 +107,6 @@ void DynamixelConnection::write(int id, GenericHardwareParameter hardware_parame
     case 2:
       data_2_byte = static_cast<uint16_t>(data);
       this->connection_mutex_.lock();
-//      communication_result = this->packet_handler_->write2ByteTxOnly(port_handler_pointer, id, address, data_2_byte);
       communication_result = this->packet_handler_->write2ByteTxRx
               (port_handler_pointer, id, address, data_2_byte, &error);
       this->connection_mutex_.unlock();
@@ -115,7 +114,6 @@ void DynamixelConnection::write(int id, GenericHardwareParameter hardware_parame
     case 4:
       data_4_byte = static_cast<uint32_t>(data);
       this->connection_mutex_.lock();
-//      communication_result = this->packet_handler_->write4ByteTxOnly(port_handler_pointer, id, address, data_4_byte);
       communication_result = this->packet_handler_->write4ByteTxRx
               (port_handler_pointer, id, address, data_4_byte, &error);
       this->connection_mutex_.unlock();
@@ -191,4 +189,51 @@ int DynamixelConnection::read(int id, GenericHardwareParameter hardware_paramete
   ROS_DEBUG("dynamixel read was: %ld", duration.toNSec());
 
   return data;
+}
+
+void DynamixelConnection::read(int id, std::vector<std::pair<GenericHardwareParameter, int*>> parameter_data_pairs)
+{
+  ros::Time start = ros::Time::now();
+
+  dynamixel::GroupBulkRead bulk_read(this->port_handler_.get(), this->packet_handler_.get());
+
+  GenericHardwareParameter min = parameter_data_pairs[0].first;
+  GenericHardwareParameter max = parameter_data_pairs[0].first;
+
+  for (auto parameter_data_pair : parameter_data_pairs)
+  {
+    int address = *parameter_data_pair.first.getAddress();
+    if (address < *min.getAddress())
+      min = parameter_data_pair.first;
+    if (address > *max.getAddress())
+      max = parameter_data_pair.first;
+  }
+
+  bulk_read.addParam(id, *min.getAddress(), *max.getAddress() - *min.getAddress() + *max.getLength());
+
+  this->connection_mutex_.lock();
+  bulk_read.txRxPacket();
+  this->connection_mutex_.unlock();
+
+  for (auto parameter_data_pair : parameter_data_pairs)
+  {
+    auto identifier = *parameter_data_pair.first.getIdentifier();
+    int address = *parameter_data_pair.first.getAddress();
+    int length = *parameter_data_pair.first.getLength();
+
+    auto data_pointer = parameter_data_pair.second;
+
+    if (bulk_read.isAvailable(id, address, length))
+    {
+      *data_pointer = static_cast<int>(bulk_read.getData(id, address, length));
+    }
+    else
+    {
+      ROS_WARN("[%s] ERROR reading %s from device with ID %d", PREFIX, identifier.LOG, id);
+    }
+  }
+
+  ros::Time end = ros::Time::now();
+  ros::Duration duration = ros::Duration(end - start);
+  ROS_DEBUG("dynamixel bulk read was: %ld", duration.toNSec());
 }

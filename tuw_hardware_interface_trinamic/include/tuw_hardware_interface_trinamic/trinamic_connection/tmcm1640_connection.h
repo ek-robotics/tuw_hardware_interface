@@ -43,8 +43,9 @@ public:
 
   void writeTrinamic(int id, TrinamicHardwareParameter hardware_parameter, int data);
   int readTrinamic(int id, TrinamicHardwareParameter hardware_parameter);
-  void write(int id, GenericHardwareParameter hardware_parameter, int data);
-  int read(int id, GenericHardwareParameter hardware_parameter);
+  void readTrinamic(int id, std::vector<std::pair<TrinamicHardwareParameter, int*>> parameter_data_pairs);
+  void write(int id, GenericHardwareParameter hardware_parameter, int data) override;
+  int read(int id, GenericHardwareParameter hardware_parameter) override;
 
 private:
   TrinamicReply communicate(TrinamicCommand command);

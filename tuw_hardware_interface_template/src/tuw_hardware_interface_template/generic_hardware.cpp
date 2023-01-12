@@ -205,3 +205,23 @@ GenericHardware::Mode GenericHardware::modeFromString(std::string mode_string)
     return GenericHardware::Mode::EFFORT;
   throw std::runtime_error("unknown mode: " + mode_string);
 }
+
+std::vector<GenericHardware::Mode> GenericHardware::getSupportedTargetModes()
+{
+  std::vector<Mode> supported_modes;
+  for (const auto& modes_to_parameter : this->target_modes_to_parameter_)
+  {
+    supported_modes.push_back(modes_to_parameter.first);
+  }
+  return supported_modes;
+}
+
+std::vector<GenericHardware::Mode> GenericHardware::getSupportedActualModes()
+{
+  std::vector<Mode> supported_modes;
+  for (const auto& modes_to_parameter : this->actual_modes_to_parameter_)
+  {
+    supported_modes.push_back(modes_to_parameter.first);
+  }
+  return supported_modes;
+}

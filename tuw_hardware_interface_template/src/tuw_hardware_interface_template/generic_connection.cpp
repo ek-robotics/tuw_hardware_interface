@@ -55,3 +55,13 @@ GenericConnection::~GenericConnection()
 {
   // call disconnect in implementation
 }
+
+void GenericConnection::read(int id, std::vector<std::pair<GenericHardwareParameter, int*>> parameter_data_pairs)
+{
+  for (auto parameter_data_pair : parameter_data_pairs)
+  {
+    auto hardware_parameter = parameter_data_pair.first;
+    auto data_pointer = parameter_data_pair.second;
+    *data_pointer = this->read(id, hardware_parameter);
+  }
+}

@@ -7,6 +7,8 @@
 #include <memory>
 #include <mutex>
 #include <string>
+#include <list>
+#include "generic_hardware.h"
 
 namespace tuw_hardware_interface
 {
@@ -29,13 +31,15 @@ public:
   virtual bool disconnect() = 0;
   virtual void write(int id, GenericHardwareParameter hardware_parameter, int data) = 0;
   virtual int read(int id, GenericHardwareParameter hardware_parameter) = 0;
-protected:
+  virtual void read(int id, std::vector<std::pair<GenericHardwareParameter, int*>> parameter_data_pairs);
+
+  protected:
   // singleton variables
   static std::mutex mutex_;
   static std::unique_ptr<std::map<std::string, std::shared_ptr<GenericConnection>>> connection_table_;
   // instance variables
   std::mutex connection_mutex_;
-  std::list<*GenericJoint> joints_;
+  std::list<GenericJoint*> joints_;
 };
 }  // namespace tuw_hardware_interface
 

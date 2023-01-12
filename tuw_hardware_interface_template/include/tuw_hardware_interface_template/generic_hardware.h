@@ -34,6 +34,8 @@ public:
   virtual std::string getName();
   virtual bool supportsTargetMode(Mode mode);
   virtual bool supportsActualMode(Mode mode);
+  virtual std::vector<Mode> getSupportedTargetModes();
+  virtual std::vector<Mode> getSupportedActualModes();
   virtual GenericHardwareParameter getTargetParameterForMode(Mode mode);
   virtual GenericHardwareParameter getActualParameterForMode(Mode mode);
   virtual std::shared_ptr<std::list<std::string>> getConfigIdentifiers();

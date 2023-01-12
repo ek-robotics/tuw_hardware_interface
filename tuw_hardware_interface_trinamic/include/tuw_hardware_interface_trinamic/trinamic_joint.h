@@ -19,12 +19,15 @@ public:
 
   void writeTrinamic(TrinamicHardwareParameter hardware_parameter, int data);
   int readTrinamic(TrinamicHardwareParameter hardware_parameter);
+
+  void write(const ros::Duration &period) override;
+  void read(const ros::Duration &period) override;
 protected:
   void writeTarget(double target, GenericHardware::Mode mode, const std::string& mode_name);
   double readActual(GenericHardware::Mode mode, const std::string& mode_name);
 
   std::shared_ptr<TrinamicHardware> hardware_;
-  std::shared_ptr<TMCM1640Connection> trinamic_connection_;
+  std::shared_ptr<TMCM1640Connection> connection_;
 };
 }  // namespace tuw_hardware_interface
 

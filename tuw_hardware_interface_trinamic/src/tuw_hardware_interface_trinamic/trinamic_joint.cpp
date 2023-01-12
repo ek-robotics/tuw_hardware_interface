@@ -9,17 +9,17 @@ using tuw_hardware_interface::TrinamicJoint;
 
 void TrinamicJoint::setTrinamicConnection(std::shared_ptr<TMCM1640Connection> connection)
 {
-  this->trinamic_connection_ = connection;
+  this->connection_ = connection;
 }
 
 void TrinamicJoint::writeTrinamic(TrinamicHardwareParameter hardware_parameter, int data)
 {
-  this->trinamic_connection_->writeTrinamic(this->id_, hardware_parameter, data);
+  this->connection_->writeTrinamic(this->id_, hardware_parameter, data);
 }
 
 int TrinamicJoint::readTrinamic(TrinamicHardwareParameter hardware_parameter)
 {
-  return this->trinamic_connection_->readTrinamic(this->id_, hardware_parameter);
+  return this->connection_->readTrinamic(this->id_, hardware_parameter);
 }
 
 tuw_hardware_interface::TrinamicJoint::TrinamicJoint(GenericJointDescription joint_description)
@@ -34,7 +34,7 @@ void tuw_hardware_interface::TrinamicJoint::writeTarget(double target, GenericHa
   if (this->hardware_->supportsTargetMode(mode))
   {
     int hardware_target = this->hardware_->convertToHardwareResolution(target, mode);
-    this->trinamic_connection_->writeTrinamic(this->id_, this->hardware_->getTargetTrinamicParameterForMode(mode), hardware_target);
+    this->connection_->writeTrinamic(this->id_, this->hardware_->getTargetTrinamicParameterForMode(mode), hardware_target);
   }
   else
   {
@@ -48,7 +48,7 @@ double tuw_hardware_interface::TrinamicJoint::readActual(GenericHardware::Mode m
 {
   if (this->hardware_->supportsActualMode(mode))
   {
-    int hardware_actual = this->trinamic_connection_->readTrinamic(this->id_, this->hardware_->getActualTrinamicParameterForMode(mode));
+    int hardware_actual = this->connection_->readTrinamic(this->id_, this->hardware_->getActualTrinamicParameterForMode(mode));
     return this->hardware_->convertFromHardwareResolution(hardware_actual, mode);
   }
   else
@@ -62,4 +62,32 @@ void TrinamicJoint::setTrinamicHardware(std::shared_ptr<TrinamicHardware> hardwa
 {
   GenericJoint::hardware_ = hardware;
   this->hardware_ = hardware;
+}
+
+void TrinamicJoint::write(const ros::Duration& period)
+{
+  GenericJoint::write(period);
+}
+
+void TrinamicJoint::read(const ros::Duration& period)
+{
+  std::map<GenericHardware::Mode, std::shared_ptr<int>> map;
+  std::vector<std::pair<TrinamicHardwareParameter, int*>> actual;
+  for (GenericHardware::Mode mode : this->hardware_->getSupportedActualModes())
+  {
+    map.insert(std::pair<GenericHardware::Mode, std::shared_ptr<int>>(mode, std::make_shared<int>()));
+    actual.emplace_back(this->hardware_->getActualTrinamicParameterForMode(mode), map.at(mode).get());
+  }
+
+  this->connection_->readTrinamic(this->id_, actual);
+
+  for (GenericHardware::Mode mode : this->hardware_->getSupportedActualModes())
+  {
+    if (mode == GenericHardware::Mode::POSITION)
+      this->actual_position_ = this->hardware_->convertFromHardwareResolution(*map.at(mode), mode);
+    if (mode == GenericHardware::Mode::VELOCITY)
+      this->actual_velocity_ = this->hardware_->convertFromHardwareResolution(*map.at(mode), mode);
+    if (mode == GenericHardware::Mode::EFFORT)
+      this->actual_effort_ = this->hardware_->convertFromHardwareResolution(*map.at(mode), mode);
+  }
 }
