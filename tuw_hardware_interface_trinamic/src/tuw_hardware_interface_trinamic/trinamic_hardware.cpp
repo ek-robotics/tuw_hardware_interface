@@ -3,6 +3,7 @@
 #include "tuw_hardware_interface_trinamic/trinamic_hardware.h"
 #include "tuw_hardware_interface_template/generic_setup_prefix.h"
 
+using tuw_hardware_interface::GenericHardware;
 using tuw_hardware_interface::TrinamicHardware;
 using tuw_hardware_interface::TrinamicHardwareParameter;
 
@@ -132,7 +133,7 @@ TrinamicHardware::getConfigIdentifierToTrinamicParameter()
   return this->config_identifier_to_trinamic_parameter_;
 }
 
-bool tuw_hardware_interface::TrinamicHardware::supportsTargetMode(tuw_hardware_interface::GenericHardware::Mode mode)
+bool tuw_hardware_interface::TrinamicHardware::supportsTargetMode(GenericHardware::Mode mode)
 {
   if (this->target_modes_to_trinamic_parameter_.find(mode) == this->target_modes_to_trinamic_parameter_.end())
     return false;
@@ -140,10 +141,30 @@ bool tuw_hardware_interface::TrinamicHardware::supportsTargetMode(tuw_hardware_i
     return true;
 }
 
-bool tuw_hardware_interface::TrinamicHardware::supportsActualMode(tuw_hardware_interface::GenericHardware::Mode mode)
+bool tuw_hardware_interface::TrinamicHardware::supportsActualMode(GenericHardware::Mode mode)
 {
   if (this->actual_modes_to_trinamic_parameter_.find(mode) == this->actual_modes_to_trinamic_parameter_.end())
     return false;
   else
     return true;
+}
+
+std::vector<GenericHardware::Mode> tuw_hardware_interface::TrinamicHardware::getSupportedTargetModes()
+{
+  std::vector<GenericHardware::Mode> supported_modes;
+  for (const auto& modes_to_parameter : this->target_modes_to_trinamic_parameter_)
+  {
+    supported_modes.push_back(modes_to_parameter.first);
+  }
+  return supported_modes;
+}
+
+std::vector<GenericHardware::Mode> tuw_hardware_interface::TrinamicHardware::getSupportedActualModes()
+{
+  std::vector<GenericHardware::Mode> supported_modes;
+  for (const auto& modes_to_parameter : this->actual_modes_to_trinamic_parameter_)
+  {
+    supported_modes.push_back(modes_to_parameter.first);
+  }
+  return supported_modes;
 }

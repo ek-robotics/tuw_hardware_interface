@@ -16,6 +16,8 @@ public:
   explicit TrinamicHardware(TrinamicHardwareDescription hardware_description);
   bool supportsTargetMode(Mode mode) override;
   bool supportsActualMode(Mode mode) override;
+  std::vector<Mode> getSupportedTargetModes() override;
+  std::vector<Mode> getSupportedActualModes() override;
   TrinamicHardwareParameter getTargetTrinamicParameterForMode(Mode mode);
   TrinamicHardwareParameter getActualTrinamicParameterForMode(Mode mode);
   std::shared_ptr<std::map<std::string, TrinamicHardwareParameter>> getConfigIdentifierToTrinamicParameter();

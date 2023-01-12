@@ -71,12 +71,12 @@ void TrinamicJoint::write(const ros::Duration& period)
 
 void TrinamicJoint::read(const ros::Duration& period)
 {
-  std::map<GenericHardware::Mode, std::shared_ptr<int>> map;
-  std::vector<std::pair<TrinamicHardwareParameter, int*>> actual;
+  auto map = std::map<GenericHardware::Mode, std::shared_ptr<int>>();
+  auto actual = std::vector<std::pair<TrinamicHardwareParameter, int*>>();
   for (GenericHardware::Mode mode : this->hardware_->getSupportedActualModes())
   {
-    map.insert(std::pair<GenericHardware::Mode, std::shared_ptr<int>>(mode, std::make_shared<int>()));
-    actual.emplace_back(this->hardware_->getActualTrinamicParameterForMode(mode), map.at(mode).get());
+    map.insert({mode, std::make_shared<int>()});
+    actual.push_back({this->hardware_->getActualTrinamicParameterForMode(mode), map.at(mode).get()});
   }
 
   this->connection_->readTrinamic(this->id_, actual);

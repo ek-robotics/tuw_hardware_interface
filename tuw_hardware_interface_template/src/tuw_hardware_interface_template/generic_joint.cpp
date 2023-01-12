@@ -125,8 +125,8 @@ void GenericJoint::read(const ros::Duration &period)
   std::vector<std::pair<::GenericHardwareParameter, int*>> actual;
   for (GenericHardware::Mode mode : this->hardware_->getSupportedActualModes())
   {
-    map.insert(std::pair<GenericHardware::Mode, std::shared_ptr<int>>(mode, std::make_shared<int>()));
-    actual.emplace_back(this->hardware_->getActualParameterForMode(mode), map.at(mode).get());
+    map.insert({mode, std::make_shared<int>()});
+    actual.push_back({this->hardware_->getActualParameterForMode(mode), map.at(mode).get()});
   }
 
   this->connection_->read(this->id_, actual);
