@@ -55,7 +55,11 @@ public:
   virtual void write(GenericHardwareParameter hardware_parameter, int data);
   virtual int read(GenericHardwareParameter hardware_parameter);
 
+  int getTarget();
+  void setCurrent(int current, GenericHardware::Mode mode);
+
   virtual bool setMode(GenericHardware::Mode mode);
+  virtual GenericHardware::Mode getMode();
 
   JointStateHandle* getJointStateHandle();
   JointHandle* getJointPositionHandle();

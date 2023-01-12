@@ -211,3 +211,42 @@ double GenericJoint::readActual(GenericHardware::Mode mode, const std::string& m
     throw std::runtime_error("unsupported actual mode requested");
   }
 }
+
+int GenericJoint::getTarget()
+{
+  double target = 0;
+  switch (*this->mode_)
+  {
+    case GenericHardware::Mode::POSITION:
+      target = this->target_position_;
+      break;
+    case GenericHardware::Mode::VELOCITY:
+      target = this->target_velocity_;
+      break;
+    case GenericHardware::Mode::EFFORT:
+      target = this->target_effort_;
+      break;
+  }
+  return this->hardware_->convertToHardwareResolution(target, *this->mode_);
+}
+
+void GenericJoint::setCurrent(int current, GenericHardware::Mode mode)
+{
+  switch (mode)
+  {
+    case GenericHardware::Mode::POSITION:
+      this->actual_position_ = this->hardware_->convertFromHardwareResolution(current, mode);
+      break;
+    case GenericHardware::Mode::VELOCITY:
+      this->actual_velocity_ = this->hardware_->convertFromHardwareResolution(current, mode);
+      break;
+    case GenericHardware::Mode::EFFORT:
+      this->actual_effort_ = this->hardware_->convertFromHardwareResolution(current, mode);
+      break;
+  }
+}
+
+GenericHardware::Mode GenericJoint::getMode()
+{
+  return *this->mode_;
+}

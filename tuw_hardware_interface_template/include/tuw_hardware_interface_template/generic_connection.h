@@ -10,8 +10,9 @@
 
 namespace tuw_hardware_interface
 {
-class GenericHardwareParameter;
 
+class GenericJoint;
+class GenericHardwareParameter;
 class GenericConnectionDescription;
 
 class GenericConnection
@@ -34,6 +35,7 @@ protected:
   static std::unique_ptr<std::map<std::string, std::shared_ptr<GenericConnection>>> connection_table_;
   // instance variables
   std::mutex connection_mutex_;
+  std::list<*GenericJoint> joints_;
 };
 }  // namespace tuw_hardware_interface
 
