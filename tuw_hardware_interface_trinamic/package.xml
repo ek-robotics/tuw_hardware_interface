@@ -42,6 +42,9 @@
   <exec_depend>ddynamic_reconfigure</exec_depend>
   <exec_depend>controller_manager</exec_depend>
   <exec_depend>hardware_interface</exec_depend>
+  <exec_depend>position_controllers</exec_depend>
+  <exec_depend>velocity_controllers</exec_depend>
+  <exec_depend>effort_controllers</exec_depend>
 
   <test_depend>rosunit</test_depend>
 

@@ -42,9 +42,9 @@
   <exec_depend>controller_manager</exec_depend>
   <exec_depend>hardware_interface</exec_depend>
   <exec_depend>dynamixel_sdk</exec_depend>
-  <exec_depend>position-controllers</exec_depend>
-  <exec_depend>velocity-controllers</exec_depend>
-  <exec_depend>effort-controllers</exec_depend>
+  <exec_depend>position_controllers</exec_depend>
+  <exec_depend>velocity_controllers</exec_depend>
+  <exec_depend>effort_controllers</exec_depend>
 
   <test_depend>rosunit</test_depend>
 
