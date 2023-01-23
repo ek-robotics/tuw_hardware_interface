@@ -43,6 +43,7 @@ public:
   { return true; };
   MOCK_METHOD(void, write, (int id, GenericHardwareParameter hardware_parameter, int data), (override));
   MOCK_METHOD(int, read, (int id, GenericHardwareParameter hardware_parameter), (override));
+  MOCK_METHOD(void, read, (int id, (std::vector<std::pair<GenericHardwareParameter, int*>> parameter_data_pairs)), (override));
 };
 
 class HardwareMock : public GenericHardware
@@ -142,37 +143,21 @@ TEST_F(GenericJointTest, verifyTargetEffort)
   this->joint_->write(ros::Duration(1));
 }
 
-TEST_F(GenericJointTest, verifyActualPosition)
+TEST_F(GenericJointTest, verifyActual)
 {
-  EXPECT_CALL(*this->connection_, read(0, hardware_->actual_state_parameter_)).
-          Times(3).WillRepeatedly(testing::Return(1));
+  std::vector<std::pair<GenericHardwareParameter, int*>> vector;
+  EXPECT_CALL(*this->connection_, read(0, vector)).Times(1);
   this->joint_->setMode(GenericHardware::Mode::POSITION);
   this->joint_->read(ros::Duration(1));
 }
 
-TEST_F(GenericJointTest, verifyActualVelocoty)
-{
-  EXPECT_CALL(*this->connection_, read(0, hardware_->actual_state_parameter_)).
-          Times(3).WillRepeatedly(testing::Return(1));
-  this->joint_->setMode(GenericHardware::Mode::VELOCITY);
-  this->joint_->read(ros::Duration(1));
-}
-
-TEST_F(GenericJointTest, verifyActualEffort)
-{
-  EXPECT_CALL(*this->connection_, read(0, hardware_->actual_state_parameter_)).
-          Times(3).WillRepeatedly(testing::Return(1));
-  this->joint_->setMode(GenericHardware::Mode::EFFORT);
-  this->joint_->read(ros::Duration(1));
-}
-
-TEST_F(GenericJointTest, verifyPipeWrtie)
+TEST_F(GenericJointTest, verifyWrtieForwarding)
 {
   EXPECT_CALL(*this->connection_, write(0, this->hardware_->actual_state_parameter_, 0)).Times(1);
   this->joint_->write(this->hardware_->actual_state_parameter_, 0);
 }
 
-TEST_F(GenericJointTest, verifyPipeRead)
+TEST_F(GenericJointTest, verifyReadForwarding)
 {
   EXPECT_CALL(*this->connection_, read(0, this->hardware_->actual_state_parameter_)).Times(1);
   this->joint_->read(this->hardware_->actual_state_parameter_);
