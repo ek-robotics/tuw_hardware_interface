@@ -20,8 +20,18 @@ using tuw_hardware_interface::GenericJointDescription;
 
 GenericJointDescription::GenericJointDescription(YAML::Node yaml)
 {
-  this->id_ = yaml["id"].as<int>();
   this->name_ = yaml["name"].as<std::string>();
+  this->id_ = yaml["id"].as<int>();
+
+  if (yaml["diameter"].IsDefined() && !yaml["diameter"].IsNull())
+  {
+    this->diameter_ = yaml["diameter"].as<int>();
+    ROS_INFO_NAMED(PREFIX, "joint %s has a diameter and will except meters per second as velocity input", this->name_.LOG);
+  }
+  else
+  {
+    ROS_INFO_NAMED(PREFIX, "joint %s has a diameter and will except meters per second as velocity input", this->name_.LOG);
+  }
 
   if (yaml["connection"].IsDefined())
     this->connection_description_ = std::make_shared<GenericConnectionDescription>(yaml["connection"]);
@@ -42,14 +52,19 @@ GenericJointDescription::GenericJointDescription(YAML::Node yaml)
     ROS_INFO("[%s] no config provided - fallback to present hardware config", PREFIX);
 }
 
+std::string GenericJointDescription::getName()
+{
+  return this->name_;
+}
+
 int GenericJointDescription::getId()
 {
   return this->id_;
 }
 
-std::string GenericJointDescription::getName()
+int GenericJointDescription::getDiameter()
 {
-  return this->name_;
+  return this->diameter_;
 }
 
 std::shared_ptr<GenericConnectionDescription> GenericJointDescription::getConnectionDescription()
