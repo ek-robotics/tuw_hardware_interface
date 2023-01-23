@@ -37,6 +37,7 @@
   <exec_depend>joint_limits_interface</exec_depend>
 
   <test_depend>rosunit</test_depend>
+  <test_depend>code_coverage</test_depend>
 
   <export>
     <!-- nothing to export -->
