@@ -48,6 +48,7 @@ public:
 
   virtual std::string getName();
   virtual int getId();
+  virtual int getDiameter();
 
   virtual void write(const ros::Duration &period);
   virtual void read(const ros::Duration &period);
@@ -55,11 +56,10 @@ public:
   virtual void write(GenericHardwareParameter hardware_parameter, int data);
   virtual int read(GenericHardwareParameter hardware_parameter);
 
-  int getTarget();
-  void setCurrent(int current, GenericHardware::Mode mode);
-
   virtual bool setMode(GenericHardware::Mode mode);
-  virtual GenericHardware::Mode getMode();
+
+  double MPStoRadPS(double mps);
+  double RadPStoMPS(double rps);
 
   JointStateHandle* getJointStateHandle();
   JointHandle* getJointPositionHandle();
@@ -70,7 +70,8 @@ protected:
   virtual double readActual(GenericHardware::Mode mode, const std::string& mode_name);
 
   std::string name_;
-  int id_ = 0;
+  int id_ {0};
+  double diameter_ {0};
 
   std::shared_ptr<GenericConnection> connection_;
   std::shared_ptr<GenericHardware> hardware_;

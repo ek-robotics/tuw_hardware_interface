@@ -30,7 +30,7 @@ TEST_F(GenericJointDescriptionTest, verifyId)
 
 TEST_F(GenericJointDescriptionTest, verifyDiameter)
 {
-  ASSERT_EQ(generic_joint_description_.getDiameter(), 100);
+  ASSERT_EQ(generic_joint_description_.getDiameter(), 0.1);
 }
 
 TEST_F(GenericJointDescriptionTest, verifyConnectionDescriptionPointer)

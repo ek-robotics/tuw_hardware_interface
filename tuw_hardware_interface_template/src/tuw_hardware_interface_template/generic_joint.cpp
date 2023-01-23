@@ -22,6 +22,7 @@ GenericJoint::GenericJoint(GenericJointDescription joint_description)
 {
   this->name_ = joint_description.getName();
   this->id_ = joint_description.getId();
+  this->diameter_ = joint_description.getDiameter();
 
   this->joint_state_handle_ = std::make_unique<JointStateHandle>
           (this->name_, &this->actual_position_, &this->actual_velocity_, &this->actual_effort_);
@@ -85,6 +86,11 @@ int GenericJoint::getId()
   return this->id_;
 }
 
+int GenericJoint::getDiameter()
+{
+  return this->diameter_;
+}
+
 void GenericJoint::write(const ros::Duration &period)
 {
   if (!this->mode_)
@@ -136,7 +142,12 @@ void GenericJoint::read(const ros::Duration &period)
     if (mode == GenericHardware::Mode::POSITION)
       this->actual_position_ = this->hardware_->convertFromHardwareResolution(*map.at(mode), mode);
     if (mode == GenericHardware::Mode::VELOCITY)
-      this->actual_velocity_ = this->hardware_->convertFromHardwareResolution(*map.at(mode), mode);
+    {
+      if (this->diameter_ > 0)
+        this->actual_velocity_ = this->RadPStoMPS(this->hardware_->convertFromHardwareResolution(*map.at(mode), mode));
+      else
+        this->actual_velocity_ = this->hardware_->convertFromHardwareResolution(*map.at(mode), mode);
+    }
     if (mode == GenericHardware::Mode::EFFORT)
       this->actual_effort_ = this->hardware_->convertFromHardwareResolution(*map.at(mode), mode);
   }
@@ -193,8 +204,29 @@ void GenericJoint::writeTarget(double target, GenericHardware::Mode mode, const 
 {
   if (this->hardware_->supportsTargetMode(mode))
   {
-    int hardware_target = this->hardware_->convertToHardwareResolution(target, mode);
-    this->connection_->write(this->id_, this->hardware_->getTargetParameterForMode(mode), hardware_target);
+    if (mode == GenericHardware::Mode::POSITION)
+    {
+      int hardware_target = this->hardware_->convertToHardwareResolution(target, mode);
+      this->connection_->write(this->id_, this->hardware_->getTargetParameterForMode(mode), hardware_target);
+    }
+    if (mode == GenericHardware::Mode::VELOCITY)
+    {
+      int hardware_target;
+      if (this->diameter_ > 0)
+      {
+        hardware_target = this->hardware_->convertToHardwareResolution(this->MPStoRadPS(target), mode);
+      }
+      else
+      {
+        hardware_target = this->hardware_->convertToHardwareResolution(target, mode);
+      }
+      this->connection_->write(this->id_, this->hardware_->getTargetParameterForMode(mode), hardware_target);
+    }
+    if (mode == GenericHardware::Mode::EFFORT)
+    {
+      int hardware_target = this->hardware_->convertToHardwareResolution(target, mode);
+      this->connection_->write(this->id_, this->hardware_->getTargetParameterForMode(mode), hardware_target);
+    }
   }
   else
   {
@@ -217,41 +249,12 @@ double GenericJoint::readActual(GenericHardware::Mode mode, const std::string& m
   }
 }
 
-int GenericJoint::getTarget()
+double GenericJoint::MPStoRadPS(double mps)
 {
-  double target = 0;
-  switch (*this->mode_)
-  {
-    case GenericHardware::Mode::POSITION:
-      target = this->target_position_;
-      break;
-    case GenericHardware::Mode::VELOCITY:
-      target = this->target_velocity_;
-      break;
-    case GenericHardware::Mode::EFFORT:
-      target = this->target_effort_;
-      break;
-  }
-  return this->hardware_->convertToHardwareResolution(target, *this->mode_);
+  return mps / this->diameter_;
 }
 
-void GenericJoint::setCurrent(int current, GenericHardware::Mode mode)
+double GenericJoint::RadPStoMPS(double rps)
 {
-  switch (mode)
-  {
-    case GenericHardware::Mode::POSITION:
-      this->actual_position_ = this->hardware_->convertFromHardwareResolution(current, mode);
-      break;
-    case GenericHardware::Mode::VELOCITY:
-      this->actual_velocity_ = this->hardware_->convertFromHardwareResolution(current, mode);
-      break;
-    case GenericHardware::Mode::EFFORT:
-      this->actual_effort_ = this->hardware_->convertFromHardwareResolution(current, mode);
-      break;
-  }
-}
-
-GenericHardware::Mode GenericJoint::getMode()
-{
-  return *this->mode_;
+  return this->diameter_ * rps;
 }

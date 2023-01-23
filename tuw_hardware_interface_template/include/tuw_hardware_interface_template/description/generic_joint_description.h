@@ -22,7 +22,7 @@ public:
   explicit GenericJointDescription(YAML::Node yaml);
   virtual std::string getName();
   virtual int getId();
-  virtual int getDiameter();
+  virtual double getDiameter();
   virtual std::shared_ptr<GenericConnectionDescription> getConnectionDescription();
   virtual std::shared_ptr<GenericHardwareDescription> getHardwareDescription();
   virtual std::shared_ptr<GenericConfigDescription> getConfigDescription();
@@ -30,7 +30,7 @@ protected:
   static YAML::Node loadFile(YAML::Node yaml);
   std::string name_;
   int id_ {0};
-  int diameter_ {0};
+  double diameter_ {0};
   std::shared_ptr<GenericConnectionDescription> connection_description_ {nullptr};
   std::shared_ptr<GenericHardwareDescription> hardware_description_ {nullptr};
   std::shared_ptr<GenericConfigDescription> config_description_ {nullptr};

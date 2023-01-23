@@ -25,7 +25,7 @@ GenericJointDescription::GenericJointDescription(YAML::Node yaml)
 
   if (yaml["diameter"].IsDefined() && !yaml["diameter"].IsNull())
   {
-    this->diameter_ = yaml["diameter"].as<int>();
+    this->diameter_ = yaml["diameter"].as<double>();
     ROS_INFO_NAMED(PREFIX, "joint %s has a diameter and will except meters per second as velocity input", this->name_.LOG);
   }
   else
@@ -62,7 +62,7 @@ int GenericJointDescription::getId()
   return this->id_;
 }
 
-int GenericJointDescription::getDiameter()
+double GenericJointDescription::getDiameter()
 {
   return this->diameter_;
 }

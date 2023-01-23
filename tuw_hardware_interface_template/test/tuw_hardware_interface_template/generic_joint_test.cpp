@@ -182,3 +182,13 @@ TEST_F(GenericJointTest, verifyJointEffortHandle)
 {
   ASSERT_TRUE(this->joint_->getJointEffortHandle());
 }
+
+TEST_F(GenericJointTest, verifyMPStoRadPS)
+{
+  ASSERT_EQ(this->joint_->MPStoRadPS(1.0), 10.0);
+}
+
+TEST_F(GenericJointTest, verifyRadPStoMPS)
+{
+  ASSERT_EQ(this->joint_->RadPStoMPS(10.0), 1.0);
+}
