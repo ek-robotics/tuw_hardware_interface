@@ -14,9 +14,9 @@ class GenericConfigDescription
 {
 public:
   explicit GenericConfigDescription(const YAML::Node& yaml);
-  std::map<std::string, int> getConfigMap();
+  std::vector<std::pair<std::string, int>> getConfig();
 private:
-  std::map<std::string, int> config_map_;
+  std::vector<std::pair<std::string, int>> config_;
 };
 }  // namespace tuw_hardware_interface
 

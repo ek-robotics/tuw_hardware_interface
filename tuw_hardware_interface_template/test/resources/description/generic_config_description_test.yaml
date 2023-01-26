@@ -1,3 +1,6 @@
-config_value_0: 0
-config_value_1: 1
-config_value_2: 2
+c0_config_value: 0
+b0_config_value: 1
+a0_config_value: 2
+a1_config_value: 2
+b1_config_value: 1
+c1_config_value: 0

@@ -112,7 +112,7 @@ void GenericConfig::reconfigureValue(GenericHardwareParameter parameter, int tar
 
 void GenericConfig::setInitialConfig(GenericConfigDescription config_description)
 {
-  for (const auto& identifier_value_pair : config_description.getConfigMap())
+  for (const auto& identifier_value_pair : config_description.getConfig())
   {
     auto identifier = identifier_value_pair.first;
 

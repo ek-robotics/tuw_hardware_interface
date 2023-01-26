@@ -18,14 +18,27 @@ protected:
           GenericConfigDescription(FileLoader::loadYAMLFromFile(TEST_FILE_PATH));
 };
 
-TEST_F(GenericConfigDescriptionTest, verifyElements)
+TEST_F(GenericConfigDescriptionTest, verifyKeys)
 {
-  ASSERT_EQ(generic_connection_description_.getConfigMap().at("config_value_0"), 0);
-  ASSERT_EQ(generic_connection_description_.getConfigMap().at("config_value_1"), 1);
-  ASSERT_EQ(generic_connection_description_.getConfigMap().at("config_value_2"), 2);
+  ASSERT_EQ(generic_connection_description_.getConfig().at(0).first, "c0_config_value");
+  ASSERT_EQ(generic_connection_description_.getConfig().at(1).first, "b0_config_value");
+  ASSERT_EQ(generic_connection_description_.getConfig().at(2).first, "a0_config_value");
+  ASSERT_EQ(generic_connection_description_.getConfig().at(3).first, "a1_config_value");
+  ASSERT_EQ(generic_connection_description_.getConfig().at(4).first, "b1_config_value");
+  ASSERT_EQ(generic_connection_description_.getConfig().at(5).first, "c1_config_value");
+}
+
+TEST_F(GenericConfigDescriptionTest, verifyValues)
+{
+  ASSERT_EQ(generic_connection_description_.getConfig().at(0).second, 0);
+  ASSERT_EQ(generic_connection_description_.getConfig().at(1).second, 1);
+  ASSERT_EQ(generic_connection_description_.getConfig().at(2).second, 2);
+  ASSERT_EQ(generic_connection_description_.getConfig().at(3).second, 2);
+  ASSERT_EQ(generic_connection_description_.getConfig().at(4).second, 1);
+  ASSERT_EQ(generic_connection_description_.getConfig().at(5).second, 0);
 }
 
 TEST_F(GenericConfigDescriptionTest, verifyLength)
 {
-  ASSERT_EQ(generic_connection_description_.getConfigMap().size(), 3);
+  ASSERT_EQ(generic_connection_description_.getConfig().size(), 6);
 }
