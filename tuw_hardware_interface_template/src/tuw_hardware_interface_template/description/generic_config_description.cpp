@@ -4,18 +4,24 @@
 
 #include <map>
 #include <string>
+#include <ros/ros.h>
 
 using tuw_hardware_interface::GenericConfigDescription;
 
 GenericConfigDescription::GenericConfigDescription(const YAML::Node& yaml)
 {
-  for (auto key_value_pair : yaml)
+  YAML::Node config_yaml = yaml["config"];
+  if (config_yaml.IsDefined() && !config_yaml.IsNull())
   {
-    std::pair<std::string, int> pair = {key_value_pair.first.as<std::string>(), key_value_pair.second.as<int>()};
-    this->config_.emplace_back(pair);
-//    std::string key = key_value_pair.first.as<std::string>();
-//    int value = key_value_pair.second.as<int>();
-//    this->config_map_[key] = value;
+    for (YAML::Node config_info : config_yaml)
+    {
+      std::pair<std::string, int> pair = {config_info["identifier"].as<std::string>(), config_info["value"].as<int>()};
+      this->config_.emplace_back(pair);
+    }
+  }
+  else
+  {
+    ROS_WARN("config is invalid!");
   }
 }
 

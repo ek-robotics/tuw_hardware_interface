@@ -1,6 +1,13 @@
-c0_config_value: 0
-b0_config_value: 1
-a0_config_value: 2
-a1_config_value: 2
-b1_config_value: 1
-c1_config_value: 0
+config:
+  - identifier: c0_config_value
+    value: 0
+  - identifier: b0_config_value
+    value: 1
+  - identifier: a0_config_value
+    value: 2
+  - identifier: a1_config_value
+    value: 2
+  - identifier: b1_config_value
+    value: 1
+  - identifier: c1_config_value
+    value: 0
