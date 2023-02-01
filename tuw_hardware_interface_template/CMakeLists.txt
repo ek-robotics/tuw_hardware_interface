@@ -28,7 +28,6 @@ catkin_package(
   ddynamic_reconfigure
 )
 
-#
 if(CATKIN_ENABLE_TESTING AND ENABLE_COVERAGE_TESTING)
   find_package(code_coverage REQUIRED)
   # Add compiler flags for coverage instrumentation before defining any targets
@@ -88,8 +87,6 @@ target_link_libraries(
 #)
 
 if (CATKIN_ENABLE_TESTING)
-  # Add your tests here
-
   catkin_add_gtest(
       ${PROJECT_NAME}_tests
       test/${PROJECT_NAME}/description/generic_config_description_test.cpp
