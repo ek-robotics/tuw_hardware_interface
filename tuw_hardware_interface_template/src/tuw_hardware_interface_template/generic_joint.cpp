@@ -143,7 +143,7 @@ void GenericJoint::read(const ros::Duration &period)
       this->actual_position_ = this->hardware_->convertFromHardwareResolution(*map.at(mode), mode);
     if (mode == GenericHardware::Mode::VELOCITY)
     {
-      if (this->diameter_ > 0)
+      if (this->diameter_ > 0.0)
         this->actual_velocity_ = this->RadPStoMPS(this->hardware_->convertFromHardwareResolution(*map.at(mode), mode));
       else
         this->actual_velocity_ = this->hardware_->convertFromHardwareResolution(*map.at(mode), mode);
@@ -251,10 +251,10 @@ double GenericJoint::readActual(GenericHardware::Mode mode, const std::string& m
 
 double GenericJoint::MPStoRadPS(double mps)
 {
-  return mps / this->diameter_;
+  return mps / (this->diameter_  / 2.0);
 }
 
 double GenericJoint::RadPStoMPS(double rps)
 {
-  return this->diameter_ * rps;
+  return (this->diameter_ / 2.0) * rps;
 }
