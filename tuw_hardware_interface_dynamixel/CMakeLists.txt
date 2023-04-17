@@ -22,14 +22,7 @@ catkin_package(
   INCLUDE_DIRS include
   LIBRARIES ${PROJECT_NAME}
   CATKIN_DEPENDS
-  roscpp
-  rospy
-  roslint
-  urdf
   tuw_hardware_interface_template
-  ddynamic_reconfigure
-  controller_manager
-  dynamixel_sdk
   #  DEPENDS system_lib
 )
 
