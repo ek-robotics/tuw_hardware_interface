@@ -17,7 +17,7 @@
   <rosparam param="dynamixel_hardware_interface_setup" subst_value="True">
     "$(find tuw_hardware_interface_dynamixel)/resources/setup/dynamixel_test_setup.yaml"
   </rosparam>
-  <rosparam file="$(find tuw_hardware_interface_dynamixel)/resources/controller/dynamixel_test_setup.yaml" command="load"/>
+  <rosparam file="$(find tuw_hardware_interface_dynamixel)/resources/controller/dynamixel_setup.yaml" command="load"/>
 
   <!-- start tuw_hardware_interface_dynamixel_node -->
   <node name="tuw_hardware_interface_dynamixel_node"

@@ -10,7 +10,7 @@
   <arg name="debug" default="false"/>
 
   <!-- load robot description -->
-  <arg name="model" default="$(find tuw_hardware_interface_trinamic)/resources/urdf/continuous_joint.xml"/>
+  <arg name="model" default="$(find tuw_hardware_interface_trinamic)/resources/urdf/simple_trinamic_robot.xml"/>
   <param name="robot_description" command="$(find xacro)/xacro $(arg model)"/>
 
   <!-- load rosparam (param in yaml files) depending on debug flag -->
